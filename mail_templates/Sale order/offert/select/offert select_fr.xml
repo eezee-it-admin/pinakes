@@ -1,0 +1,72 @@
+<div>
+    <p>Cher <t t-out="object.partner_id.name" data-oe-t-inline="true" contenteditable="false"/>,</p>
+    <p>
+        Nous vous remercions de l’intérêt que vous portez à nos services.
+    </p>
+    <p>
+        Les coordonnées que vous recherchez sont présentes dans la base de données.
+    </p>
+    <br/>
+    <p>
+        Il y a [product_uom_qty] [product_uom] dans la sélection.
+    </p>
+    <p>
+       Dans la formule de sélection sur mesure, où nous fournissons la liste de contacts pour vous,
+        vous payez [price_unit] EUR par contact. La liste de contacts coûte
+        alors <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> incl. TVA.
+    </p>
+    <p>
+        En pièce jointe, vous trouverez le devis. Veuillez accepter de signer cette offre en ligne via ce lien ci-dessous.
+    </p>
+    <p>Si ce devis vous semble intéressante, il suffit de la signer en ligne via le lien ci-dessous.</p>
+    <center>
+        <a href="/confirmusers" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
+    </center>
+    <br/>
+    <p>
+        Vous recevrez ensuite la liste Excel avec les coordonnées demandées. Vous recevrez le nom de l’organisation,
+        l’adresse postale, le numéro de téléphone, le nom, le prénom et le titre, le poste, l’adresse e-mail (directe),
+        la langue et le sexe de la personne de contact.
+    </p>
+    <p>
+        Ainsi, dès réception de votre accord, nous créerons la sélection pour vous et vous la livrerons.
+    </p>
+    <p>
+        S’il vous plaît contactez-nous si vous souhaitez plus d’informations!
+    </p>
+    <br/>
+    <p>Cordialement</p>
+    <br/>
+    <t t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></t>
+    <hr class="mt-8 mb-8"/>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <img t-att-src="'/logo.png?company=%s' % object.company_id.id" style="border-style: none; box-sizing: border-box; vertical-align: middle; padding: 0px; margin: 0px; height: 50px; width: 200px;" t-att-alt="'%s' % object.company_id.name" width="200px" height="100">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;font-weight:bold;">Keizerslaan 34</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;font-weight:bold;">1000 Brussel</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;">+32 (0)2 213 85 00</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;"><a target="_blank" href="https://www.pinakes.be/nl" style="text-decoration:none;box-sizing:border-box;background-color:transparent;color:blue;font-weight:bold">https://www.pinakes.be/nl</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <small>Suivez les nouvelles intéressantes sur les rendez-vous dans notre newsletter!</small>
+            <small>
+                La banque de données Pinakes contient des informations telles que des données de contact de mandataires
+                politiques, de fonctionnaires dirigeants et de décideurs d’administrations publiques belges,
+                luxembourgeoises et européennes ainsi que de services et organisations du secteur du bien-être,
+                de la santé et du non marchand. Les administrations publiques, les institutions et les personnes
+                morales de droit privé peuvent ainsi informer les personnes concernées d’activités, de produits
+                ou de services qui peuvent avoir de l’intérêt pour elles. Nous traitons aussi des données
+                pour d’autres finalités. Nous tenons à souligner que le traitement de données se fait conformément
+                à la législation relative au respect de la vie privée ainsi qu’à la législation relative au
+                e-commerce en vigueur. Si vous souhaitez de plus amples informations concernant la manière
+                dont nous traitons les données à caractère personnel, veuillez consulter notre <a target="_blank" href="https://www.pinakes.be/fr/vie-privee">Déclaration relative
+                au respect de la vie privée</a>. Si vous avez des questions ou des remarques, n’hésitez pas à contacter
+                notre DPD via <a href="mailto:dpo@pinakes.be">dpo@pinakes.be</a> ou à l’adresse ; Boulevard de l’Empereur 34, 1000 Bruxelles.
+            </small>
+        </div>
+    </div>
+</div>

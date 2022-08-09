@@ -1,0 +1,66 @@
+<div>
+    <p>Dear <t t-out="object.partner_id.name" data-oe-t-inline="true" contenteditable="false"/>,</p>
+    <p>
+        Thank you for your interest in our services.
+    </p>
+    <p>
+        The coordinates you are looking for are present in the database.
+    </p>
+    <br/>
+    <p>
+        There is [product_uom_qty] [product_uom] in the selection.
+    </p>
+    <p>
+       In the tailor-made selection formula, where we provide the contact list for you.
+       The contact list then costs <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> incl. VAT.
+    </p>
+    <p>
+        Attached you will find the quote. Please agree to sign this offer online via this link below.
+    </p>
+    <p>If this quote seems interesting to you, just sign it online via the link below.</p>
+    <center>
+        <a href="/confirmusers" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
+    </center>
+    <br/>
+    <p>
+        You will then receive the Excel list with the requested contact details. You will receive the name of the organization,
+         postal address, telephone number, surname, first name and title, position, e-mail address (direct),
+         the language and gender of the contact person.
+    </p>
+    <p>
+        Thus, upon receipt of your agreement, we will create the selection for you and deliver it to you.
+    </p>
+    <br/><br/>
+    Don't hesitate to contact us if you have any questions.
+    <br/>
+    <t t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></t>
+    <hr class="mt-8 mb-8"/>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <img t-att-src="'/logo.png?company=%s' % object.company_id.id" style="border-style: none; box-sizing: border-box; vertical-align: middle; padding: 0px; margin: 0px; height: 50px; width: 200px;" t-att-alt="'%s' % object.company_id.name" width="200px" height="100">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;font-weight:bold;">Keizerslaan 34</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;font-weight:bold;">1000 Brussel</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;">+32 (0)2 213 85 00</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;"><a target="_blank" href="https://www.pinakes.be/nl" style="text-decoration:none;box-sizing:border-box;background-color:transparent;color:blue;font-weight:bold">https://www.pinakes.be/nl</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <small>Follow interesting news about appointments in our newsletter!</small>
+            <small>
+                The Pinakes database contains information such as contact details of political
+                representatives, senior civil servants and decision-makers from Belgian,
+                Luxembourg and European public administrations as well as from services and organizations in the welfare,
+                health and of the non-market. Public administrations, institutions and legal entities governed by private
+                law can thus inform data subjects of activities, products or services that may be of interest to them.
+                We also process data for other purposes. We would like to point out that the processing of data is done
+                in accordance with the legislation relating to the respect of privacy as well as the legislation relating
+                to e-commerce in force. If you would like more information about how we process personal data,
+                please see our <a target="_blank" href="https://www.pinakes.be/fr/vie-privee">Privacy Statement</a>. If you have any questions or remarks, do not hesitate to contact
+                our DPO via <a href="mailto:dpo@pinakes.be">dpo@pinakes.be</a> or at the address; Boulevard de l'Empereur 34, 1000 Brussels.
+            </small>
+        </div>
+    </div>
+</div>

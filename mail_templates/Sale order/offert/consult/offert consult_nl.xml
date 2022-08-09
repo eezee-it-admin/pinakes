@@ -1,0 +1,68 @@
+<div>
+    <p>Beste <t t-out="object.partner_id.name" data-oe-t-inline="true" contenteditable="false"/>,</p>
+    <p>
+        Bedankt voor je interesse in onze diensten.
+    </p>
+    <p>
+        In de bijlage vind je de algemene voorwaarden en de offerte van een Pinakes export met de rubriek “Lokale overheden”.
+    </p>
+    <br/>
+    <p>
+        Een dergelijk Pinakes <strong>Consult</strong> abonnement bied je de volgende mogelijkheden:
+    </p>
+    <ul>
+        <li>onbeperkte raadpleging van alle organisaties, personen en velden binnen de gekozen rubriek(en)</li>
+        <li>Raadpleging gedurende één jaar.</li>
+        <li>Forfaitaire prijs ongeacht het aantal consultaties</li>
+        <li>Toegang tot alle updates</li>
+    </ul>
+
+    <br></br>
+    <p>
+        In de bijlage vind je de algemene voorwaarden en de offerte, met toegang tot 1 rubriek, de rubriek ‘Lokale overheden’. Hierin bevinden zich de contactgegevens waarnaar je op zoek bent.
+    </p>
+    <p>
+        Je Pinakes Consult abonnement kost <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> incl. BTW.
+    </p>
+    <p>
+        Graag bij akkoord de offerte online ondertekend terugsturen via onderstaande link.
+    </p>
+    <center>
+        <a href="/confirmusers" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
+    </center>
+    <br/>
+    <p>Neem aub contact op als je verdere informatie wenst!</p>
+    <br/><br/>
+    <p>Met vriendelijke groeten</p>
+    <br/>
+    <t t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></t>
+    <hr class="mt-8 mb-8"/>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <img t-att-src="'/logo.png?company=%s' % object.company_id.id" style="border-style: none; box-sizing: border-box; vertical-align: middle; padding: 0px; margin: 0px; height: 50px; width: 200px;" t-att-alt="'%s' % object.company_id.name" width="200px" height="100">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;font-weight:bold;">Keizerslaan 34</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;font-weight:bold;">1000 Brussel</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;">+32 (0)2 213 85 00</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;"><a target="_blank" href="https://www.pinakes.be/nl" style="text-decoration:none;box-sizing:border-box;background-color:transparent;color:blue;font-weight:bold">https://www.pinakes.be/nl</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <small>Volg het interessante benoemingsnieuws in onze tweewekelijkse nieuwsbrief!</small>
+            <small>
+                De Pinakes databank bevat informatie zoals contactgegevens van politieke mandatarissen,
+                leidinggevende ambtenaren en beslissingsnemers van Belgische, Luxemburgse en Europese openbare
+                besturen en diensten en organisaties uit de welzijns-, gezondheids- en non-profitsector.
+                Overheidsbesturen, instellingen en privaatrechtelijke rechtspersonen kunnen op die manier
+                betrokkenen informeren over activiteiten, producten of diensten die van belang kunnen zijn voor
+                betrokkenen. Wij verwerken bovendien ook gegevens voor andere doelen. Wij wensen te benadrukken
+                dat de verwerking van gegevens gebeurt in overeenstemming met de geldende privacywetgeving
+                en e-commercewetgeving. Als u meer informatie wenst over hoe wij persoonsgegevens verwerken
+                vragen wij u vriendelijk onze <a target="_blank" href="https://www.pinakes.be/nl/privacy">Privacyverklaring</a>. te raadplegen. Indien u vragen of opmerkingen heeft, aarzel dan niet om onze DPO te contacteren via
+                our DPO via <a href="mailto:dpo@pinakes.be">dpo@pinakes.be</a> of via Keizerslaan, 34, 1000 Brussel.
+            </small>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div>
+    <p>Cher <t t-out="object.partner_id.name" data-oe-t-inline="true" contenteditable="false"/>,</p>
+    <p>
+        Vous êtes abonné à la base de données Pinakes. Grâce à votre abonnement, vous pouvez consulter et exporter
+        les coordonnées du secteur public, comme un lien important dans votre communication avec le gouvernement.
+    </p>
+    <p>
+        En pièce jointe, vous trouverez la facture de votre abonnement [product type] avec la référence
+        <strong t-out="object.name or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"/> pour le montant de <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> incl. TVA.
+    </p>
+    <br/>
+    <ul>
+        <ol>Commandé par: <strong t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></strong>.</ol>
+        <ol>Facturation à: <strong t-out="object.partner_id.name" data-oe-t-inline="true" contenteditable="false"/></ol>
+        <ol>Date limite de paiement: <strong t-out="object.invoice_due_date" data-oe-t-inline="true" contenteditable="false"/></ol>
+    </ul>
+    <p>
+        Pour toute autre question, veuillez contacter directement <strong t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></strong>.
+    </p>
+
+    <p>Cordialement</p>
+    <p>Comptabilité</p>
+    <br/>
+
+    <hr class="mt-8 mb-8"/>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <img t-att-src="'/logo.png?company=%s' % object.company_id.id" style="border-style: none; box-sizing: border-box; vertical-align: middle; padding: 0px; margin: 0px; height: 50px; width: 200px;" t-att-alt="'%s' % object.company_id.name" width="200px" height="100">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;font-weight:bold;">Keizerslaan 34</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;font-weight:bold;">1000 Brussel</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;">+32 (0)2 213 85 00</p>
+            <p style="margin:0px 0 12px 0;box-sizing:border-box;"><a target="_blank" href="https://www.pinakes.be/nl" style="text-decoration:none;box-sizing:border-box;background-color:transparent;color:blue;font-weight:bold">https://www.pinakes.be/nl</a></p>
+        </div>
+    </div>
+</div>
