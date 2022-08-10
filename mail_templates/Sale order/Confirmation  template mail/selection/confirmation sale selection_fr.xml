@@ -4,7 +4,7 @@
         Merci pour votre commande avec référence <strong t-out="object.name or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false">S00049</strong> pour un montant de <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong>
     </p>
     <p>
-        The selection will be delivered to you as soon as possible.
+        La sélection vous sera livrée dans les plus brefs délais.
     </p>
     <br/>
 
