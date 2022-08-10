@@ -8,11 +8,11 @@
     </p>
     <br/>
     <p>
-        Er zijn [product_uom_qty] [product_uom] in de selectie aanwezig.
+        Er zijn <strong t-out="sum(object.order_line.mapped('product_uom_qty')) or 0" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> contacten in de selectie aanwezig.
     </p>
     <p>
        In de selectie-op-maat formule, waarbij wij de contactlijst voor jou aanleveren,
-        betaal je [price_unit] EUR per contact.
+        betaal je <strong t-out="object.order_line and object.order_line[0].price_unit or 0" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> EUR per contact.
         De contactlijst kost dan <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> incl. BTW.
     </p>
     <p>
