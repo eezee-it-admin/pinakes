@@ -8,12 +8,12 @@
     </p>
     <br/>
     <p>
-        There is [product_uom_qty] [product_uom] in the selection.
+        There is <strong t-out="sum(object.order_line.mapped('product_uom_qty')) or 0" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> contacts in the selection.
     </p>
     <p>
-       In the tailor-made selection formula, where we provide the contact list for you.
-       The contact list then costs <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> incl. VAT.
+       In the tailor-made selection formula, where we provide the contact list for you, you pay <strong t-out="object.order_line and object.order_line[0].price_unit or 0" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> per contact. The contact list then costs <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> incl. VAT.
     </p>
+
     <p>
         Attached you will find the quote. Please agree to sign this offer online via this link below.
     </p>
