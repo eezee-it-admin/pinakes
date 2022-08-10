@@ -8,11 +8,11 @@
     </p>
     <br/>
     <p>
-        Il y a [product_uom_qty] [product_uom] dans la sélection.
+        Il y a <strong t-out="sum(object.order_line.mapped('product_uom_qty')) or 0" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> contacts dans la sélection.
     </p>
     <p>
        Dans la formule de sélection sur mesure, où nous fournissons la liste de contacts pour vous,
-        vous payez [price_unit] EUR par contact. La liste de contacts coûte
+        vous payez <strong t-out="object.order_line and object.order_line[0].price_unit or 0" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> EUR par contact. La liste de contacts coûte
         alors <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong> incl. TVA.
     </p>
     <p>
