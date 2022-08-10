@@ -12,7 +12,7 @@
     <ul>
         <ol>Besteld door: <strong t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></strong>.</ol>
         <ol>Facturering aan: <strong t-out="object.partner_id.name" data-oe-t-inline="true" contenteditable="false"/></ol>
-        <ol>Betalingsdeadline: <strong t-out="object.invoice_due_date" data-oe-t-inline="true" contenteditable="false"/></ol>
+        <ol>Betalingsdeadline: <strong t-out="object.invoice_date_due" data-oe-t-inline="true" contenteditable="false"/></ol>
     </ul>
     <p>
         Neem voor andere vragen direct contact op! <strong t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></strong>.
