@@ -28,7 +28,7 @@
         Graag bij akkoord de offerte online ondertekend terugsturen via onderstaande link.
     </p>
     <center>
-        <a href="/confirmusers" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
+        <a t-att-href="object.get_portal_url()" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
     </center>
     <br/>
     <p>Neem aub contact op als je verdere informatie wenst!</p>
