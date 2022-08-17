@@ -20,7 +20,7 @@
     </p>
     <p>Si ce devis vous semble intéressante, il suffit de la signer en ligne via le lien ci-dessous.</p>
     <center>
-        <a href="/confirmusers" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
+        <a t-att-href="object.get_portal_url()" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LIEN</a>
     </center>
     <br/>
     <p>
