@@ -4,13 +4,10 @@
         Thank you for your order with reference <strong t-out="object.name or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false">S00049</strong> for an amount of <strong t-out="format_amount(object.amount_total, object.currency_id) or ''" style="box-sizing:border-box;font-weight:500;" contenteditable="false"></strong>
     </p>
     <p>
-        Please also fill in the quotation number, names, e-mail addresses and language (Dutch or French) of the maximum 2 users via the link below so that we can create user accounts..
+        The selection will be delivered to you as soon as possible.
     </p>
     <br/>
-    <center>
-        <a href="/confirmusers" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
-    </center>
-    <br/>
+   
     Thank you for your trust!
     <br/><br/>
     Don't hesitate to contact us if you have any questions.
