@@ -9,7 +9,7 @@
     </p>
     <br/>
     <ul>
-        <ol>Ordered by: <strong t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></strong>.</ol>
+        <ol>Ordered by: <strong t-out="object.commercial_partner_id.name" data-oe-t-inline="true" contenteditable="false"></strong>.</ol>
         <ol>Billing to: <strong t-out="object.partner_id.name" data-oe-t-inline="true" contenteditable="false"/></ol>
         <ol>Payment deadline: <strong t-out="object.invoice_due_date" data-oe-t-inline="true" contenteditable="false"/></ol>
     </ul>
