@@ -9,7 +9,7 @@
     </p>
     <br/>
     <ul>
-        <ol>Commandé par: <strong t-out="object.user_id.name" data-oe-t-inline="true" contenteditable="false"></strong>.</ol>
+        <ol>Commandé par: <strong t-out="object.commercial_partner_id.name" data-oe-t-inline="true" contenteditable="false"></strong>.</ol>
         <ol>Facturation à: <strong t-out="object.partner_id.name" data-oe-t-inline="true" contenteditable="false"/></ol>
         <ol>Date limite de paiement: <strong t-out="object.invoice_due_date" data-oe-t-inline="true" contenteditable="false"/></ol>
     </ul>
