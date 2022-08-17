@@ -23,7 +23,7 @@
     </p>
     <p>If this quote seems interesting to you, just sign it online via the link below.</p>
     <center>
-        <a href="/confirmusers" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
+        <a t-att-href="object.get_portal_url()" class="btn btn-primary" style="color: #fff;background-color: #007bff;border-color: #007bff;">LINK</a>
     </center>
     <br/>
     Thank you for your trust!
