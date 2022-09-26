@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Copyright 2022 Eezee-IT (<http://www.eezee-it.com>)
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 import binascii
 
@@ -8,10 +8,10 @@ from odoo.exceptions import AccessError, MissingError
 from odoo.http import request
 
 from odoo.addons.portal.controllers.mail import _message_post_helper
-from odoo.addons.sale.controllers import portal
+from odoo.addons.sale.controllers.portal import CustomerPortal
 
-class CustomerPortal(portal.CustomerPortal):
 
+class CustomerPortal(CustomerPortal):
 
     @http.route(['/my/orders/<int:order_id>/accept'], type='json', auth="public", website=True)
     def portal_quote_accept(self, order_id, access_token=None, name=None, signature=None):
@@ -55,3 +55,4 @@ class CustomerPortal(portal.CustomerPortal):
             'force_refresh': True,
             'redirect_url': order_sudo.get_portal_url(query_string=query_string),
         }
+
