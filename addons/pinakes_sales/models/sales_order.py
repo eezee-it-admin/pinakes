@@ -8,7 +8,6 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def _send_order_confirmation_mail(self):
-        res = super(SaleOrder, self)._send_order_confirmation_mail()
-        if self.transaction_ids:
-            return res
-        return
+        if self.sale_order_template_id and self.sale_order_template_id.mail_template_id:
+            return
+        return super(SaleOrder, self)._send_order_confirmation_mail()
