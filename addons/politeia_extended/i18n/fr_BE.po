@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * politeia_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-16 08:03+0000\n"
+"PO-Revision-Date: 2023-01-16 08:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: politeia_extended
+#: model_terms:ir.ui.view,arch_db:politeia_extended.view_politeia_product_template_form
+msgid "<span class=\"o_stat_text\">Authors</span>"
+msgstr "<span class=\"o_stat_text\">Auteurs</span>"
+
+#. module: politeia_extended
+#: model:ir.model.fields,field_description:politeia_extended.field_product_author__partner_id
+msgid "Author"
+msgstr "Auteur"
+
+#. module: politeia_extended
+#: model:ir.model,name:politeia_extended.model_product_author
+msgid "Product Authors"
+msgstr "Product Auteurs"
+
+#. module: politeia_extended
+#: model:ir.actions.act_window,name:politeia_extended.action_politeia_product_author
+#: model:ir.ui.menu,name:politeia_extended.menu_politeia_product_author
+msgid "Product Authors"
+msgstr "Product Auteurs"
+
+#. module: politeia_extended
+#: model:ir.model.fields,field_description:politeia_extended.field_product_author__forfait_price
+msgid "Forfait Price"
+msgstr "Prix forfait"
+
+#. module: politeia_extended
+#: model:ir.model.fields,field_description:politeia_extended.field_product_author__page_price_royalty
+msgid "Page Price Royalty"
+msgstr "Price per page copyright"
+
+#. module: politeia_extended
+#: model:ir.model.fields,field_description:politeia_extended.field_product_author__royalty_perc
+msgid "Royalty (%)"
+msgstr "Royalties (%)"
