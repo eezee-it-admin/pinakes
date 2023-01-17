@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_politeia_product_author_tree" model="ir.ui.view">
+        <field name="name">politeia.product.author.tree</field>
+        <field name="model">product.author</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="product_tmpl_id"/>
+                <field name="partner_id"/>
+                <field name="company_id" optional="hide"
+                       groups="base.group_multi_company"/>
+                <field name="royalty_perc"/>
+                <field name="page_price_royalty"/>
+                <field name="forfait_price"/>
+                <field name="company_id" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_politeia_product_author" model="ir.actions.act_window">
+        <field name="name">Product Authors</field>
+        <field name="res_model">product.author</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_politeia_product_author"
+              parent="sale.prod_config_main"
+              action="action_politeia_product_author" sequence="30"/>
+
+</odoo>
