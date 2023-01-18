@@ -50,3 +50,35 @@ msgstr "Price per page copyright"
 #: model:ir.model.fields,field_description:politeia_extended.field_product_author__royalty_perc
 msgid "Royalty (%)"
 msgstr "Royalties (%)"
+
+#. module: politeia_extended
+#: model:ir.actions.act_window,name:politeia_extended.action_politeia_organization
+#: model:ir.model,name:politeia_extended.model_organization
+#: model:ir.model.fields,field_description:politeia_extended.field_product_product__organization_id
+#: model:ir.model.fields,field_description:politeia_extended.field_product_template__organization_id
+#: model:ir.ui.menu,name:politeia_extended.menu_politeia_organization
+msgid "Organization"
+msgstr ""
+
+#. module: politeia_extended
+#: model:ir.actions.act_window,name:politeia_extended.action_politeia_publication_type
+#: model:ir.model,name:politeia_extended.model_publication_type
+#: model:ir.model.fields,field_description:politeia_extended.field_product_product__publication_type_id
+#: model:ir.model.fields,field_description:politeia_extended.field_product_template__publication_type_id
+#: model:ir.ui.menu,name:politeia_extended.menu_politeia_publication_type
+msgid "Publication Type"
+msgstr ""
+
+#. module: politeia_extended
+#: model_terms:ir.ui.view,arch_db:politeia_extended.view_politeia_product_template_form
+msgid "Reporting"
+msgstr "rapportage"
+
+#. module: politeia_extended
+#: model:ir.actions.act_window,name:politeia_extended.action_politeia_imprint
+#: model:ir.model,name:politeia_extended.model_imprint
+#: model:ir.model.fields,field_description:politeia_extended.field_product_product__imprint_id
+#: model:ir.model.fields,field_description:politeia_extended.field_product_template__imprint_id
+#: model:ir.ui.menu,name:politeia_extended.menu_politeia_imprint
+msgid "Imprint"
+msgstr ""

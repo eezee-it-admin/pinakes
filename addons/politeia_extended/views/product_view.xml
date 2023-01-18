@@ -12,7 +12,82 @@
                     <span class="o_stat_text">Authors</span>
                 </button>
             </div>
+            <xpath expr="//notebook" position="inside">
+                <page string="Reporting" name="reporting">
+                    <group>
+                        <group>
+                            <field name="publication_type_id" widget="many2many_tags"/>
+                            <field name="type_id"/>
+                        </group>
+                        <group>
+                            <field name="organization_id"/>
+                            <field name="imprint_id"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
         </field>
+    </record>
+
+    <record id="view_politeia_publication_type_tree" model="ir.ui.view">
+        <field name="name">politeia.publication.type.tree</field>
+        <field name="model">publication.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_politeia_organization_tree" model="ir.ui.view">
+        <field name="name">politeia.organization.tree</field>
+        <field name="model">organization</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_politeia_type_tree" model="ir.ui.view">
+        <field name="name">politeia.publication.type.tree</field>
+        <field name="model">type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_politeia_imprint_tree" model="ir.ui.view">
+        <field name="name">politeia.imprint.tree</field>
+        <field name="model">imprint</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_politeia_publication_type" model="ir.actions.act_window">
+        <field name="name">Publication Type</field>
+        <field name="res_model">publication.type</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_politeia_organization" model="ir.actions.act_window">
+        <field name="name">Organization</field>
+        <field name="res_model">organization</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_politeia_type" model="ir.actions.act_window">
+        <field name="name">Type</field>
+        <field name="res_model">type</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_politeia_imprint" model="ir.actions.act_window">
+        <field name="name">Imprint</field>
+        <field name="res_model">imprint</field>
+        <field name="view_mode">tree</field>
     </record>
 
 </odoo>
