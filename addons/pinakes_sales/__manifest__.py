@@ -10,5 +10,6 @@
         'sale',
     ],
     'data': [
+        'data/server_action.xml',
     ],
 }
