@@ -17,6 +17,7 @@
         "security/ir.model.access.csv",
         "views/product_view.xml",
         "views/product_author_view.xml",
+        "views/menuitems.xml",
     ],
     "application": True,
 }
