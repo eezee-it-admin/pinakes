@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_politeia_product_author"
+              parent="sale.prod_config_main"
+              action="action_politeia_product_author" sequence="30"/>
+    <menuitem id="menu_politeia_publication_type"
+              parent="sale.prod_config_main"
+              action="action_politeia_publication_type" sequence="40"/>
+    <menuitem id="menu_politeia_product_organization"
+              parent="sale.prod_config_main"
+              action="action_politeia_product_organization" sequence="50"/>
+    <menuitem id="menu_politeia_product_type"
+              parent="sale.prod_config_main"
+              action="action_politeia_product_type" sequence="60"/>
+    <menuitem id="menu_politeia_product_imprint"
+              parent="sale.prod_config_main"
+              action="action_politeia_product_imprint" sequence="70"/>
+
+</odoo>

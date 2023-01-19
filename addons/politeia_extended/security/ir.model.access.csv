@@ -1,3 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_product_author_user,access.product.author.user,model_product_author,base.group_user,1,0,0,0
 access_product_author_system,access.product.author.system,model_product_author,base.group_system,1,1,1,1
+access_publication_type_user,access.publication.type.user,model_publication_type,base.group_user,1,0,0,0
+access_publication_type_system,access.publication.type.system,model_publication_type,base.group_system,1,1,1,1
+access_product_organization_user,access.product.organization.user,model_product_organization,base.group_user,1,0,0,0
+access_product_organization_system,access.product.organization.system,model_product_organization,base.group_system,1,1,1,1
+access_product_type_user,access.product.type.user,model_product_type,base.group_user,1,0,0,0
+access_product_type_system,access.product.type.system,model_product_type,base.group_system,1,1,1,1
+access_product_imprint_user,access.product.imprint.user,model_product_imprint,base.group_user,1,0,0,0
+access_product_imprint_system,access.product.imprint.system,model_product_imprint,base.group_system,1,1,1,1
