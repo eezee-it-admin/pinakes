@@ -52,11 +52,11 @@ msgid "Royalty (%)"
 msgstr "Authorsrechten (%)"
 
 #. module: politeia_extended
-#: model:ir.actions.act_window,name:politeia_extended.action_politeia_organization
-#: model:ir.model,name:politeia_extended.model_organization
+#: model:ir.actions.act_window,name:politeia_extended.action_politeia_product_organization
+#: model:ir.model,name:politeia_extended.model_product_organization
 #: model:ir.model.fields,field_description:politeia_extended.field_product_product__organization_id
 #: model:ir.model.fields,field_description:politeia_extended.field_product_template__organization_id
-#: model:ir.ui.menu,name:politeia_extended.menu_politeia_organization
+#: model:ir.ui.menu,name:politeia_extended.menu_politeia_product_organization
 msgid "Organization"
 msgstr "Organisatie"
 
@@ -72,13 +72,13 @@ msgstr "Publicatiesoort"
 #. module: politeia_extended
 #: model_terms:ir.ui.view,arch_db:politeia_extended.view_politeia_product_template_form
 msgid "Reporting"
-msgstr "rapportage"
+msgstr "Rapportage"
 
 #. module: politeia_extended
-#: model:ir.actions.act_window,name:politeia_extended.action_politeia_imprint
-#: model:ir.model,name:politeia_extended.model_imprint
+#: model:ir.actions.act_window,name:politeia_extended.action_politeia_product_imprint
+#: model:ir.model,name:politeia_extended.model_product_imprint
 #: model:ir.model.fields,field_description:politeia_extended.field_product_product__imprint_id
 #: model:ir.model.fields,field_description:politeia_extended.field_product_template__imprint_id
-#: model:ir.ui.menu,name:politeia_extended.menu_politeia_imprint
+#: model:ir.ui.menu,name:politeia_extended.menu_politeia_product_imprint
 msgid "Imprint"
 msgstr ""

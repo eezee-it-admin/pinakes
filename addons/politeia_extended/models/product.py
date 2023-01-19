@@ -7,9 +7,9 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     publication_type_id = fields.Many2many('publication.type')
-    organization_id = fields.Many2one('organization')
-    type_id = fields.Many2one('type')
-    imprint_id = fields.Many2one('imprint')
+    organization_id = fields.Many2one('product.organization')
+    product_type_id = fields.Many2one('product.type', 'Type')
+    imprint_id = fields.Many2one('product.imprint')
 
     def action_view_authors(self):
         self.ensure_one()
@@ -30,22 +30,22 @@ class PublicationType(models.Model):
     name = fields.Char(required=True, translate=True)
 
 
-class Organization(models.Model):
-    _name = 'organization'
+class ProductOrganization(models.Model):
+    _name = 'product.organization'
     _description = 'Organization'
 
     name = fields.Char(required=True, translate=True)
 
 
-class Type(models.Model):
-    _name = 'type'
+class ProductType(models.Model):
+    _name = 'product.type'
     _description = 'Type'
 
     name = fields.Char(required=True, translate=True)
 
 
-class Imprint(models.Model):
-    _name = 'imprint'
+class ProductImprint(models.Model):
+    _name = 'product.imprint'
     _description = 'Imprint'
 
     name = fields.Char(required=True, translate=True)
