@@ -1,12 +1,12 @@
 # Copyright 2021 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
-    "name": "Politeia Customization",
+    "name": "Pinakes Base",
     "version": "15.0.1.0.0",
     "author": "Eezee-It",
     "category": "Services",
     "license": "LGPL-3",
-    "summary": "Politeia Customization",
+    "summary": "Pinakes Base",
     "depends": [
         "contacts",
         "product",
