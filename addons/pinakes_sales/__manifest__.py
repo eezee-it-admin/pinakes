@@ -11,5 +11,6 @@
     ],
     'data': [
         'data/server_action.xml',
+        'views/sale_order.xml'
     ],
 }
