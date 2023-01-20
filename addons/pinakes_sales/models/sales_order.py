@@ -1,11 +1,14 @@
 # Copyright 2022 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import models
+from odoo import models, fields
 
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+
+    auto_exported = fields.Boolean()
+    auto_sent_time = fields.Datetime()
 
     def _send_order_confirmation_mail(self):
         so_template = self.sale_order_template_id

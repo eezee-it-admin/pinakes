@@ -19,35 +19,25 @@
 #
 ###############################################################################
 {
-    "name": "FTP / HTTP Client",
-    "version": '15.0.0.1.2',
+    "name": "Pinakes stock",
+    "version": '15.0.0.0.0',
     "application": False,
     "license": 'LGPL-3',
     "category": 'Tools',
     "summary": """
-    FTP / HTTP Client
+    Pinakes stock
     """,
     "author": "Eezee-It",
     "support": "support@eezee-it.com",
-    "website": 'http://www.eezee-it.com',
+    "website": 'https://www.eezee-it.com',
     "depends": [
-        'base'
+        'stock'
     ],
     "data": [
-        'security/ftp_security.xml',
         'security/ir.model.access.csv',
-        'views/network_client.xml',
-        'views/network_client_parameter.xml',
-        'views/network_client_line.xml',
-        'views/ir_attachment.xml',
-        'views/ir_logging.xml',
-        'views/menu.xml',
+        'views/stock_picking.xml',
     ],
-    "external_dependencies": {
-        'python': [
-            'pandas', 'pysftp'
-        ],
-    },
+    "external_dependencies": {},
     "demo": [],
     "qweb": [],
     "post_load": None,
