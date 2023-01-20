@@ -13,6 +13,13 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+
+    auto_exported = fields.Boolean()
+    auto_sent_time = fields.Datetime()
+
+
 class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
 

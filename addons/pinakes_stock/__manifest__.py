@@ -23,10 +23,8 @@
     "version": '15.0.0.0.0',
     "application": False,
     "license": 'LGPL-3',
-    "category": 'Tools',
-    "summary": """
-    Pinakes stock
-    """,
+    "category": 'Stock',
+    "summary": """Pinakes stock""",
     "author": "Eezee-It",
     "support": "support@eezee-it.com",
     "website": 'https://www.eezee-it.com',
