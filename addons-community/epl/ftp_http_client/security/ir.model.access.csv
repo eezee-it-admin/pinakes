@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_network_client_global,access_network_client_global,model_network_client,base.group_system,1,1,1,1
+access_network_client_global_users,access_network_client_global_users,model_network_client,,1,0,0,0
+access_network_client_parameter,access_network_client_parameter,model_network_client_parameter,base.group_system,1,1,1,1
+access_network_client_parameter_users,access_network_client_parameter_users,model_network_client_parameter,,1,0,0,0
+access_network_client_line,access_network_client_line,model_network_client_line,base.group_system,1,1,1,1
+access_network_client_line_users,access_network_client_line_users,model_network_client_line,,1,0,0,0

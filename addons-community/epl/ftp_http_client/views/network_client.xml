@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_network_client_form" model="ir.ui.view">
+        <field name="name">Network Client Settings</field>
+        <field name="model">network.client</field>
+        <field name="arch" type="xml">
+            <form string="Network Client Settings">
+                <header>
+                    <button name="action_reset" type="object" states="done" string="Reset"/>
+                    <button name="action_done" type="object" string="Lock" states="draft" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group string="Server">
+                        <group colspan="4" col="4">
+                            <field name="host"/>
+                            <field name="client_type" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                        <group colspan="4" col="4" attrs="{'invisible': [('client_type', 'not in', ('ftp', 'sftp'))]}">
+                            <field name="port" attrs="{'required': [('client_type', 'in', ('ftp', 'sftp'))]}"/>
+                            <field name="tls" attrs="{'required': [('client_type', 'in', ('ftp', 'sftp'))]}"/>
+                            <field name="login"/>
+                            <field name="password" password="True"/>
+                            <field name="timeout" attrs="{'required': [('client_type', 'in', ('ftp', 'sftp'))]}"/>
+                            <field name="active" invisible="1"/>
+                            <field name="scheduled_cron_id" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                        </group>
+                        <group colspan="2" col="2" attrs="{'invisible': [('client_type', '!=', 'http')]}">
+                            <field name="request_type"
+                                   widget="radio"
+                                   options="{'horizontal': true}"
+                                   col="2" attrs="{'required': [('client_type', '=', 'http')]}"/>
+                        </group>
+                    </group>
+                    <notebook name="network_client_notebook">
+                        <page name="lines" string="Lines">
+                            <field name="line_ids" context="{'default_client_id': id}">
+                                <tree create="true" edit="true" delete="true">
+                                    <field name="name"/>
+                                    <field name="model_id"/>
+                                    <field name="action_type"/>
+                                    <field name="upload_path"/>
+                                    <field name="download_directory"/>
+                                    <field name="delete_downloaded_files"/>
+                                    <field name="archive_downloaded_files"/>
+                                    <field name="archive_path"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_network_client_tree" model="ir.ui.view">
+        <field name="name">Network Client Settings</field>
+        <field name="model">network.client</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="client_type"/>
+                <field name="name"/>
+                <field name="host"/>
+                <field name="state"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_network_client" model="ir.actions.act_window">
+        <field name="name">Network Client Settings</field>
+        <field name="res_model">network.client</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

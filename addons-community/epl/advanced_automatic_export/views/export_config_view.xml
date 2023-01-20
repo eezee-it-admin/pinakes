@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- automatic.export.config tree view -->
+    <record model="ir.ui.view" id="automatic_export_config_tree">
+        <field name="name">automatic.export.config.tree</field>
+        <field name="model">automatic.export.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="domain"/>
+                <field name="user_id"/>
+                <field name="service"/>
+                <field name="scheduled"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- automatic.export.config form view -->
+    <record model="ir.ui.view" id="automatic_export_config_form">
+        <field name="name">automatic.export.config.form</field>
+        <field name="model">automatic.export.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_reset" type="object" states="done" string="Pending"/>
+                    <button name="action_done" type="object" string="Confirm" states="draft" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_process_now"
+                                    type="object"
+                                    string="Export and Sync Now"
+                                    class="oe_stat_button"
+                                    icon="fa-refresh"
+                                    confirm="Do you want to filter and sync data now?">
+                        </button>
+                        <button class="oe_stat_button" name="action_view_attachments"
+                                type="object" icon="fa-pencil-square-o" attrs="{'invisible': [('attachment_count', '=', 0)]}" help="Exported attachments">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="attachment_count" widget="statinfo" nolabel="1" class="mr4"/>
+                                </span>
+                                <span class="o_stat_text">Exported Attachments</span>
+                            </div>
+                        </button>
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="General">
+                            <field name="user_id" invisible="1"/>
+                            <field name="model_id" required="1"/>
+                            <field name="model_name" invisible="0"/>
+                            <field name="domain"  widget="domain"
+                                   options="{'model': 'model_name', 'in_dialog': True}"/>
+                            <field name="mode_sync" widget="radio"/>
+                            <field name="previous_period"
+                                   attrs="{'invisible': [('mode_sync', '!=', 'previous_period')], 'required': [('mode_sync', '=', 'previous_period')]}"/>
+                            <label for="interval_number" string="For this last period"
+                                   attrs="{'invisible': [('mode_sync', '!=', 'last_period')], 'required': [('mode_sync', '=', 'last_period')]}"/>
+                            <div>
+                                <field name="interval_number" class="oe_inline"
+                                attrs="{'invisible': [('mode_sync', '!=', 'last_period')], 'required': [('mode_sync', '=', 'last_period')]}"/>
+                                <field name="interval_type" class="oe_inline"
+                                attrs="{'invisible': [('mode_sync', '!=', 'last_period')], 'required': [('mode_sync', '=', 'last_period')]}"/>
+                            </div>
+                            <field name="trg_date_id"
+                                   options="{'no_quick_create': True, 'no_create_edit' : True}"
+                                   attrs="{'invisible': [('mode_sync', 'not in', ['last_period', 'previous_period'])], 'required': [('mode_sync', 'in', ['last_period', 'previous_period'])]}"/>
+                        </group>
+                        <group string="File settings">
+                            <field name="service"/>
+                            <field name="file_name"/>
+                            <field name="send_immediately"/>
+                            <field name="mark_as_send"/>
+                            <field name="export_ftp"/>
+                            <field name="ftp_id" attrs="{'invisible': [('export_ftp', '=', False)]}"/>
+                            <field name="export_os"/>
+                            <field name="path" attrs="{'invisible': [('export_os', '=', False)]}"/>
+                            <field name="export_email"/>
+                            <field name="mail_template_id" attrs="{'invisible': [('export_email', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <label for="scheduled" string="Trigger"/>
+                            <div>
+                                <field name="scheduled" class="oe_inline"/>
+                                <field name="cron_id" class="oe_inline"
+                                       context="{
+                                       'default_name': 'Automatic Export: ' + name,
+                                       'default_state': 'code',
+                                       'default_code': 'model.export([0])',
+                                       'default_interval_number': 5,
+                                       'default_interval_type': 'hours',
+                                       'default_numbercall': -1
+                                       }"
+                                       attrs="{'invisible': [('scheduled', '!=', 'custom')], 'required': [('scheduled', '=', 'custom')]}"/>
+                                <br></br>
+                                <small class="text-info" attrs="{'invisible': [('scheduled', '!=', 'custom')]}">Your cron should call the model 'automatic.export' and should call the function  export([1,2]) by sending ids of export config that to be executed</small>
+                            </div>
+                        </group>
+                        <group string="Logs">
+                            <field name="at_create" invisible="1"/><!-- attrs="{'invisible': ['|', ('at_unlink', '=', True), ('scheduled', '!=', False)]}"-->
+                            <field name="at_write" invisible="1"/><!--attrs="{'invisible': ['|', ('at_unlink', '=', True), ('scheduled', '!=', False)]}"-->
+                            <field name="at_unlink" invisible="1"/><!-- attrs="{'invisible': ['|', '|', ('at_create', '=', True), ('at_write', '=', True),('scheduled', '!=', False)]}"-->
+                            <field name="use_exception"/>
+                            <field name="use_log"/>
+                        </group>
+                    </group>
+
+                    <notebook name="config_notebook">
+                        <page name="fields" string="Fields">
+                            <field name="link_fields_ids" mode="tree, form">
+                                <tree editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="is_mandatory"/>
+                                    <field name="config_id" invisible="1"/>
+                                    <field name="name" string="Label"/>
+                                    <field name="description"/>
+                                    <field name="fields_id" options="{'no_create': True}"
+                                           domain="[('model_id', '=', parent.model_id)]"/>
+                                    <field name="sub_model" invisible="1"/>
+                                    <field name="relation_fields" options="{'no_create': True}"
+                                           domain="[('model_id', '=', sub_model)]"  attrs="{'invisible': [('sub_model', '=', False)]}"/>                                    <field name="default_value"/>
+                                    <field name="value_format"/>
+                                    <field name="datetime_format" attrs="{'invisible': [('value_format', '!=', 'datetime')],
+                                                    'readonly': [('value_format', '!=', 'datetime')]}"/>
+                                    <field name="max_length" attrs="{'invisible': [('value_format', '!=', 'char')],
+                                                    'readonly': [('value_format', '!=', 'char')]}"/>
+                                    <field name="function_name" placeholder="_get_name"
+                                           attrs="{'invisible': [('fields_id', '!=', False)],
+                                                    'readonly': [('fields_id', '!=', False)]}"/>
+                                    <field name="technical_field" placeholder="object.name"/>
+
+                                    <button name="toggle_status_review" type="object" attrs="{'invisible': [('flag_review', '=', False)]}"
+                                            class="text-success o_list_record_delete_btn" icon="fa-flag">
+                                        <field name="flag_review" widget="boolean_button"/>
+                                    </button>
+                                    <button name="toggle_status_review" type="object" attrs="{'invisible': [('flag_review', '=', True)]}"
+                                            class="text-danger o_list_record_delete_btn" icon="fa-flag">
+                                        <field name="flag_review" widget="boolean_button"/>
+                                    </button>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group colspan="4">
+                                            <field name="name" string="Label"/>
+                                            <field name="description"/>
+                                        </group>
+                                        <group colspan="4">
+                                            <field name="fields_id" domain="[('model_id.id', '=', parent.model_id)]"/>
+                                            <field name="sub_model" invisible="1"/>
+                                            <field name="relation_fields" domain="[('model_id.id', '=', sub_model)]" attrs="{'invisible': [('sub_model', '=', False)]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="value_format"/>
+                                            <field name="default_value"/>
+                                            <field name="datetime_format" attrs="{'invisible': [('value_format', '!=', 'datetime')],
+                                                    'readonly': [('value_format', '!=', 'datetime')]}"/>
+                                            <field name="max_length" attrs="{'invisible': [('value_format', '!=', 'char')],
+                                                    'readonly': [('value_format', '!=', 'char')]}"/>
+                                            <field name="function_name" placeholder="_get_name"
+                                                   attrs="{'invisible': [('fields_id', '!=', False)],
+                                                    'readonly': [('fields_id', '!=', False)]}"/>
+                                            <field name="technical_field" placeholder="object.name"/>
+                                        </group>
+                                        <group>
+                                            <field name="sequence"/>
+                                            <field name="config_id" invisible="1"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page name="technic_detail" string="Technical details">
+                            <group>
+                                <group string="Data check">
+                                    <field name="decimal_sep"/>
+                                    <field name="date_format"/>
+                                    <field name="time_format"/>
+                                </group>
+                                <group string="Technic">
+                                    <field name="m2m_separator"/>
+                                    <field name="o2m_separator"/>
+                                </group>
+                                <group string="CSV" attrs="{'invisible': [('service', '!=', 'csv')]}">
+                                    <field name="csv_sep"/>
+                                    <field name="encode"/>
+                                </group>
+                                <group string="JSON" attrs="{'invisible': [('service', '!=', 'json')]}">
+                                    <field name="token" attrs="{'invisible': [('service', '!=', 'json')], 'required': [('service', '=', 'json')]}"/>
+                                    <field name="url" attrs="{'invisible': [('service', '!=', 'json')], 'required': [('service', '=', 'json')]}"/>
+                                </group>
+                                <group>
+                                    <field name="sequence"/>
+                                </group>
+                                <group>
+                                    <div>
+                                        <label for="last_sync_date"/>
+                                        <field name="last_sync_date" readonly="1"/>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="notes" string="Notes">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="automatic_export_config_action">
+        <field name="name">Automatic Export</field>
+        <field name="res_model">automatic.export.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="automatic_export_config_submenu"
+              parent="ftp_http_client.menu_filesync_config"
+              action="automatic_export_config_action"
+              sequence="60"
+              name="Automatic Export"/>
+</odoo>

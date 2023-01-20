@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <record id="stock_picking_form_view_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra']//field[@name='company_id']" position="after">
+                <field name="auto_exported" readonly="1"/>
+                <field name="auto_sent_time" readonly="1"/>
+            </xpath>
+            <xpath expr="//page[@name='operations']//tree/field[@name='lot_ids']" position="after">
+                <field name="auto_exported" readonly="1" optional="hide"/>
+                <field name="auto_sent_time" readonly="1" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock_move_line_tree_view_inherit" model="ir.ui.view">
+        <field name="name">stock.move.line.tree.inherit</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="product_uom_id">
+                <field name="auto_exported" readonly="1" optional="hide"/>
+                <field name="auto_sent_time" readonly="1" optional="hide"/>
+            </field>
+        </field>
+    </record>
+</odoo>
