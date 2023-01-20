@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_network_client_parameters_tree" model="ir.ui.view">
+        <field name="name">Network Client Parameters</field>
+        <field name="model">network.client.parameter</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="value"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
