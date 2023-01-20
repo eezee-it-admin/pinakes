@@ -12,6 +12,11 @@
                     <span class="o_stat_text">Authors</span>
                 </button>
             </div>
+            <field name="barcode" position="after">
+                <field name="isbn"/>
+                <field name="issn"/>
+                <field name="doi"/>
+            </field>
             <xpath expr="//notebook" position="inside">
                 <page string="Reporting" name="reporting">
                     <group>
