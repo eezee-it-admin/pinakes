@@ -37,10 +37,10 @@ class ExternalFields(models.Model):
     flag_review = fields.Boolean(string='Is ok')
     is_mandatory = fields.Boolean(string='Mandatory')
 
-    _sql_constraints = [
-        ('field_name_uniq', 'unique (name,config_id)',
-         'Names of fields to be exported must be unique!')
-    ]
+    # _sql_constraints = [
+    #     ('field_name_uniq', 'unique (name,config_id)',
+    #      'Names of fields to be exported must be unique!')
+    # ]
 
     @api.constrains('function_name')
     def _check_function_name(self):
