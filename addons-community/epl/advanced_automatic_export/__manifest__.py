@@ -4,7 +4,7 @@
 {
     'name': 'Automatic Export',
     'summary': "Generate a file that can be send to other application.",
-    'version': '15.0.0.1.1',
+    'version': '15.0.0.1.2',
     'author': "Eezee-It",
     'license': "AGPL-3",
     'category': 'Extra Tools',
