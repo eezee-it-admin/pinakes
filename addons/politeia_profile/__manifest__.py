@@ -10,9 +10,7 @@
     'depends': [
         'sale_management',
         'politeia_extended',
-        'pinakes_sales',
-        'pinakes_stock',
-        'advanced_automatic_export'
+        'pinakes_sales'
     ],
     'application': True,
 }
