@@ -10,11 +10,14 @@ class ProductTemplate(models.Model):
     organization_id = fields.Many2one('product.organization')
     product_type_id = fields.Many2one('product.type', 'Type')
     imprint_id = fields.Many2one('product.imprint')
+    isbn = fields.Char('ISBN')
+    issn = fields.Char('ISSN')
+    doi = fields.Char('DOI')
 
     def action_view_authors(self):
         self.ensure_one()
         action = self.env.ref(
-            "politeia_extended.action_politeia_product_author"
+            "pinakes_base.action_politeia_product_author"
         ).read([])[0]
         action['domain'] = [('product_tmpl_id', 'in', self.ids)]
         action['context'] = {
