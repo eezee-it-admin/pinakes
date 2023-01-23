@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_todo_attachment_form" model="ir.ui.view">
+        <field name="model">ir.attachment</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="process_now" type="object" states="treat"
+                            string="Process now" class="btn-primary"/>
+                    <button name="retry_now" type="object" states="partial_done"
+                            string="Retry now" class="btn-primary"/>
+                    <button name="action_treat" type="object"
+                            states="ignored,fail,none,partial_done" string="Set to Treat"/>
+                    <button name="action_ignore" type="object" states="treat"
+                            string="Ignore"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="treat,progress,partial_done,done,fail,ignored"/>
+                </header>
+                <sheet>
+                    <div class="text-info"
+                         attrs="{'invisible':['|',('state','not in',['done',]),('exception','=',True)]}">
+                        <strong>Bravo!</strong>
+                        This document was processed, please check the attached report.
+                    </div>
+                    <div class="text-warning"
+                         attrs="{'invisible':[('exception','!=',True), ('state','!=','partial_done')]}">
+                        <strong>Partially processed!</strong>
+                        <p>This document was partially processed, Look in the
+                            tab "Log", for more information.
+                        </p>
+                    </div>
+                    <div class="text-danger" states="fail">
+                        <strong>Faild!</strong>
+                        This document was processed, Look in the tab "Log", for
+                        more information.
+                    </div>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group colspan="4">
+                        <field name="action_type"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="type"/>
+                            <field name="datas" filename="name"
+                                   attrs="{'invisible':[('type','=','url')]}"/>
+                            <field name="url" widget="url"
+                                   attrs="{'invisible':[('type','=','binary')]}"/>
+                            <field name="mimetype" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="content_page" string="Content">
+                            <group name="description_group"
+                                   string="Description" colspan="4">
+                                <field name="description" nolabel="1"
+                                       colspan="4"/>
+                            </group>
+                            <group string="Indexed Content" colspan="4">
+                                <field name="index_content" nolabel="1"
+                                       colspan="4"/>
+                            </group>
+                        </page>
+                        <page name="detail_page" string="Detail">
+                            <group>
+                                <group string="Attached To"
+                                       groups="base.group_no_one">
+                                    <field name="res_model"/>
+                                    <field name="res_field"/>
+                                    <field name="res_id"/>
+                                    <field name="res_name"/>
+                                    <field name="company_id"
+                                           groups="base.group_multi_company"
+                                           options="{'no_create': True}"/>
+                                    <field name="public"/>
+                                    <field name="sync_file" invisible="1"/>
+                                </group>
+                                <group string="History"
+                                       groups="base.group_no_one"
+                                       attrs="{'invisible':[('create_date','=',False)]}">
+                                    <label for="create_uid" string="Creation"/>
+                                    <div name="creation_div">
+                                        <field name="create_uid" readonly="1"
+                                               class="oe_inline"/>
+                                        on
+                                        <field name="create_date" readonly="1"
+                                               class="oe_inline"/>
+                                    </div>
+                                </group>
+                                <group name="description_group"
+                                       string="Description"
+                                       groups="base.group_no_one" colspan="4">
+                                    <field name="description" nolabel="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="log_page" string="Log">
+                            <field name="exception" invisible="1"/>
+                            <field name="log_queue" nolabel="1" colspan="4"
+                                   readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_todo_attachment_tree" model="ir.ui.view">
+        <field name="model">ir.attachment</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'treat'"
+                  decoration-it="state == 'progress'"
+                  decoration-success="state == 'done'"
+                  decoration-warning="exception == True or state == 'state'"
+                  decoration-muted="state == 'ignored'"
+                  decoration-danger="(state in ('fail',))">
+                <field name="name"/>
+                <field name="action_type"/>
+                <field name="res_model"/>
+                <field name="res_field" invisible="1"/>
+                <field name="res_id"/>
+                <field name="type"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="create_uid"/>
+                <field name="create_date"/>
+                <field name="state"/>
+                <field name="exception" invisible="1"/>
+                <field name="sync_file" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_todo_attachment_search" model="ir.ui.view">
+        <field name="name">view.attachment.search</field>
+        <field name="model">ir.attachment</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" filter_domain="[('name','ilike',self)]" string="Attachment"/>
+                <field name="create_date"/>
+                <filter name="url_filter" string="URL"
+                        domain="[('type','=','url')]"/>
+                <filter name="binary_filter" string="Binary"
+                        domain="[('type','=','binary')]"/>
+                <separator/>
+                <filter name="treat_filter"
+                        string="To treat"
+                        domain="[('state','=','treat')]"/>
+                <filter name="done_filter"
+                        string="Finished"
+                        domain="[('state','=','done')]"/>
+                <filter name="exception_filter"
+                        string="Finished with exception"
+                        domain="[('state','=','done'),('exception','=',True)]"/>
+                <filter name="failed_filter"
+                        string="Failed"
+                        domain="[('state','=','fail')]"/>
+                <separator/>
+                <filter name="import_filter"
+                        string="To Import"
+                        domain="[('action_type','=','to_import')]"/>
+                <filter name="export_filter"
+                        string="To Export"
+                        domain="[('action_type','=','to_export')]"/>
+                <field name="create_uid"/>
+                <field name="type"/>
+                <group expand="0" string="Group By">
+                    <filter name="state" string="State" domain=""
+                            context="{'group_by':'state'}"/>
+                    <filter name="type" string="Type" domain=""
+                            context="{'group_by':'action_type'}"/>
+                    <filter name="target_object" string="Target Object"
+                            domain="" context="{'group_by':'res_model'}"/>
+                    <filter name="creation_month" string="Creation Month"
+                            domain="" context="{'group_by':'create_date'}"/>
+                    <filter name="document_name"
+                            string="Attached Document Name" domain=""
+                            context="{'group_by': 'res_name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_todo_attachment" model="ir.actions.act_window">
+        <field name="name">ToDo Attachments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ir.attachment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids"
+               eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('view_todo_attachment_tree')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('view_todo_attachment_form')})]"/>
+        <field name="search_view_id" ref="view_todo_attachment_search"/>
+        <field name="domain">['|', ('sync_file','=',True), ('action_type','in',('to_export', 'to_import'))]</field>
+        <field name="context">{'default_action_type':'stay_here', 'default_sync_file':True,'default_state':'none','default_res_model':'network.client.line'}
+        </field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click here to create new To DO Attachments.
+            </p>
+        </field>
+    </record>
+</odoo>
