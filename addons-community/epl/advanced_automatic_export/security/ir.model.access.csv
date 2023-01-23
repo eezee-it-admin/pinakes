@@ -1,0 +1,7 @@
+"id","name","model_id/id","group_id/id","perm_read","perm_write","perm_create","perm_unlink"
+access_automatic_export,access_automatic_export,model_automatic_export,base.group_user,1,0,0,0
+access_automatic_export_config,access_automatic_export_config,model_automatic_export_config,base.group_user,1,0,0,0
+access_external_fields,access_external_fields,model_external_fields,base.group_user,1,0,0,0
+access_automatic_export_system,access_automatic_export,model_automatic_export,base.group_system,1,1,1,1
+access_automatic_export_config_system,access_automatic_export_config,model_automatic_export_config,base.group_system,1,1,1,1
+access_external_fields_system,access_external_fields,model_external_fields,base.group_system,1,1,1,1
