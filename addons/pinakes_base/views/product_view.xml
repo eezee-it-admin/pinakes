@@ -12,11 +12,6 @@
                     <span class="o_stat_text">Authors</span>
                 </button>
             </div>
-            <field name="barcode" position="after">
-                <field name="isbn"/>
-                <field name="issn"/>
-                <field name="doi"/>
-            </field>
             <xpath expr="//notebook" position="inside">
                 <page string="Reporting" name="reporting">
                     <group>
@@ -31,6 +26,19 @@
                     </group>
                 </page>
             </xpath>
+        </field>
+    </record>
+
+    <record id="view_pinakes_product_normal_form" model="ir.ui.view">
+        <field name="name">politeia.product.normal.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="currency_id" position="before">
+                <field name="isbn"/>
+                <field name="issn"/>
+                <field name="doi"/>
+            </field>
         </field>
     </record>
 
