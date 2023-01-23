@@ -1,0 +1,393 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* automatic_export
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-02 14:24+0000\n"
+"PO-Revision-Date: 2019-04-02 14:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: automatic_export
+#: model_terms:ir.ui.view,arch_db:automatic_export.automatic_export_config_form
+msgid "Action"
+msgstr ""
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: automatic_export
+#: model:ir.actions.act_window,name:automatic_export.automatic_export_config_action
+#: model:ir.ui.menu,name:automatic_export.automatic_export_config_main_menu
+#: model:ir.ui.menu,name:automatic_export.automatic_export_config_submenu
+msgid "Automatic Export"
+msgstr "Export Automatique"
+
+#. module: automatic_export
+#: model_terms:ir.ui.view,arch_db:automatic_export.automatic_export_config_form
+msgid "CSV"
+msgstr ""
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__at_create
+msgid "Create"
+msgstr "Créer"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__create_uid
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__create_date
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__at_unlink
+msgid "Delete"
+msgstr "Suppression"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export__display_name
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__display_name
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__domain
+msgid "Domain"
+msgstr "Domaine"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__active
+msgid "Enable or disable the export"
+msgstr "Activer ou désactiver l'export"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__encode
+msgid "Encode"
+msgstr "Encodage"
+
+#. module: automatic_export
+#: code:addons/automatic_export/models/automatic_export.py:352
+#, python-format
+msgid "Error during path check: %s \n"
+""
+msgstr "Erreur lors du contrôle du chemin d'accès: %s \n"
+""
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__config_id
+msgid "External Config"
+msgstr "Configuration Externe"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__name
+msgid "External Fields"
+msgstr "Champ Externe"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__file_name
+msgid "File Name"
+msgstr "Nom de Fichier"
+
+#. module: automatic_export
+#: code:addons/automatic_export/models/automatic_export_config.py:256
+#: code:addons/automatic_export/models/automatic_export_config.py:282
+#, python-format
+msgid "File already exist !\n"
+" Delete it before changing the configuration"
+msgstr "Le fichier existe déjà !\n"
+" Veuillez le supprimer avant de changer la configuration"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__file_name
+msgid "File to write in"
+msgstr "Le fichier utilisé pour écrire les exports"
+
+#. module: automatic_export
+#: model_terms:ir.ui.view,arch_db:automatic_export.automatic_export_config_form
+msgid "General"
+msgstr "Général"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export__id
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__id
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__id
+msgid "ID"
+msgstr ""
+
+#. module: automatic_export
+#: model_terms:ir.ui.view,arch_db:automatic_export.automatic_export_config_form
+msgid "JSON"
+msgstr ""
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export____last_update
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config____last_update
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__write_uid
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__write_date
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: automatic_export
+#: code:addons/automatic_export/models/automatic_export.py:350
+#, python-format
+msgid "Line add %s \n"
+""
+msgstr "Ligne ajoutée %s \n"
+""
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__link_fields_ids
+#: model_terms:ir.ui.view,arch_db:automatic_export.automatic_export_config_form
+msgid "Linked Fields"
+msgstr "Champs liés"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__model_id
+msgid "Model"
+msgstr "Modèle"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__model_id
+msgid "Model to export"
+msgstr "Modèle à exporter"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: automatic_export
+#: code:addons/automatic_export/models/automatic_export.py:357
+#, python-format
+msgid "No File or path define for config: %s \n"
+""
+msgstr "Pas de fichier ou de dossier configuré pour la configuration: %s \n"
+""
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__fields_id
+msgid "Odoo Fields"
+msgstr "Champ Odoo"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__domain
+msgid "Odoo domain to filter. Only data matching with this filter are exported"
+msgstr "Domain odoo utilisé pour filtrer. Seul les données matchant le domain seront exportées"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__path
+msgid "Path"
+msgstr "Chemin"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__path
+msgid "Path to file"
+msgstr "Dossier"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__use_exception
+msgid "Raise exception"
+msgstr "Générer une exception"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__use_exception
+msgid "Raise exception (and block create/update/delete) if the export occurs a problem"
+msgstr "Générer une exception (et bloquer la création/suppression/mise à jour) si l'export créé une erreur"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__use_log
+msgid "Save into logs when data are exported"
+msgstr "Enregistrer les infos exportées dans les logs"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__encode
+msgid "Select the encodage for the file generated"
+msgstr "Sélectionner l'encode pour le fichier généré"
+
+#. module: automatic_export
+#: model:ir.model,name:automatic_export.model_automatic_export
+msgid "Send data"
+msgstr "Envoyer les données"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__at_write
+msgid "Send info at each update"
+msgstr "Exporter les mises à jour"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__at_unlink
+msgid "Send info during delete"
+msgstr "Exporter la suppression"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__at_create
+msgid "Send info during the create"
+msgstr "Exporter la création"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__m2m_separator
+msgid "Separator Many2Many"
+msgstr "Séârateur Many2Many"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__o2m_separator
+msgid "Separator One2Many"
+msgstr "Séparateur one2Many"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__service
+msgid "Service"
+msgstr ""
+
+#. module: automatic_export
+#: model:ir.model,name:automatic_export.model_automatic_export_config
+msgid "Settings to send data externally"
+msgstr "Configuration pour l'export automatique"
+
+#. module: automatic_export
+#: code:addons/automatic_export/models/automatic_export.py:387
+#, python-format
+msgid "Status code: %s"
+msgstr "Code: %s"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__sub_model
+msgid "Sub Model"
+msgstr "Sous modele"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_external_fields__relation_fields
+msgid "Sub Model Odoo Fields"
+msgstr "Champ Odoo pour le sous modele"
+
+#. module: automatic_export
+#: model_terms:ir.ui.view,arch_db:automatic_export.automatic_export_config_form
+msgid "Technic"
+msgstr "Technique"
+
+#. module: automatic_export
+#: code:addons/automatic_export/models/automatic_export_config.py:219
+#, python-format
+msgid "The system occurs a problem during the Web Service export.\n"
+"Please contact your administrator.\n"
+"Error message: %s"
+msgstr "Problème rencontré durant l'export avec les Web services.\n"
+"Veuillez contacter votre administrateur.\n"
+"Erreur : %s"
+
+#. module: automatic_export
+#: code:addons/automatic_export/models/automatic_export_config.py:82
+#: sql_constraint:automatic.export.config:0
+#, python-format
+msgid "This name already exist"
+msgstr "Ce nom existe déjà"
+
+#. module: automatic_export
+#: code:addons/automatic_export/models/automatic_export_config.py:84
+#: sql_constraint:automatic.export.config:0
+#, python-format
+msgid "This token already exist"
+msgstr "Le token existe déjà"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__token
+msgid "Token"
+msgstr ""
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__url
+msgid "URL"
+msgstr ""
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__token
+msgid "Unique Token used to identify the service"
+msgstr "Token unique pour s'identifier"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__at_write
+msgid "Update"
+msgstr "Mise à jour"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__url
+msgid "Url to reach the Webservice"
+msgstr "URL pour le webservice"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__use_log
+msgid "Use Log"
+msgstr "Utiliser les logs"
+
+#. module: automatic_export
+#: model:ir.model,name:automatic_export.model_external_fields
+msgid "Use to make link between Odoo fields and third party software fields"
+msgstr "Utilisez pour faire un lien entre un champ odoo et un champ d'un autre logiciel"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__link_fields_ids
+msgid "Usefull if you want a specific header for a field"
+msgstr "Utile si vous souhaitez un header spécifique pour le champ"
+
+#. module: automatic_export
+#: model:ir.model.fields,field_description:automatic_export.field_automatic_export_config__user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__user_id
+msgid "User used to read data during export"
+msgstr "Utilisateur utilisé pour effectuer l'export"
+
+#. module: automatic_export
+#: selection:automatic.export.config,service:0
+msgid "csv"
+msgstr ""
+
+#. module: automatic_export
+#: selection:automatic.export.config,service:0
+msgid "json"
+msgstr ""
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__m2m_separator
+msgid "value from many2many will be separated with this element"
+msgstr "Les valeurs des many2many seront séparés par cet élément"
+
+#. module: automatic_export
+#: model:ir.model.fields,help:automatic_export.field_automatic_export_config__o2m_separator
+msgid "value from one2many will be separated with this element"
+msgstr "Les valeurs des one2many seront séparés par cet élément"
+

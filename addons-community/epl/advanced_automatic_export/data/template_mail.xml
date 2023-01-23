@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!--Mail template -->
+
+    <record id="template_automatic_export_notification" model="mail.template">
+        <field name="name">Automatic Export Notification</field>
+        <field name="model_id" ref="advanced_automatic_export.model_automatic_export_config" />
+        <field name="auto_delete" eval="True" />
+        <field name="email_from">${user.email}</field>
+        <field name="email_to">${user.email}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear,
+                    <p>
+                        This is an automatic notification
+                    </p>
+                    <p>
+                        Do not hesitate to contact your system administrator if you have any questions.
+                    </p>
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo>
