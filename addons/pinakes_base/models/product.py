@@ -26,6 +26,14 @@ class ProductTemplate(models.Model):
         return action
 
 
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    isbn = fields.Char('ISBN')
+    issn = fields.Char('ISSN')
+    doi = fields.Char('DOI')
+
+
 class PublicationType(models.Model):
     _name = 'publication.type'
     _description = 'Publication Type'
