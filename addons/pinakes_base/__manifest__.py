@@ -15,6 +15,8 @@
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
+        "views/partner_view.xml",
+        "views/product_template_view.xml",
         "views/product_view.xml",
         "views/product_author_view.xml",
         "views/menuitems.xml",
