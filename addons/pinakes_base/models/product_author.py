@@ -13,6 +13,7 @@ class ProductAuthor(models.Model):
     partner_id = fields.Many2one(
         'res.partner', string='Author', required=True
     )
+    organization_id = fields.Many2one('product.organization')
     company_id = fields.Many2one(
         'res.company', 'Company', readonly=True,
         default=lambda x: x.env.company,
