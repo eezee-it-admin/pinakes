@@ -16,6 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pinakes_base
+#: model_terms:ir.ui.view,arch_db:pinakes_base.view_pinakes_product_kanban
+#: model_terms:ir.ui.view,arch_db:pinakes_base.view_pinakes_product_template_kanban
+msgid "Internal Reference: ["
+msgstr "Interne referentie: ["
+
+#. module: pinakes_base
 #: model_terms:ir.ui.view,arch_db:pinakes_base.view_politeia_product_template_form
 msgid "<span class=\"o_stat_text\">Authors</span>"
 msgstr "<span class=\"o_stat_text\">Auteurs</span>"
