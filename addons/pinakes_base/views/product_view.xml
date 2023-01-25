@@ -13,6 +13,7 @@
                 <field name="isbn"/>
                 <field name="issn"/>
                 <field name="doi"/>
+                <field name="company_code" invisible="1"/>
             </field>
         </field>
     </record>

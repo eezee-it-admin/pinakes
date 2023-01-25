@@ -60,8 +60,7 @@ msgstr "Authorsrechten (%)"
 #. module: pinakes_base
 #: model:ir.actions.act_window,name:pinakes_base.action_politeia_product_organization
 #: model:ir.model,name:pinakes_base.model_product_organization
-#: model:ir.model.fields,field_description:pinakes_base.field_product_product__organization_id
-#: model:ir.model.fields,field_description:pinakes_base.field_product_template__organization_id
+#: model:ir.model.fields,field_description:pinakes_base.field_product_author__organization_id
 #: model:ir.ui.menu,name:pinakes_base.menu_politeia_product_organization
 msgid "Organization"
 msgstr "Organisatie"

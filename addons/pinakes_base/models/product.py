@@ -1,18 +1,28 @@
 # Copyright 2021      Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
-from odoo import fields, models
+import json
+from lxml import etree
+
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     publication_type_id = fields.Many2many('publication.type')
-    organization_id = fields.Many2one('product.organization')
     product_type_id = fields.Many2one('product.type', 'Type')
     imprint_id = fields.Many2one('product.imprint')
     isbn = fields.Char('ISBN')
     issn = fields.Char('ISSN')
     doi = fields.Char('DOI')
+    company_code = fields.Selection([
+        ('pinakes', 'Pinakes'), ('asp', 'ASP'), ('politeia', 'Politeia')
+    ], compute='_compute_company_code')
+
+    def _compute_company_code(self):
+        company_code = self.env.company.company_code
+        for prod in self:
+            prod.company_code = company_code
 
     def action_view_authors(self):
         self.ensure_one()
@@ -25,6 +35,27 @@ class ProductTemplate(models.Model):
         }
         return action
 
+    @api.model
+    def fields_view_get(
+            self, view_id=None, view_type='form', toolbar=False, submenu=False
+    ):
+        result = super(ProductTemplate, self).fields_view_get(
+            view_id, view_type, toolbar=toolbar, submenu=submenu)
+        if view_type != 'form':
+            return result
+        doc = etree.XML(result['arch'])
+        # ASP company fields
+        ASP_FIELDS = ['publication_type_id', 'imprint_id']
+        for asp_field in ASP_FIELDS:
+            node = doc.xpath("//field[@name='" + asp_field + "']")[0]
+            modifiers = json.loads(node.get("modifiers", '{}'))
+            modifiers.update({
+                'invisible': [('company_code', '!=', 'asp')]
+            })
+            node.set("modifiers", json.dumps(modifiers))
+        result['arch'] = etree.tostring(doc)
+        return result
+
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
@@ -32,6 +63,27 @@ class ProductProduct(models.Model):
     isbn = fields.Char('ISBN')
     issn = fields.Char('ISSN')
     doi = fields.Char('DOI')
+
+    @api.model
+    def fields_view_get(
+            self, view_id=None, view_type='form', toolbar=False, submenu=False
+    ):
+        result = super(ProductProduct, self).fields_view_get(
+            view_id, view_type, toolbar=toolbar, submenu=submenu)
+        if view_type != 'form':
+            return result
+        doc = etree.XML(result['arch'])
+        # ASP company fields
+        FIELDS = ['isbn', 'issn', 'doi']
+        for custom_field in FIELDS:
+            node = doc.xpath("//field[@name='" + custom_field + "']")[0]
+            modifiers = json.loads(node.get("modifiers", '{}'))
+            modifiers.update({
+                'invisible': [('company_code', '=', 'pinakes')]
+            })
+            node.set("modifiers", json.dumps(modifiers))
+        result['arch'] = etree.tostring(doc)
+        return result
 
 
 class PublicationType(models.Model):
