@@ -12,6 +12,8 @@ class ProductTemplate(models.Model):
     publication_type_id = fields.Many2many('publication.type')
     product_type_id = fields.Many2one('product.type', 'Type')
     imprint_id = fields.Many2one('product.imprint')
+    fonds_id = fields.Many2one('product.fonds')
+    subtype_id = fields.Many2one('product.subtype', 'Subtype')
     isbn = fields.Char('ISBN')
     issn = fields.Char('ISSN')
     doi = fields.Char('DOI')
@@ -51,6 +53,15 @@ class ProductTemplate(models.Model):
             modifiers = json.loads(node.get("modifiers", '{}'))
             modifiers.update({
                 'invisible': [('company_code', '!=', 'asp')]
+            })
+            node.set("modifiers", json.dumps(modifiers))
+        # POLITEIA company fields
+        POLITEIA_FIELDS = ['fonds_id', 'subtype_id']
+        for pol_field in POLITEIA_FIELDS:
+            node = doc.xpath("//field[@name='" + pol_field + "']")[0]
+            modifiers = json.loads(node.get("modifiers", '{}'))
+            modifiers.update({
+                'invisible': [('company_code', '!=', 'politeia')]
             })
             node.set("modifiers", json.dumps(modifiers))
         result['arch'] = etree.tostring(doc)
@@ -110,5 +121,19 @@ class ProductType(models.Model):
 class ProductImprint(models.Model):
     _name = 'product.imprint'
     _description = 'Imprint'
+
+    name = fields.Char(required=True, translate=True)
+
+
+class ProductFonds(models.Model):
+    _name = 'product.fonds'
+    _description = 'Product Fonds'
+
+    name = fields.Char(required=True, translate=True)
+
+
+class ProductSubtype(models.Model):
+    _name = 'product.subtype'
+    _description = 'Product Subtype'
 
     name = fields.Char(required=True, translate=True)
