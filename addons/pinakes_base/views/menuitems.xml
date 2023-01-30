@@ -7,9 +7,6 @@
     <menuitem id="menu_politeia_publication_type"
               parent="stock.menu_product_in_config_stock"
               action="action_politeia_publication_type" sequence="120"/>
-    <menuitem id="menu_politeia_product_organization"
-              parent="stock.menu_product_in_config_stock"
-              action="action_politeia_product_organization" sequence="140"/>
     <menuitem id="menu_politeia_product_type"
               parent="stock.menu_product_in_config_stock"
               action="action_politeia_product_type" sequence="160"/>
