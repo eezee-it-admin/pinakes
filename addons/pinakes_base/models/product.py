@@ -93,13 +93,6 @@ class PublicationType(models.Model):
     name = fields.Char(required=True, translate=True)
 
 
-class ProductOrganization(models.Model):
-    _name = 'product.organization'
-    _description = 'Organization'
-
-    name = fields.Char(required=True, translate=True)
-
-
 class ProductType(models.Model):
     _name = 'product.type'
     _description = 'Type'

@@ -70,16 +70,6 @@
         </field>
     </record>
 
-    <record id="view_politeia_product_organization_tree" model="ir.ui.view">
-        <field name="name">politeia.product.organization.tree</field>
-        <field name="model">product.organization</field>
-        <field name="arch" type="xml">
-            <tree editable="bottom">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
-
     <record id="view_politeia_product_type_tree" model="ir.ui.view">
         <field name="name">politeia.product.type.tree</field>
         <field name="model">product.type</field>
@@ -103,11 +93,6 @@
     <record id="action_politeia_publication_type" model="ir.actions.act_window">
         <field name="name">Publication Type</field>
         <field name="res_model">publication.type</field>
-        <field name="view_mode">tree</field>
-    </record>
-    <record id="action_politeia_product_organization" model="ir.actions.act_window">
-        <field name="name">Organization</field>
-        <field name="res_model">product.organization</field>
         <field name="view_mode">tree</field>
     </record>
     <record id="action_politeia_product_type" model="ir.actions.act_window">

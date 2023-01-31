@@ -8,7 +8,6 @@
             <tree editable="bottom">
                 <field name="product_tmpl_id"/>
                 <field name="partner_id"/>
-                <field name="organization_id"/>
                 <field name="company_id" optional="hide"
                        groups="base.group_multi_company"/>
                 <field name="royalty_perc"/>
