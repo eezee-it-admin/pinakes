@@ -16,5 +16,11 @@
     <menuitem id="menu_politeia_product_imprint"
               parent="stock.menu_product_in_config_stock"
               action="action_politeia_product_imprint" sequence="180"/>
+    <menuitem id="menu_pinakes_product_fonds"
+              parent="stock.menu_product_in_config_stock"
+              action="action_pinakes_product_fonds" sequence="200"/>
+    <menuitem id="menu_pinakes_product_subtype"
+              parent="stock.menu_product_in_config_stock"
+              action="action_pinakes_product_subtype" sequence="220"/>
 
 </odoo>
