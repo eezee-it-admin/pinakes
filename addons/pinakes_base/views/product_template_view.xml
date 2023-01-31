@@ -23,9 +23,11 @@
                             <field name="company_code" invisible="1"/>
                             <field name="publication_type_id" widget="many2many_tags"/>
                             <field name="product_type_id"/>
+                            <field name="subtype_id"/>
                         </group>
                         <group>
                             <field name="imprint_id"/>
+                            <field name="fonds_id"/>
                         </group>
                     </group>
                 </page>
@@ -100,6 +102,26 @@
         </field>
     </record>
 
+    <record id="view_pinakes_product_fonds_tree" model="ir.ui.view">
+        <field name="name">pinakes.product.fonds.tree</field>
+        <field name="model">product.fonds</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pinakes_product_subtype_tree" model="ir.ui.view">
+        <field name="name">pinakes.product.subtype.tree</field>
+        <field name="model">product.subtype</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
     <record id="action_politeia_publication_type" model="ir.actions.act_window">
         <field name="name">Publication Type</field>
         <field name="res_model">publication.type</field>
@@ -118,6 +140,16 @@
     <record id="action_politeia_product_imprint" model="ir.actions.act_window">
         <field name="name">Imprint</field>
         <field name="res_model">product.imprint</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_pinakes_product_fonds" model="ir.actions.act_window">
+        <field name="name">Fonds</field>
+        <field name="res_model">product.fonds</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_pinakes_product_subtype" model="ir.actions.act_window">
+        <field name="name">Subtype</field>
+        <field name="res_model">product.subtype</field>
         <field name="view_mode">tree</field>
     </record>
 
