@@ -6,7 +6,7 @@ default:
       
 variables:
   ODOO_SRC: "/home/gitlab-runner/odoo_src"
-  ODOO_VERSION: "15.0"
+  ODOO_VERSION: "16.0-develop"
   GIT_DEPTH: 1
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
