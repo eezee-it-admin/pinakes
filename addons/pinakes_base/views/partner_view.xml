@@ -17,8 +17,8 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.res_partner_kanban_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_kanban_details')]//div[hasclass('o_row')]" position="before">
-                <span>ID: <field name="id"/></span>
+            <xpath expr="//div[hasclass('oe_kanban_details')]//div//strong[hasclass('oe_partner_heading')]" position="after">
+                <p>ID: <field name="id"/></p>
             </xpath>
         </field>
     </record>
