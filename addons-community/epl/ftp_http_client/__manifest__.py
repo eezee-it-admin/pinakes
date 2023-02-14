@@ -3,7 +3,7 @@
 
 {
     "name": "FTP / HTTP Client",
-    "version": '16.0.1.0.0',
+    "version": '15.0.1.0.0',
     "application": False,
     "license": 'LGPL-3',
     "category": 'Tools',
