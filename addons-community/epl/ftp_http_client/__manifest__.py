@@ -3,7 +3,7 @@
 
 {
     "name": "FTP / HTTP Client",
-    "version": '16.0.0.0.0',
+    "version": '16.0.0.0.1',
     "application": False,
     "license": 'LGPL-3',
     "category": 'Tools',
@@ -12,7 +12,7 @@
     """,
     "author": "Eezee-It",
     "support": "support@eezee-it.com",
-    "website": 'http://www.eezee-it.com',
+    "website": 'https://www.eezee-it.com',
     "depends": [
         'base'
     ],
