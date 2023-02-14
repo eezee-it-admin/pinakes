@@ -4,10 +4,13 @@
 import ftplib
 import logging
 from sys import platform
-import pysftp
+
 from odoo.exceptions import Warning, ValidationError
 from odoo import api, fields, models, _
-
+try:
+    import pysftp
+except ImportError:
+    pysftp = None
 _logger = logging.getLogger(__name__)
 
 MIN_TIMEOUT = 1
