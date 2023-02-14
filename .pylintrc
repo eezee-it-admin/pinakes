@@ -377,7 +377,7 @@ cursor_expr=self.env.cr,self._cr,self.cr,cr
 odoo_exceptions=AccessDenied,AccessError,DeferredException,except_orm,MissingError,QWebException,RedirectWarning,UserError,ValidationError,Warning
 
 # List of valid odoo versions separated by a comma.
-valid_odoo_versions=15.0
+valid_odoo_versions=16.0
 
 # List of valid missing return method names, separated by a comma.
 no_missing_return=__init__,setUp,setUpClass,tearDown
