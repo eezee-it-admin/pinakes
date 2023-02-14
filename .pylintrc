@@ -54,7 +54,7 @@ confidence=
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once). See also the "--disable" option for examples.
-enable=,W7939,C8110,W7938,C8201,W8106,W8201,W7901,W7910,E7902,W7935,C7902,W7905,W7907,W8101,E8101,W8105,E8103,W8110,W8104,W7908,W8114,W7937,W7936,W8112,R8101,W7906,W7930,W7940,F8101,W8103,W7950,R8110,W7903,W7904,W8111,E7901,W7909,W8202,E8102,W7902,C8107,C8106,C8105,C8104,C8103,C8102,C8101,R7980,C8109,C8108
+enable=,W7939,C8110,W7938,C8201,W8106,W8201,W7901,W7910,E7902,W7935,C7902,W7905,W7907,W8101,E8101,W8105,E8103,W8110,W8104,W7908,W8114,W7937,W7936,W8112,R8101,W7906,W7930,W7940,F8101,W8103,W7950,R8110,W7903,W7904,W8111,E7901,W7909,W8202,E8102,W7902,C8107,C8105,C8104,C8103,C8102,C8101,R7980,C8109,C8108
 
 # Disable the message, report, category or checker with the given id(s). You
 # can either give multiple identifiers separated by comma (,) or put this
