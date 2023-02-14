@@ -11,6 +11,7 @@ try:
     import pysftp
 except ImportError:
     pysftp = None
+
 _logger = logging.getLogger(__name__)
 
 MIN_TIMEOUT = 1
