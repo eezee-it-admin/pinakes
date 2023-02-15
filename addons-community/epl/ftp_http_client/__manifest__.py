@@ -3,8 +3,7 @@
 
 {
     "name": "FTP / HTTP Client",
-    "version": '16.0.0.0.1',
-    "application": False,
+    "version": '16.0.0.0.2',
     "license": 'LGPL-3',
     "category": 'Tools',
     "summary": """
@@ -35,4 +34,5 @@
     "uninstall_hook": None,
     "auto_install": False,
     "installable": True,
+    "application": False,
 }
