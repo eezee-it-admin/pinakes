@@ -7,10 +7,11 @@ from sys import platform
 
 from odoo.exceptions import Warning, ValidationError
 from odoo import api, fields, models, _
-try:
-    import pysftp
-except ImportError:
-    pysftp = None
+import pysftp
+# try:
+#     import pysftp
+# except ImportError:
+#     pysftp = None
 
 _logger = logging.getLogger(__name__)
 
