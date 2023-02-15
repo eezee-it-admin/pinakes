@@ -26,11 +26,7 @@
         'views/ir_logging.xml',
         'views/menu.xml',
     ],
-    "external_dependencies": {
-        'python': [
-            'pandas', 'pysftp'
-        ],
-    },
+    'external_dependencies': {'python': ['pysftp', 'pandas']},
     "demo": [],
     "qweb": [],
     "post_load": None,
