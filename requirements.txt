@@ -1,6 +1,6 @@
 paramiko
 pysftp
-xlrd == 1.1.0
-XlsxWriter==0.9.8
-pandas==1.1.3
+xlrd
+XlsxWriter
+pandas
 cryptography
