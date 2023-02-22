@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.mail</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div data-key="general_settings" position='inside'>
+                <div id="epl">
+                    <h2>Eezee-It Platinum (EPL)</h2>
+
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box" id="module_web_email_queue_limit">
+                            <div class="o_setting_left_pane">
+                                <field name="module_web_email_queue_limit" widget="upgrade_boolean" />
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_web_email_queue_limit" />
+                                <div class="text-muted">
+                                    Allow to define a limit to limit the number of e-mails sent on the cron "Mail: Email Queue Manager".
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>
