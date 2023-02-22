@@ -11,4 +11,3 @@ safety==1.10.3
 pip-tools==6.5.1
 invoke==1.5.0
 importlib-metadata
-pysftp
