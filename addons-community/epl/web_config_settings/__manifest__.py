@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Web: Common EPL Settings',
-    'version': '16.0.0.0.0',
+    'version': '16.0.0.0.1',
     'author': 'Eezee-It',
     'category': 'Web',
     'license': 'LGPL-3',
