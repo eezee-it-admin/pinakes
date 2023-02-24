@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="microsoft_outlook.ir_mail_server_view_form"/>
         <field name="arch" type="xml">
              <field name="is_microsoft_outlook_configured" position="after">
-                <field attrs="{'invisible': [('is_microsoft_outlook_configured', '=', False)]}" name="microsoft_account_id" />
+                <field attrs="{'invisible': [('is_microsoft_outlook_configured', '=', False), ('server_type', '!=', 'outlook')]}" name="microsoft_account_id" />
             </field>
         </field>
     </record>
