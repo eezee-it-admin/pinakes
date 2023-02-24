@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="assets_backend_inherit" model="ir.asset">
+        <field name="name">Web config settings</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="path">web_config_settings/static/src/css/backend-styles.css</field>
+        <field name="active" eval="False"/>
+    </record>
+</odoo>
