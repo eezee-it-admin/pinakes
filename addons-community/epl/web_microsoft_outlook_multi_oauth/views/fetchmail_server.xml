@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <field name="is_microsoft_outlook_configured" position="after">
                 <field name="microsoft_account_id"
-                    attrs="{'readonly': [('state', '=', 'done')]}"/>
+                    attrs="{'readonly': [('state', '=', 'done')], 'invisible': [('server_type', '!=', 'outlook')]}"/>
             </field>
         </field>
     </record>
