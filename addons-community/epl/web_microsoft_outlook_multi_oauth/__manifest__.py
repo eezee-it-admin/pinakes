@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Microsoft account multi OAuth',
-    'version': '16.0.0.0.1',
+    'version': '16.0.0.0.2',
     'author': 'Eezee-It',
     'category': 'Hidden/Tools',
     'license': 'LGPL-3',

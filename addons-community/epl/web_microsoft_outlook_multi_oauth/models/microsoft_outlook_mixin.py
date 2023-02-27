@@ -47,20 +47,19 @@ class MicrosoftOutlookMixin(models.AbstractModel):
                 record.microsoft_outlook_uri = False
                 continue
 
-            record.microsoft_outlook_uri = url_join(
-                self._OUTLOOK_ENDPOINT, 'authorize?%s' % url_encode({
-                    'client_id': record.microsoft_account_id.client_id,
-                    'response_type': 'code',
-                    'redirect_uri': url_join(base_url, '/microsoft_outlook/confirm'),
-                    'response_mode': 'query',
-                    # offline_access is needed to have the refresh_token
-                    'scope': 'offline_access %s' % self._OUTLOOK_SCOPE,
-                    'state': json.dumps({
-                        'model': record._name,
-                        'id': record.id,
-                        'csrf_token': record._get_outlook_csrf_token(),
-                    })
-                }))
+            record.microsoft_outlook_uri = url_join(self._get_microsoft_endpoint(), 'authorize?%s' % url_encode({
+                'client_id': record.microsoft_account_id.client_id,
+                'response_type': 'code',
+                'redirect_uri': url_join(base_url, '/microsoft_outlook/confirm'),
+                'response_mode': 'query',
+                # offline_access is needed to have the refresh_token
+                'scope': 'offline_access %s' % self._OUTLOOK_SCOPE,
+                'state': json.dumps({
+                    'model': record._name,
+                    'id': record.id,
+                    'csrf_token': record._get_outlook_csrf_token(),
+                })
+            }))
 
     def _fetch_outlook_token(self, grant_type, **values):
         self.ensure_one()
@@ -74,7 +73,7 @@ class MicrosoftOutlookMixin(models.AbstractModel):
         microsoft_outlook_client_secret = self.microsoft_account_id.client_secret
 
         response = requests.post(
-            url_join(self._OUTLOOK_ENDPOINT, 'token'),
+            url_join(self._get_microsoft_endpoint(), 'token'),
             data={
                 'client_id': microsoft_outlook_client_id,
                 'client_secret': microsoft_outlook_client_secret,
