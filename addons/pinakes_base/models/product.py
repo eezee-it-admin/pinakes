@@ -130,3 +130,4 @@ class ProductSubtype(models.Model):
     _description = 'Product Subtype'
 
     name = fields.Char(required=True, translate=True)
+
