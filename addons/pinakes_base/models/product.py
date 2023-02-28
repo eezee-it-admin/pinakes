@@ -1,4 +1,4 @@
-# Copyright 2021      Eezee-IT (<http://www.eezee-it.com>)
+# Copyright 2021 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 import json
 from lxml import etree
@@ -10,7 +10,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     publication_type_id = fields.Many2many('publication.type')
-    product_type_id = fields.Many2one('product.type', 'Type')
+    product_type_id = fields.Many2one('product.type', 'Type of Product')
     imprint_id = fields.Many2one('product.imprint')
     fonds_id = fields.Many2one('product.fonds')
     subtype_id = fields.Many2one('product.subtype', 'Subtype')
