@@ -34,13 +34,14 @@ class MailMail(models.Model):
         else:
             return False
 
-    @api.model
+    @api.model_create_multi
     def create(self, values):
-        if values.get("reply_to", False):
-            if "-at-" in values["reply_to"]:
-                new_mail = self.regenerate_standard_mail(values['reply_to'])
-                if new_mail:
-                    values['reply_to'] = new_mail
+        for rec in self:
+            if values.get("reply_to", False):
+                if "-at-" in values["reply_to"]:
+                    new_mail = rec.regenerate_standard_mail(values['reply_to'])
+                    if new_mail:
+                        values['reply_to'] = new_mail
 
         return super(MailMail, self).create(values)
 
