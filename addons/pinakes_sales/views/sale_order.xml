@@ -10,6 +10,12 @@
                 <field name="auto_exported" readonly="1"/>
                 <field name="auto_sent_time" readonly="1"/>
             </xpath>
+             <xpath expr="//page[@name='other_information']//field[@name='reference']" position="attributes">
+                   <attribute name="attrs"> {'invisible': []}</attribute>
+                   <attribute name="readonly">0</attribute>
+              </xpath>
+
+
         </field>
     </record>
 </odoo>
