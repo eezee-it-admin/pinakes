@@ -94,7 +94,7 @@ class IrAttachment(models.Model):
                         result.button_validate()
 
                     else:
-                        message =("Stock picking Not Found %s \n") % ORDERID
+                        message =("Stock picking Not Found %s \n") % ORDERID # noqa
                         rec._log(message=message, type="danger")
 
                 except Exception as e:
