@@ -93,8 +93,9 @@ class IrAttachment(models.Model):
                         result.write({'carrier_tracking_ref': str(TRACKING)})
 
                 except Exception as e:
-                    message = _("Ignored/ %s: System error\n"
-                                "Error: %s") % (result, e) # noqa
+                    message = ("Ignored/ %s: System error\n"
+                               "Error: %s") % (result, e)
+
                     rec._log(message=message, type="danger")
                     ctr_failed += 1
                     exception = True
