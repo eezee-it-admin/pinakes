@@ -4,7 +4,7 @@ import datetime
 import logging
 import pandas as pd
 
-from odoo import models
+from odoo import models, _
 
 _logger = logging.getLogger(__name__)
 SPLIT_LOT = 400
