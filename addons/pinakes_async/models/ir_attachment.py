@@ -2,13 +2,9 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 import datetime
 import logging
-import re
-# pylint: disable=W7936
 import pandas as pd
 
-from odoo import models, _, api
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
-from odoo.exceptions import UserError, ValidationError
+from odoo import models, _
 
 _logger = logging.getLogger(__name__)
 SPLIT_LOT = 400
@@ -22,11 +18,11 @@ TRX_COLUMN_NAMES = [('name', 'ORDERID', str),
 def now_in_time_range(time_range):
     """Return true if x is in the range [start, end]"""
 
-    if (isinstance(time_range, list) and len(time_range) == 2 and
-            isinstance(time_range[0], int) and
-            isinstance(time_range[1], int) and
-            0 <= time_range[0] < 24 and
-            0 <= time_range[1] < 24):
+    if (isinstance(time_range, list)
+            and len(time_range) == 2 and isinstance(time_range[0], int)
+            and isinstance(time_range[1], int)
+            and 0 <= time_range[0] < 24
+            and 0 <= time_range[1] < 24):
         time_now = datetime.datetime.now().time()
         start = datetime.time(time_range[0], 0, 0)
         end = datetime.time(time_range[1], 0, 0)

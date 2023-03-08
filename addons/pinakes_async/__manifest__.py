@@ -1,8 +1,8 @@
 # Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
-    "name": "Eco Sync",
-    "version": '16.0.0.0.2',
+    "name": "Pinakes Sync",
+    "version": '16.0.0.0.3',
     "application": False,
     "license": 'LGPL-3',
     "category": 'Tools',
