@@ -37,10 +37,6 @@ def now_in_time_range(time_range):
     return False
 
 
-def float_format(float_value):
-    return float(re.sub(r'[^0-9.]', '', str(float_value)))
-
-
 def check_column_names(df):
     missing_columns = []
     for col_info in TRX_COLUMN_NAMES:
