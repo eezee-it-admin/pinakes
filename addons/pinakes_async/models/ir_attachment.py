@@ -33,15 +33,6 @@ def now_in_time_range(time_range):
     return False
 
 
-def check_column_names(df):
-    missing_columns = []
-    for col_info in TRX_COLUMN_NAMES:
-        col = col_info[1]
-        if col not in df.columns:
-            missing_columns.append(col)
-    return missing_columns
-
-
 class IrAttachment(models.Model):
     _inherit = 'ir.attachment'
 
@@ -103,7 +94,7 @@ class IrAttachment(models.Model):
 
                 except Exception as e:
                     message = _("Ignored/ %s: System error\n"
-                                "Error: %s") % (result, e)
+                                "Error: %s") % (result, e) # noqa
                     rec._log(message=message, type="danger")
                     ctr_failed += 1
                     exception = True
