@@ -6,5 +6,4 @@ from odoo import models, fields
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
-    carrier_tracking_ref = fields.Char(string='Tracking Reference',
-                                       copy=False, tracking=True)
+    carrier_tracking_ref = fields.Char(tracking=True)
