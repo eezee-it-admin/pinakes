@@ -63,7 +63,7 @@ class IrAttachment(models.Model):
                     df = rec.get_excel_dataframe()
 
             except Exception as e:
-                message = _("Format file Excel invalid, ") % e
+                message = _("Format file Excel invalid %s") % e
                 rec.action_fail(message=message)
                 continue
 
@@ -75,7 +75,7 @@ class IrAttachment(models.Model):
             ctr_failed = 0
             counter = 0
 
-            for tup in df.itertuples():
+            for row in df.itertuples():
                 counter += 1
                 if counter > SPLIT_LOT:
                     counter = 0
@@ -83,7 +83,7 @@ class IrAttachment(models.Model):
                     self.clear_caches()
 
                 try:
-                    fields = tup._1.split(';')
+                    fields = row._1.split(';')
                     ORDERID = fields[0]
                     TRACKING = fields[1]
 
@@ -91,10 +91,15 @@ class IrAttachment(models.Model):
                                              limit=1)
                     if result:
                         result.write({'carrier_tracking_ref': str(TRACKING)})
+                        result.button_validate()
+
+                    else:
+                        message =("Stock picking Not Found %s \n") % ORDERID
+                        rec._log(message=message, type="danger")
 
                 except Exception as e:
-                    message = ("Ignored/ %s: System error\n"
-                               "Error: %s") % (result, e)
+                    message = ("Ignored/ : System error\n"
+                               "Error: %s") % e
 
                     rec._log(message=message, type="danger")
                     ctr_failed += 1
