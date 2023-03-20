@@ -91,7 +91,7 @@ class IrAttachment(models.Model):
                     picking = StockObj.search([
                         ('name', '=ilike', ORDERID),
                         ('state', 'not in', ['done', 'cancel'])
-                    ],limit=1)
+                    ], limit=1)
 
                     if picking:
                         picking.write({'carrier_tracking_ref': str(TRACKING)})
@@ -109,7 +109,7 @@ class IrAttachment(models.Model):
                             result = picking.with_context(
                                 skip_sanity_check=True
                             ).button_validate()
-                            if res is not True:
+                            if result is not True:
                                 backorder = backorder_obj.create({
                                     'pick_ids': [(6, 0, picking.ids)],
                                     'backorder_confirmation_line_ids': [
@@ -128,13 +128,13 @@ class IrAttachment(models.Model):
                                 ).process()
                         else:
                             ctr_failed += 1
-                            message =(
+                            message = (
                                 "Not have enough stock for %s \n"
                             ) % ORDERID
                             rec._log(message=message, type="warning")
 
                     else:
-                        message =("Stock picking Not Found %s \n") % ORDERID
+                        message = ("Stock picking Not Found %s \n") % ORDERID
                         rec._log(message=message, type="danger")
 
                 except Exception as e:
