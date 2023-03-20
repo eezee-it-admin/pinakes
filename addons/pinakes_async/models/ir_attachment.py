@@ -43,6 +43,7 @@ class IrAttachment(models.Model):
             return
 
         StockObj = self.env['stock.picking'].sudo()
+        backorder_obj = self.env['stock.backorder.confirmation'].sudo()
         res = {}
         # Sort and Truncate the records to `limit`
         all_records = self.sorted(key='id', reverse=True)
@@ -87,14 +88,53 @@ class IrAttachment(models.Model):
                     ORDERID = fields[0]
                     TRACKING = fields[1]
 
-                    result = StockObj.search([('name', '=ilike', ORDERID)],
-                                             limit=1)
-                    if result:
-                        result.write({'carrier_tracking_ref': str(TRACKING)})
-                        result.button_validate()
+                    picking = StockObj.search([
+                        ('name', '=ilike', ORDERID),
+                        ('state', 'not in', ['done', 'cancel'])
+                    ], limit=1)
+
+                    if picking:
+                        picking.write({'carrier_tracking_ref': str(TRACKING)})
+
+                        if picking.state == 'draft':
+                            picking.action_confirm()
+                            picking.action_assign()
+                        elif picking.state in ['confirmed', 'waiting']:
+                            picking.action_assign()
+
+                        move_lines = picking.move_line_ids_without_package
+                        if picking.state == 'assigned' and move_lines:
+                            for line in move_lines:
+                                line.qty_done = line.move_id.product_uom_qty
+                            result = picking.with_context(
+                                skip_sanity_check=True
+                            ).button_validate()
+                            if result is not True:
+                                backorder = backorder_obj.create({
+                                    'pick_ids': [(6, 0, picking.ids)],
+                                    'backorder_confirmation_line_ids': [
+                                        (
+                                            0, 0, {
+                                                'to_backorder': True,
+                                                'picking_id': pick_id
+                                            }
+                                        )
+                                        for pick_id in picking.ids
+                                    ],
+                                })
+                                backorder.with_context(
+                                    button_validate_picking_ids=picking.ids,
+                                    skip_sanity_check=True
+                                ).process()
+                        else:
+                            ctr_failed += 1
+                            message = (
+                                "Not have enough stock for %s \n"
+                            ) % ORDERID
+                            rec._log(message=message, type="warning")
 
                     else:
-                        message =("Stock picking Not Found %s \n") % ORDERID # noqa
+                        message = ("Stock picking Not Found %s \n") % ORDERID
                         rec._log(message=message, type="danger")
 
                 except Exception as e:
