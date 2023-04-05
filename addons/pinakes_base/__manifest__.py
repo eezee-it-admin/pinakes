@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Base",
-    "version": "16.0.0.0.2",
+    "version": "16.0.0.0.3",
     "author": "Eezee-It",
     "category": "Services",
     "license": "LGPL-3",

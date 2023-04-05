@@ -3,3 +3,4 @@
 from . import res_company
 from . import product
 from . import product_author
+from . import res_partner
