@@ -9,6 +9,9 @@
             <field name="category_id" position="after">
                 <field name="id"/>
             </field>
+            <field name="vat" position="after">
+                <field name="vat_registered"/>
+            </field>
         </field>
     </record>
 
