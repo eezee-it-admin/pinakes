@@ -12,6 +12,9 @@
             <field name="vat" position="after">
                 <field name="vat_registered"/>
             </field>
+            <field name="vat" position="attributes">
+                <attribute name="attrs">{'readonly': [('parent_id', '!=', False)], 'required': [('vat_registered', '=', True)]}</attribute>
+            </field>
         </field>
     </record>
 
