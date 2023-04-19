@@ -87,3 +87,9 @@ msgstr "Rapportage"
 #: model:ir.ui.menu,name:pinakes_base.menu_politeia_product_imprint
 msgid "Imprint"
 msgstr ""
+
+#. module: pinakes_base
+#: model:ir.model.fields,field_description:pinakes_base.field_res_partner__vat_registered
+#: model:ir.model.fields,field_description:pinakes_base.field_res_users__vat_registered
+msgid "VAT-registered"
+msgstr "BTW-plichtig"

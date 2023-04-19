@@ -28,14 +28,14 @@ class ProductTemplate(models.Model):
 
     def action_view_authors(self):
         self.ensure_one()
-        action = self.env.ref(
-            "pinakes_base.action_politeia_product_author"
-        ).read([])[0]
-        action['domain'] = [('product_tmpl_id', 'in', self.ids)]
-        action['context'] = {
-            'default_product_tmpl_id': self.id,
+        return {
+            'name': 'Product Authors',
+            'type': 'ir.actions.act_window',
+            'res_model': 'product.author',
+            'view_mode': 'tree',
+            'domain': [('product_tmpl_id', 'in', self.ids)],
+            'context': {'default_product_tmpl_id': self.id},
         }
-        return action
 
     @api.model
     def fields_view_get(
