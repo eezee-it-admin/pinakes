@@ -21,6 +21,7 @@
         "views/product_template_view.xml",
         "views/product_view.xml",
         "views/product_author_view.xml",
+        "views/publication_lang_view.xml",
         "views/menuitems.xml",
     ],
     "application": True,

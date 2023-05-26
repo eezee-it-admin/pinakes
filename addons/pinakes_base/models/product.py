@@ -76,8 +76,8 @@ class ProductProduct(models.Model):
     issn = fields.Char('ISSN')
     doi = fields.Char('DOI')
     publication_lang = fields.Many2many(
-        'res.lang', 'product_id', 'lang_id', 'product_product_res_lang_rel',
-        'Publication Language'
+        'publication.lang', 'product_product_publication_lang_rel',
+        'product_id', 'lang_id', 'Publication Language'
     )
 
     @api.model
