@@ -11,3 +11,5 @@ access_product_fonds_user,access.product.fonds.user,model_product_fonds,base.gro
 access_product_fonds_system,access.product.fonds.system,model_product_fonds,base.group_system,1,1,1,1
 access_product_subtype_user,access.product.subtype.user,model_product_subtype,base.group_user,1,1,1,0
 access_product_subtype_system,access.product.subtype.system,model_product_subtype,base.group_system,1,1,1,1
+access_publication_lang_user,access.publication_lang.user,model_publication_lang,base.group_user,1,1,1,1
+access_publication_lang_system,access.publication_lang.system,model_publication_lang,base.group_system,1,1,1,1

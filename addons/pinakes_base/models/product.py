@@ -20,6 +20,7 @@ class ProductTemplate(models.Model):
     company_code = fields.Selection([
         ('pinakes', 'Pinakes'), ('asp', 'ASP'), ('politeia', 'Politeia')
     ], compute='_compute_company_code')
+    release_date = fields.Date()
 
     def _compute_company_code(self):
         company_code = self.env.company.company_code
@@ -74,6 +75,10 @@ class ProductProduct(models.Model):
     isbn = fields.Char('ISBN')
     issn = fields.Char('ISSN')
     doi = fields.Char('DOI')
+    publication_lang = fields.Many2many(
+        'publication.lang', 'product_product_publication_lang_rel',
+        'product_id', 'lang_id', 'Publication Language'
+    )
 
     @api.model
     def fields_view_get(

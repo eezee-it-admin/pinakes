@@ -93,3 +93,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:pinakes_base.field_res_users__vat_registered
 msgid "VAT-registered"
 msgstr "BTW-plichtig"
+
+#. module: pinakes_base
+#: model:ir.model.fields,field_description:pinakes_base.field_product_template__release_date
+msgid "Release Date"
+msgstr "Verschijnings datum"
+
+#. module: pinakes_base
+#: model:ir.model.fields,field_description:pinakes_base.field_product_product__publication_lang
+msgid "Publication Language"
+msgstr "Publicatie taal"
