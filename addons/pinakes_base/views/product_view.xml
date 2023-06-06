@@ -8,7 +8,6 @@
         <field name="arch" type="xml">
             <field name="default_code" position="after">
                 <field name="id"/>
-                <field name="detailed_type" string="Product Variant Type"/>
             </field>
             <field name="currency_id" position="before">
                 <field name="isbn"/>
@@ -26,17 +25,6 @@
                     </group>
                 </page>
             </xpath>
-        </field>
-    </record>
-
-    <record id="view_pinakes_product_variant_easy_edit_view" model="ir.ui.view">
-        <field name="name">pinakes.product.normal.form</field>
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
-        <field name="arch" type="xml">
-            <field name="currency_id" position="before">
-                 <field name="detailed_type" string="Product Variant Type"/>
-            </field>
         </field>
     </record>
 
@@ -66,7 +54,6 @@
         <field name="arch" type="xml">
             <field name="default_code" position="after">
                 <field name="id"/>
-                <field name="detailed_type" string="Product Variant Type"/>
             </field>
         </field>
     </record>
