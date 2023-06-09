@@ -24,7 +24,7 @@ class ProductTemplate(models.Model):
 
     def _set_account(self, vals):
         if vals.get('fonds_id'):
-            founds_id = self.env['product.fonds'].search([('id', '=', vals.get('fonds_id'))])
+            founds_id = self.env['product.fonds'].browse(vals.get('fonds_id'))
             if founds_id and founds_id.income_account_id:
                 vals.update({'property_account_income_id': founds_id.income_account_id.id})
         return vals
@@ -160,9 +160,10 @@ class ProductFonds(models.Model):
 
     def write(self, vals):
         if self and vals.get('income_account_id'):
-            product_ids = self.env['product.template'].search([('fonds_id', '=', self.id)])
-            if product_ids:
-                product_ids.sudo().write({'property_account_income_id':  vals.get('income_account_id')})
+            for rec in self:
+                product_ids = self.env['product.template'].search([('fonds_id', '=', rec.id)])
+                if product_ids:
+                    product_ids.write({'property_account_income_id': vals.get('income_account_id')})
         return super().write(vals)
 
 
