@@ -99,7 +99,27 @@
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="name"/>
+                <field name="income_account_id" options="{'no_create_edit': True}"/>
             </tree>
+        </field>
+    </record>
+
+    <record id="view_pinakes_product_fonds_form" model="ir.ui.view">
+        <field name="name">pinakes.product.fonds.form</field>
+        <field name="model">product.fonds</field>
+        <field name="arch" type="xml">
+            <form string="Founds">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="income_account_id" options="{'no_create': True, 'no_edit': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 
