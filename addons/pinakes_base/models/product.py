@@ -22,6 +22,23 @@ class ProductTemplate(models.Model):
     ], compute='_compute_company_code')
     release_date = fields.Date()
 
+    def _set_account(self, vals):
+        if vals.get('fonds_id'):
+            founds_id = self.env['product.fonds'].browse(vals.get('fonds_id'))
+            if founds_id and founds_id.income_account_id:
+                vals.update({'property_account_income_id': founds_id.income_account_id.id})
+        return vals
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            self._set_account(vals)
+        return super().create(vals_list)
+
+    def write(self, vals):
+        self._set_account(vals)
+        return super().write(vals)
+
     def _compute_company_code(self):
         company_code = self.env.company.company_code
         for prod in self:
@@ -128,6 +145,26 @@ class ProductFonds(models.Model):
     _description = 'Product Fonds'
 
     name = fields.Char(required=True, translate=True)
+    income_account_id = fields.Many2one('account.account',
+                                        company_dependent=True,
+                                        string="Income Account",
+                                        domain="['&', '&', '&', "
+                                               "('deprecated', '=', False),"
+                                               " ('account_type', 'not in', "
+                                               "('asset_receivable',"
+                                               "'liability_payable',"
+                                               "'asset_cash',"
+                                               "'liability_credit_card')), "
+                                               "('company_id', '=', current_company_id), "
+                                               "('is_off_balance', '=', False)]")
+
+    def write(self, vals):
+        if self and vals.get('income_account_id'):
+            for rec in self:
+                product_ids = self.env['product.template'].search([('fonds_id', '=', rec.id)])
+                if product_ids:
+                    product_ids.write({'property_account_income_id': vals.get('income_account_id')})
+        return super().write(vals)
 
 
 class ProductSubtype(models.Model):
