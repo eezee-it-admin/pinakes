@@ -1,5 +1,6 @@
-# Copyright 2021 Eezee-IT (<http://www.eezee-it.com>)
+# Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+
 import json
 from lxml import etree
 
@@ -82,7 +83,7 @@ class ProductProduct(models.Model):
     detailed_type = fields.Selection([('consu', 'Consumable'),
                                       ('service', 'Service'),
                                       ('product', 'Storable Product')],
-                                     string='Product Type', default='consu',
+                                     string='Product Type',
                                      required=True, help='A storable product is a product for which you manage stock. '
                                                          'The Inventory app has to be installed.\n A consumable '
                                                          'product is a product for which stock is not managed.\n '
@@ -121,6 +122,18 @@ class ProductProduct(models.Model):
             node.set("modifiers", json.dumps(modifiers))
         result['arch'] = etree.tostring(doc)
         return result
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if 'product_tmpl_id' in vals:
+                product_template_obj = self.env['product.template'].\
+                    search([('id', '=', vals.get('product_tmpl_id'))])
+                if product_template_obj.detailed_type:
+                    vals['detailed_type'] = product_template_obj.detailed_type
+            else:
+                vals['detailed_type'] = 'consu'
+        return super(ProductProduct, self).create(vals_list)
 
 
 class PublicationType(models.Model):
