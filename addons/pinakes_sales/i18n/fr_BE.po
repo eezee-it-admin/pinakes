@@ -16,6 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pinakes_sales
-#: model_terms:ir.ui.view,arch_db:pinakes_sales.sale_subscription_inherit_pin
+#: model_terms:ir.ui.view,arch_db:pinakes_sales.sale_subscription_inherit_pin_form
 msgid "New Publication"
 msgstr "Nouvelle Publication"
