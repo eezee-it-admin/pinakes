@@ -1,5 +1,6 @@
-# Copyright 2021 Eezee-IT (<http://www.eezee-it.com>)
+# Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+
 import json
 from lxml import etree
 
@@ -96,6 +97,31 @@ class ProductProduct(models.Model):
     isbn = fields.Char('ISBN')
     issn = fields.Char('ISSN')
     doi = fields.Char('DOI')
+    publication_lang = fields.Many2many(
+        'publication.lang', 'product_product_publication_lang_rel',
+        'product_id', 'lang_id', 'Publication Language'
+    )
+    detailed_type = fields.Selection([('consu', 'Consumable'),
+                                      ('service', 'Service'),
+                                      ('product', 'Storable Product')],
+                                     string='Product Type',
+                                     required=True, help='A storable product is a product for which you manage stock. '
+                                                         'The Inventory app has to be installed.\n A consumable '
+                                                         'product is a product for which stock is not managed.\n '
+                                                         'A service is a non-material product you provide.')
+    type = fields.Selection([('consu', 'Consumable'), ('service', 'Service'),
+                             ('product', 'Storable Product')],
+                            compute='_compute_type', store=True,
+                            readonly=False, precompute=True)
+
+    def _detailed_type_mapping(self):
+        return {}
+
+    @api.depends('detailed_type')
+    def _compute_type(self):
+        type_mapping = self._detailed_type_mapping()
+        for record in self:
+            record.type = type_mapping.get(record.detailed_type, record.detailed_type)
 
     @api.model
     def fields_view_get(
@@ -117,6 +143,18 @@ class ProductProduct(models.Model):
             node.set("modifiers", json.dumps(modifiers))
         result['arch'] = etree.tostring(doc)
         return result
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if 'product_tmpl_id' in vals:
+                product_template_obj = self.env['product.template'].\
+                    search([('id', '=', vals.get('product_tmpl_id'))])
+                if product_template_obj.detailed_type:
+                    vals['detailed_type'] = product_template_obj.detailed_type
+            else:
+                vals['detailed_type'] = 'consu'
+        return super(ProductProduct, self).create(vals_list)
 
 
 class PublicationType(models.Model):
