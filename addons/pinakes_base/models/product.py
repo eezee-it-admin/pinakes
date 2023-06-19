@@ -1,10 +1,17 @@
 # Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
-ACCOUNT_DOMAIN = "['&', '&', '&', ('deprecated', '=', False), ('account_type', 'not in', ('asset_receivable','liability_payable','asset_cash','liability_credit_card')), ('company_id', '=', current_company_id), ('is_off_balance', '=', False)]"
+
 import json
 from lxml import etree
 
 from odoo import api, fields, models
+
+ACCOUNT_DOMAIN = "['&', '&', '&', ('deprecated', '=', False), " \
+                 "('account_type', 'not in', ('asset_receivable', " \
+                 "'liability_payable', 'asset_cash', " \
+                 "'liability_credit_card')), " \
+                 "('company_id', '=', current_company_id), " \
+                 "('is_off_balance', '=', False)]"
 
 
 class ProductTemplate(models.Model):
@@ -32,8 +39,8 @@ class ProductTemplate(models.Model):
             founds_id = self.env['product.fonds'].browse(vals.get('fonds_id'))
             if founds_id and (founds_id.income_account_id
                               or founds_id.expense_account_id):
-                vals.update({'property_account_income_id'
-                             : founds_id.income_account_id.id,
+                vals.update({'property_account_income_id':
+                            founds_id.income_account_id.id,
                              'property_account_expense_id':
                                  founds_id.expense_account_id.id})
         return vals
@@ -197,8 +204,8 @@ class ProductFonds(models.Model):
                                          domain=ACCOUNT_DOMAIN)
 
     def write(self, vals):
-        if self and (vals.get('income_account_id') or
-                     vals.get('expense_account_id')):
+        if self and (vals.get('income_account_id')
+                     or vals.get('expense_account_id')):
             for rec in self:
                 product_ids = self.env['product.template']\
                     .search([('fonds_id', '=', rec.id)])
