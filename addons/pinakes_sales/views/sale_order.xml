@@ -18,14 +18,14 @@
         </field>
     </record>
 
-    <record id="sale_subscription_inherit_pin" model="ir.ui.view">
+    <record id="sale_subscription_inherit_pin_form" model="ir.ui.view">
         <field name="name">sale.order.form.inherit.pin</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_subscription.sale_subscription_order_view_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='prepare_upsell_order']" position="attributes">
-                <attribute name="string">New publication</attribute>
+                <attribute name="string">New Publication</attribute>
             </xpath>
         </field>
     </record>

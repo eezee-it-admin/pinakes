@@ -7,11 +7,11 @@
     'category': 'Sale',
     'license': 'LGPL-3',
     'depends': [
-        'sale',
         'sale_subscription'
     ],
     'data': [
         'data/server_action.xml',
-        'views/sale_order.xml'
+        'views/sale_order.xml',
+        'views/sale_order_recurrence.xml'
     ],
 }

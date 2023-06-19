@@ -1,5 +1,6 @@
-# Copyright 2021 Eezee-IT (<http://www.eezee-it.com>)
+# Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+ACCOUNT_DOMAIN = "['&', '&', '&', ('deprecated', '=', False), ('account_type', 'not in', ('asset_receivable','liability_payable','asset_cash','liability_credit_card')), ('company_id', '=', current_company_id), ('is_off_balance', '=', False)]"
 import json
 from lxml import etree
 
@@ -21,12 +22,20 @@ class ProductTemplate(models.Model):
         ('pinakes', 'Pinakes'), ('asp', 'ASP'), ('politeia', 'Politeia')
     ], compute='_compute_company_code')
     release_date = fields.Date()
+    publication_lang = fields.Many2many(
+        'publication.lang', 'product_template_publication_lang_rel',
+        'product_id', 'lang_id', 'Publication Language'
+    )
 
     def _set_account(self, vals):
         if vals.get('fonds_id'):
-            founds_id = self.env['product.fonds'].search([('id', '=', vals.get('fonds_id'))])
-            if founds_id and founds_id.income_account_id:
-                vals.update({'property_account_income_id': founds_id.income_account_id.id})
+            founds_id = self.env['product.fonds'].browse(vals.get('fonds_id'))
+            if founds_id and (founds_id.income_account_id
+                              or founds_id.expense_account_id):
+                vals.update({'property_account_income_id'
+                             : founds_id.income_account_id.id,
+                             'property_account_expense_id':
+                                 founds_id.expense_account_id.id})
         return vals
 
     @api.model_create_multi
@@ -96,6 +105,27 @@ class ProductProduct(models.Model):
         'publication.lang', 'product_product_publication_lang_rel',
         'product_id', 'lang_id', 'Publication Language'
     )
+    detailed_type = fields.Selection([('consu', 'Consumable'),
+                                      ('service', 'Service'),
+                                      ('product', 'Storable Product')],
+                                     string='Product Type',
+                                     required=True, help='A storable product is a product for which you manage stock. '
+                                                         'The Inventory app has to be installed.\n A consumable '
+                                                         'product is a product for which stock is not managed.\n '
+                                                         'A service is a non-material product you provide.')
+    type = fields.Selection([('consu', 'Consumable'), ('service', 'Service'),
+                             ('product', 'Storable Product')],
+                            compute='_compute_type', store=True,
+                            readonly=False, precompute=True)
+
+    def _detailed_type_mapping(self):
+        return {}
+
+    @api.depends('detailed_type')
+    def _compute_type(self):
+        type_mapping = self._detailed_type_mapping()
+        for record in self:
+            record.type = type_mapping.get(record.detailed_type, record.detailed_type)
 
     @api.model
     def fields_view_get(
@@ -117,6 +147,18 @@ class ProductProduct(models.Model):
             node.set("modifiers", json.dumps(modifiers))
         result['arch'] = etree.tostring(doc)
         return result
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if 'product_tmpl_id' in vals:
+                product_template_obj = self.env['product.template'].\
+                    search([('id', '=', vals.get('product_tmpl_id'))])
+                if product_template_obj.detailed_type:
+                    vals['detailed_type'] = product_template_obj.detailed_type
+            else:
+                vals['detailed_type'] = 'consu'
+        return super(ProductProduct, self).create(vals_list)
 
 
 class PublicationType(models.Model):
@@ -148,21 +190,25 @@ class ProductFonds(models.Model):
     income_account_id = fields.Many2one('account.account',
                                         company_dependent=True,
                                         string="Income Account",
-                                        domain="['&', '&', '&', "
-                                               "('deprecated', '=', False),"
-                                               " ('account_type', 'not in', "
-                                               "('asset_receivable',"
-                                               "'liability_payable',"
-                                               "'asset_cash',"
-                                               "'liability_credit_card')), "
-                                               "('company_id', '=', current_company_id), "
-                                               "('is_off_balance', '=', False)]")
+                                        domain=ACCOUNT_DOMAIN)
+    expense_account_id = fields.Many2one('account.account',
+                                         company_dependent=True,
+                                         string="Expense Account",
+                                         domain=ACCOUNT_DOMAIN)
 
     def write(self, vals):
-        if self and vals.get('income_account_id'):
-            product_ids = self.env['product.template'].search([('fonds_id', '=', self.id)])
-            if product_ids:
-                product_ids.sudo().write({'property_account_income_id':  vals.get('income_account_id')})
+        if self and (vals.get('income_account_id') or
+                     vals.get('expense_account_id')):
+            for rec in self:
+                product_ids = self.env['product.template']\
+                    .search([('fonds_id', '=', rec.id)])
+                if product_ids:
+                    product_ids.write({
+                        'property_account_income_id':
+                            vals.get('income_account_id') or False,
+                        'property_account_expense_id':
+                            vals.get('expense_account_id') or False
+                    })
         return super().write(vals)
 
 
