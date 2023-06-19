@@ -29,6 +29,7 @@
                         <group>
                             <field name="imprint_id"/>
                             <field name="fonds_id"/>
+                            <field name="publication_lang" widget="many2many_tags"/>
                         </group>
                     </group>
                 </page>
