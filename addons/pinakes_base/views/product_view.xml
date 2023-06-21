@@ -5,12 +5,12 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <field name="detailed_type" position="after">
+            <xpath expr="//page[@name='general_information']/group" position="before">
                 <div class="alert alert-info" role="alert" colspan="4">
                     Be careful when you change the <b>'product type'</b> at the template level,
                     <br/>please check the types in the variants and live towards that.
                 </div>
-            </field>
+            </xpath>
         </field>
     </record>
 
@@ -22,10 +22,6 @@
             <field name="default_code" position="after">
                 <field name="id"/>
                 <field name="detailed_type" required="1" string="Product Variant Type"/>
-                <div class="alert alert-info" role="alert" colspan="4">
-                    Be careful when you change the <b>'product type'</b> at the template level,
-                    <br/>please check the types in the variants and live towards that.
-                </div>
             </field>
             <field name="currency_id" position="before">
                 <field name="isbn"/>
