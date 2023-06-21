@@ -6,6 +6,12 @@ from lxml import etree
 
 from odoo import api, fields, models
 
+PRODUCT_TYPES = [
+    ('consu', 'Consumable'),
+    ('service', 'Service'),
+    ('product', 'Storable Product')
+]
+
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
@@ -101,15 +107,10 @@ class ProductProduct(models.Model):
         'publication.lang', 'product_product_publication_lang_rel',
         'product_id', 'lang_id', 'Publication Language'
     )
-    detailed_type = fields.Selection([('consu', 'Consumable'),
-                                      ('service', 'Service'),
-                                      ('product', 'Storable Product')],
+    detailed_type = fields.Selection(PRODUCT_TYPES, store=True, string='Product Type',
                                      compute='_compute_product_variant_type',
-                                     inverse='_inverse_product_variant_type',
-                                     store=True, string='Product Type')
-
-    type = fields.Selection([('consu', 'Consumable'), ('service', 'Service'),
-                             ('product', 'Storable Product')], store=True,
+                                     inverse='_inverse_product_variant_type')
+    type = fields.Selection(PRODUCT_TYPES, store=True,
                             compute='_compute_product_variant_type',
                             inverse='_inverse_product_variant_type')
 
