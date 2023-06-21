@@ -108,7 +108,6 @@ class ProductProduct(models.Model):
         'product_id', 'lang_id', 'Publication Language'
     )
     detailed_type = fields.Selection(PRODUCT_TYPES, store=True, string='Product Type',
-                                     required=True,
                                      compute='_compute_product_variant_type',
                                      inverse='_inverse_product_variant_type')
     type = fields.Selection(PRODUCT_TYPES, store=True,
