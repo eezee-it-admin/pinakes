@@ -90,7 +90,6 @@ class ProductTemplate(models.Model):
         result['arch'] = etree.tostring(doc)
         return result
 
-
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
@@ -104,25 +103,23 @@ class ProductProduct(models.Model):
     detailed_type = fields.Selection([('consu', 'Consumable'),
                                       ('service', 'Service'),
                                       ('product', 'Storable Product')],
-                                     string='Product Type',
-                                     help='A storable product is a product for which you manage stock. '
-                                          'The Inventory app has to be installed.\n A consumable '
-                                          'product is a product for which stock is not managed.\n '
-                                          'A service is a non-material product you provide.')
+                                     compute='_compute_product_variant_type',
+                                     inverse='_inverse_product_variant_type',
+                                     store=True, string='Product Type')
 
     type = fields.Selection([('consu', 'Consumable'), ('service', 'Service'),
-                             ('product', 'Storable Product')],
-                            compute='_compute_type', store=True,
-                            readonly=False, precompute=True)
+                             ('product', 'Storable Product')], store=True,
+                            compute='_compute_product_variant_type',
+                            inverse='_inverse_product_variant_type')
 
-    def _detailed_type_mapping(self):
-        return {}
+    @api.depends('product_tmpl_id.detailed_type')
+    def _compute_product_variant_type(self):
+        for product in self:
+            product.detailed_type = product.product_tmpl_id.detailed_type
+            product.type = product.product_tmpl_id.type
 
-    @api.depends('detailed_type')
-    def _compute_type(self):
-        type_mapping = self._detailed_type_mapping()
-        for record in self:
-            record.type = type_mapping.get(record.detailed_type, record.detailed_type)
+    def _inverse_product_variant_type(self):
+        return
 
     @api.model
     def fields_view_get(
@@ -144,18 +141,6 @@ class ProductProduct(models.Model):
             node.set("modifiers", json.dumps(modifiers))
         result['arch'] = etree.tostring(doc)
         return result
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if 'product_tmpl_id' in vals:
-                product_template_obj = self.env['product.template'].\
-                    search([('id', '=', vals.get('product_tmpl_id'))])
-                if product_template_obj.detailed_type:
-                    vals['detailed_type'] = product_template_obj.detailed_type
-            else:
-                vals['detailed_type'] = 'consu'
-        return super(ProductProduct, self).create(vals_list)
 
 
 class PublicationType(models.Model):
