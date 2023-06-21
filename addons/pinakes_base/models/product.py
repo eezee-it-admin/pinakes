@@ -22,6 +22,10 @@ class ProductTemplate(models.Model):
         ('pinakes', 'Pinakes'), ('asp', 'ASP'), ('politeia', 'Politeia')
     ], compute='_compute_company_code')
     release_date = fields.Date()
+    publication_lang = fields.Many2many(
+        'publication.lang', 'product_template_publication_lang_rel',
+        'product_id', 'lang_id', 'Publication Language'
+    )
 
     def _set_account(self, vals):
         if vals.get('fonds_id'):
@@ -105,6 +109,7 @@ class ProductProduct(models.Model):
                                           'The Inventory app has to be installed.\n A consumable '
                                           'product is a product for which stock is not managed.\n '
                                           'A service is a non-material product you provide.')
+
     type = fields.Selection([('consu', 'Consumable'), ('service', 'Service'),
                              ('product', 'Storable Product')],
                             compute='_compute_type', store=True,
