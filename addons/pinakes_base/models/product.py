@@ -90,6 +90,7 @@ class ProductTemplate(models.Model):
         result['arch'] = etree.tostring(doc)
         return result
 
+
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
