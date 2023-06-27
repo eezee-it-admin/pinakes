@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
+    <record id="product_template_action_pinakes_subscription" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('parent_abonnement_product', '=', active_id)]</field>
+        <field name="context">{
+                    'search_default_parent_abonnement_product': active_id,
+                    'default_parent_abonnement_product': active_id,
+            }</field>
+    </record>
+
     <record id="view_politeia_product_template_form" model="ir.ui.view">
         <field name="name">politeia.product.template.form</field>
         <field name="model">product.template</field>
@@ -10,6 +21,10 @@
                 <button name="action_view_authors" class="oe_stat_button"
                         type="object" icon="fa-user">
                     <span class="o_stat_text">Authors</span>
+                </button>
+                <button name="%(product_template_action_pinakes_subscription)d" class="oe_stat_button"
+                        icon="fa-database" type="action">
+                    <field name="abonnement_product_count" widget="statinfo" string="Subscription Products"/>
                 </button>
             </div>
             <field name="default_code" position="after">
@@ -36,6 +51,18 @@
             </xpath>
         </field>
     </record>
+
+        <record id="product_template_form_view_pinakes" model="ir.ui.view">
+            <field name="name">politeia.product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="detailed_type" position="before">
+                    <field name="parent_abonnement_product"/>
+                </field>
+            </field>
+        </record>
+
 
     <record id="view_pinakes_product_template_kanban" model="ir.ui.view">
         <field name="name">pinakes.product.template.kanban</field>

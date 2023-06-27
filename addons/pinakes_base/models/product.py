@@ -32,6 +32,15 @@ class ProductTemplate(models.Model):
         'publication.lang', 'product_template_publication_lang_rel',
         'product_id', 'lang_id', 'Publication Language'
     )
+    parent_abonnement_product = fields.Many2one('product.template',
+                                                'Abonnement')
+    abonnement_product_count = fields.Integer('Linked Subscription Products',
+                                              compute='_compute_linked_products')
+
+    def _compute_linked_products(self):
+        for rec in self:
+            rec.abonnement_product_count = self.env['product.template'].\
+                search_count([('parent_abonnement_product', '=', rec.id)])
 
     def _set_account(self, vals):
         if vals.get('fonds_id'):
