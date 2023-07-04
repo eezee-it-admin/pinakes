@@ -6,6 +6,13 @@ from lxml import etree
 
 from odoo import api, fields, models
 
+ACCOUNT_DOMAIN = "['&', '&', '&', ('deprecated', '=', False), " \
+                 "('account_type', 'not in', ('asset_receivable', " \
+                 "'liability_payable', 'asset_cash', " \
+                 "'liability_credit_card')), " \
+                 "('company_id', '=', current_company_id), " \
+                 "('is_off_balance', '=', False)]"
+
 PRODUCT_TYPES = [
     ('consu', 'Consumable'),
     ('service', 'Service'),
@@ -45,8 +52,12 @@ class ProductTemplate(models.Model):
     def _set_account(self, vals):
         if vals.get('fonds_id'):
             founds_id = self.env['product.fonds'].browse(vals.get('fonds_id'))
-            if founds_id and founds_id.income_account_id:
-                vals.update({'property_account_income_id': founds_id.income_account_id.id})
+            if founds_id and (founds_id.income_account_id
+                              or founds_id.expense_account_id):
+                vals.update({'property_account_income_id':
+                            founds_id.income_account_id.id,
+                             'property_account_expense_id':
+                                 founds_id.expense_account_id.id})
         return vals
 
     @api.model_create_multi
@@ -183,22 +194,25 @@ class ProductFonds(models.Model):
     income_account_id = fields.Many2one('account.account',
                                         company_dependent=True,
                                         string="Income Account",
-                                        domain="['&', '&', '&', "
-                                               "('deprecated', '=', False),"
-                                               " ('account_type', 'not in', "
-                                               "('asset_receivable',"
-                                               "'liability_payable',"
-                                               "'asset_cash',"
-                                               "'liability_credit_card')), "
-                                               "('company_id', '=', current_company_id), "
-                                               "('is_off_balance', '=', False)]")
+                                        domain=ACCOUNT_DOMAIN)
+    expense_account_id = fields.Many2one('account.account',
+                                         company_dependent=True,
+                                         string="Expense Account",
+                                         domain=ACCOUNT_DOMAIN)
 
     def write(self, vals):
-        if self and vals.get('income_account_id'):
+        if self and (vals.get('income_account_id')
+                     or vals.get('expense_account_id')):
             for rec in self:
-                product_ids = self.env['product.template'].search([('fonds_id', '=', rec.id)])
+                product_ids = self.env['product.template']\
+                    .search([('fonds_id', '=', rec.id)])
                 if product_ids:
-                    product_ids.write({'property_account_income_id': vals.get('income_account_id')})
+                    product_ids.write({
+                        'property_account_income_id':
+                            vals.get('income_account_id') or False,
+                        'property_account_expense_id':
+                            vals.get('expense_account_id') or False
+                    })
         return super().write(vals)
 
 
