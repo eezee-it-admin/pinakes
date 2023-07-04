@@ -22,6 +22,13 @@ class SaleReport(models.Model):
         res['subtype_id'] = "t.subtype_id"
         return res
 
+    def _from_sale(self):
+        res = super()._from_sale()
+        res += """
+            LEFT JOIN product_template_publication_type_rel pub ON pub.product_template_id = t.id
+        """
+        return res
+
     def _group_by_sale(self):
         res = super()._group_by_sale()
         res += """,
