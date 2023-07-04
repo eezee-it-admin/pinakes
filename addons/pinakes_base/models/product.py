@@ -18,7 +18,6 @@ PRODUCT_TYPES = [
     ('service', 'Service'),
     ('product', 'Storable Product')
 ]
->>>>>>> addons/pinakes_base/models/product.py
 
 
 class ProductTemplate(models.Model):
