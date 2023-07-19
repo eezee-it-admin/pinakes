@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     'name': 'Pinakes Profile',
-    'version': '16.0.0.0.0',
+    'version': '16.0.0.0.1',
     'author': 'Eezee-It',
     'category': 'Services',
     'license': 'LGPL-3',
@@ -11,6 +11,7 @@
         'sale_management',
         'pinakes_base',
         'pinakes_sales',
+        'beone_sub_draft_invoice'
     ],
     'application': True,
 }
