@@ -11,7 +11,6 @@
         'sale_management',
         'pinakes_base',
         'pinakes_sales',
-        'beone_sub_draft_invoice'
     ],
     'application': True,
 }
