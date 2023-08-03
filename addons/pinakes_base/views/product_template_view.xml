@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="product_template_action_pinakes_subscription" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('parent_abonnement_product_id', '=', active_id)]</field>
+        <field name="context">{
+                    'search_default_parent_abonnement_product_id': active_id,
+                    'default_parent_abonnement_product_id': active_id,
+            }</field>
+    </record>
+
+    <record id="view_politeia_product_template_form" model="ir.ui.view">
+        <field name="name">politeia.product.template.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_authors" class="oe_stat_button"
+                        type="object" icon="fa-user">
+                    <span class="o_stat_text">Authors</span>
+                </button>
+                <button name="%(product_template_action_pinakes_subscription)d" class="oe_stat_button"
+                        icon="fa-database" type="action">
+                    <field name="abonnement_product_count" widget="statinfo" string="Subscription Products"/>
+                </button>
+            </div>
+            <field name="default_code" position="after">
+                <field name="id"/>
+                <field name="release_date"/>
+            </field>
+            <xpath expr="//notebook" position="inside">
+                <page string="Reporting" name="reporting"
+                      attrs="{'invisible': [('company_code', '=', 'pinakes')]}">
+                    <group>
+                        <group>
+                            <field name="company_code" invisible="1"/>
+                            <field name="publication_type_id" widget="many2many_tags"/>
+                            <field name="product_type_id"/>
+                            <field name="subtype_id"/>
+                        </group>
+                        <group>
+                            <field name="imprint_id"/>
+                            <field name="fonds_id"/>
+                            <field name="publication_lang" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+        <record id="product_template_form_view_pinakes" model="ir.ui.view">
+            <field name="name">politeia.product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="detailed_type" position="before">
+                    <field name="parent_abonnement_product_id"/>
+                </field>
+            </field>
+        </record>
+
+
+    <record id="view_pinakes_product_template_kanban" model="ir.ui.view">
+        <field name="name">pinakes.product.template.kanban</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//t[@t-if='record.default_code.value']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//t[@t-if='record.default_code.value']" position="after">
+                <t t-if="record.default_code.value">Internal Reference: [<field name="default_code"/>]</t>
+                <br/>
+                ID: <field name="id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pinakes_product_template_tree" model="ir.ui.view">
+        <field name="name">pinakes.product.template.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="default_code" position="after">
+                <field name="id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_politeia_publication_type_tree" model="ir.ui.view">
+        <field name="name">politeia.publication.type.tree</field>
+        <field name="model">publication.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_politeia_product_type_tree" model="ir.ui.view">
+        <field name="name">politeia.product.type.tree</field>
+        <field name="model">product.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_politeia_product_imprint_tree" model="ir.ui.view">
+        <field name="name">politeia.product.imprint.tree</field>
+        <field name="model">product.imprint</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pinakes_product_fonds_tree" model="ir.ui.view">
+        <field name="name">pinakes.product.fonds.tree</field>
+        <field name="model">product.fonds</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="income_account_id" options="{'no_create_edit': True}"/>
+                <field name="expense_account_id" options="{'no_create_edit': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pinakes_product_fonds_form" model="ir.ui.view">
+        <field name="name">pinakes.product.fonds.form</field>
+        <field name="model">product.fonds</field>
+        <field name="arch" type="xml">
+            <form string="Founds">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="income_account_id" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="expense_account_id" options="{'no_create': True, 'no_edit': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pinakes_product_subtype_tree" model="ir.ui.view">
+        <field name="name">pinakes.product.subtype.tree</field>
+        <field name="model">product.subtype</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_politeia_publication_type" model="ir.actions.act_window">
+        <field name="name">Publication Type</field>
+        <field name="res_model">publication.type</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_politeia_product_type" model="ir.actions.act_window">
+        <field name="name">Type</field>
+        <field name="res_model">product.type</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_politeia_product_imprint" model="ir.actions.act_window">
+        <field name="name">Imprint</field>
+        <field name="res_model">product.imprint</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_pinakes_product_fonds" model="ir.actions.act_window">
+        <field name="name">Fonds</field>
+        <field name="res_model">product.fonds</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="action_pinakes_product_subtype" model="ir.actions.act_window">
+        <field name="name">Subtype</field>
+        <field name="res_model">product.subtype</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+</odoo>

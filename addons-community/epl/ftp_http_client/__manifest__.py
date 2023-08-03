@@ -3,8 +3,7 @@
 
 {
     "name": "FTP / HTTP Client",
-    "version": '15.0.0.1.2',
-    "application": False,
+    "version": '16.0.0.0.3',
     "license": 'LGPL-3',
     "category": 'Tools',
     "summary": """
@@ -12,7 +11,7 @@
     """,
     "author": "Eezee-It",
     "support": "support@eezee-it.com",
-    "website": 'http://www.eezee-it.com',
+    "website": 'https://www.eezee-it.com',
     "depends": [
         'base'
     ],
@@ -26,11 +25,7 @@
         'views/ir_logging.xml',
         'views/menu.xml',
     ],
-    "external_dependencies": {
-        'python': [
-            'pandas', 'pysftp'
-        ],
-    },
+    'external_dependencies': {'python': ['pysftp', 'pandas']},
     "demo": [],
     "qweb": [],
     "post_load": None,
@@ -39,4 +34,5 @@
     "uninstall_hook": None,
     "auto_install": False,
     "installable": True,
+    "application": False,
 }

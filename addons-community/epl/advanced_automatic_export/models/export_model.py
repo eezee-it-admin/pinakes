@@ -257,10 +257,11 @@ class AutomaticExportConfig(models.Model):
             registry = Registry.new(self._cr.dbname)
             registry.registry_invalidated = True
 
-    @api.model
-    def create(self, vals):
-        res = super(AutomaticExportConfig, self).create(vals)
-        self._update_registry()
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super(AutomaticExportConfig, self).create(vals_list)
+        for record in res:
+            record._update_registry()
         return res
 
     def write(self, vals):

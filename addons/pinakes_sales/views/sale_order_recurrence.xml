@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="sale_temporal_recurrence_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.temporal.recurrence.form.inherit</field>
+        <field name="model">sale.temporal.recurrence</field>
+        <field name="inherit_id" ref="sale_temporal.sale_temporal_recurrence_view_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="unit" position="after">
+                <field name="unlimited_execution"/>
+            </field>
+            <field name="unit" position="attributes">
+                <attribute name="attrs">{'invisible': [('unlimited_execution', '=', True)]}</attribute>
+            </field>
+            <field name="duration" position="attributes">
+                <attribute name="attrs">{'invisible': [('unlimited_execution', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

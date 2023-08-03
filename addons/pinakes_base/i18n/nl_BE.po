@@ -16,6 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pinakes_base
+#: model_terms:ir.ui.view,arch_db:pinakes_base.view_pinakes_product_kanban
+#: model_terms:ir.ui.view,arch_db:pinakes_base.view_pinakes_product_template_kanban
+msgid "Internal Reference: ["
+msgstr "Interne referentie: ["
+
+#. module: pinakes_base
 #: model_terms:ir.ui.view,arch_db:pinakes_base.view_politeia_product_template_form
 msgid "<span class=\"o_stat_text\">Authors</span>"
 msgstr "<span class=\"o_stat_text\">Auteurs</span>"
@@ -54,8 +60,7 @@ msgstr "Authorsrechten (%)"
 #. module: pinakes_base
 #: model:ir.actions.act_window,name:pinakes_base.action_politeia_product_organization
 #: model:ir.model,name:pinakes_base.model_product_organization
-#: model:ir.model.fields,field_description:pinakes_base.field_product_product__organization_id
-#: model:ir.model.fields,field_description:pinakes_base.field_product_template__organization_id
+#: model:ir.model.fields,field_description:pinakes_base.field_product_author__organization_id
 #: model:ir.ui.menu,name:pinakes_base.menu_politeia_product_organization
 msgid "Organization"
 msgstr "Organisatie"
@@ -82,3 +87,19 @@ msgstr "Rapportage"
 #: model:ir.ui.menu,name:pinakes_base.menu_politeia_product_imprint
 msgid "Imprint"
 msgstr ""
+
+#. module: pinakes_base
+#: model:ir.model.fields,field_description:pinakes_base.field_res_partner__vat_registered
+#: model:ir.model.fields,field_description:pinakes_base.field_res_users__vat_registered
+msgid "VAT-registered"
+msgstr "BTW-plichtig"
+
+#. module: pinakes_base
+#: model:ir.model.fields,field_description:pinakes_base.field_product_template__release_date
+msgid "Release Date"
+msgstr "Verschijningsdatum"
+
+#. module: pinakes_base
+#: model:ir.model.fields,field_description:pinakes_base.field_product_template__publication_lang
+msgid "Publication Language"
+msgstr "Publicatietaal"
