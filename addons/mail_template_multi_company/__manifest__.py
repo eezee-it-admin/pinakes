@@ -5,7 +5,7 @@
     "name": "Mail Template Multi Company",
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
-    "author": "ACSONE SA/NV," "Odoo Community Association (OCA)/ Eezee-IT",
+    "author": "ACSONE SA/NV," "Odoo Community Association (OCA)," "Eezee-IT",
     "website": "https://github.com/OCA/multi-company",
     "depends": ["mail"],
     "post_init_hook": "post_init_hook",
