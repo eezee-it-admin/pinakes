@@ -21,6 +21,7 @@
     <record id="view_pinakes_partner_form_citizenship" model="ir.ui.view">
         <field name="name">pinakes.partner.form.ext.citizenship</field>
         <field name="model">res.partner</field>
+        <field name="priority">100</field>
         <field name="inherit_id" ref="l10n_be_reports.res_partner_view_form_inherit"/>
         <field name="arch" type="xml">
             <field name="citizen_identification" position="replace">
