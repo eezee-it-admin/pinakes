@@ -2,7 +2,7 @@
 
 {
     'name': 'Journal Restricted Users | Journal Restriction For Users | Journal Restriction on Users | Journal Restrictions',
-    'version': '16.0.2.0.0',
+    'version': '16.0.3.0.0',
     'category': 'Accounting',
     'summary': 'Journal Restriction For Users Odoo 16, Journal Restricted Users, Journal Restriction for Specific Users,'
                 'Journal Restriction on Users, Journal Restriction For Users Odoo',
@@ -23,6 +23,8 @@
     'depends': ['account'],
     'demo': [],
     'data': [
+        'security/security.xml',
+        
         'views/account_journal.xml',
         'views/res_users.xml',
     ],
