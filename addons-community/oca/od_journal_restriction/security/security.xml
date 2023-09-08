@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   
+	<record id="group_od_journal_restriction" model="res.groups">
+		<field name="name">User Journal Restriction </field>
+	</record>
+
+</odoo>
