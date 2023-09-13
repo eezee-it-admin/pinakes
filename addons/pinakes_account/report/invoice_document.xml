@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <data>
-        <template id="report_invoice_document_extend" inherit_id="account.report_invoice_document">
-            <td name="account_invoice_line_name" position="replace">
-                <td t-if="o.move_type == 'out_invoice'" name="account_invoice_line_name" position="replace">
-                    <t t-set="line_name" t-value="line.get_line_name()"/>
-                    <t t-esc="line_name" t-options="{'widget': 'text'}"/>
-                </td>
-                <td t-else="" name="account_invoice_line_name" position="replace">
-                    <span t-field="line.name" t-options="{'widget': 'text'}"/>
-                </td>
+    <template id="report_invoice_document_extend" inherit_id="account.report_invoice_document">
+        <td name="account_invoice_line_name" position="replace">
+            <td t-if="o.move_type == 'out_invoice'" name="account_invoice_line_name" position="replace">
+                <t t-set="line_name" t-value="line.get_line_name()"/>
+                <t t-esc="line_name" t-options="{'widget': 'text'}"/>
             </td>
-        </template>
-    </data>
+            <td t-else="" name="account_invoice_line_name" position="replace">
+                <span t-field="line.name" t-options="{'widget': 'text'}"/>
+            </td>
+        </td>
+    </template>
 
 </odoo>
