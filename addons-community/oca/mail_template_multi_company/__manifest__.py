@@ -6,9 +6,10 @@
     "version": "16.0.1.0.0",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV," "Odoo Community Association (OCA)",
-    "support": "support@eezee-it.com",
-    "website": 'http://www.eezee-it.com',
+    "website": "https://github.com/OCA/multi-company",
     "depends": ["mail"],
     "post_init_hook": "post_init_hook",
-    "data": ["security/mail_template.xml", "views/mail_template.xml"]
+    "data": ["security/mail_template.xml", "views/mail_template.xml"],
+    "development_status": "Beta",
+    "maintainers": ["Olivier-LAURENT"],
 }
