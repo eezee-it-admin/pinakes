@@ -16,6 +16,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pinakes_base
+#: code:addons/pinakes_base/models/res_partner.py:0
+#, python-format
+msgid "Please fill-in with the correct format : XX.XX.XX-XXX.XX"
+msgstr "Veuillez remplir le format correct :  XX.XX.XX-XXX.XX"
+
+#. module: pinakes_base
 #: model_terms:ir.ui.view,arch_db:pinakes_base.view_pinakes_product_kanban
 #: model_terms:ir.ui.view,arch_db:pinakes_base.view_pinakes_product_template_kanban
 msgid "Internal Reference: ["

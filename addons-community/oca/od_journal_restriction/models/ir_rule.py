@@ -16,20 +16,17 @@ class IRRule(models.Model):
     )
     def _compute_domain(self, model_name, mode="read"):
         domain = super(IRRule, self)._compute_domain(model_name, mode=mode)
-        if not self.env.user.has_group("base.group_system"):
+        if self.env.user.has_group("od_journal_restriction.group_od_journal_restriction"):
             if model_name == 'account.journal':
-                g_domain = ['|', ('user_ids', 'in', [self.env.user.id]),
-                            ('user_ids', '=', False)]
+                g_domain = [('user_ids', 'in', [self.env.user.id])]
                 if domain:
                     domain = expression.AND([domain, g_domain])
             elif model_name == 'account.move':
-                g_domain = ['|', ('journal_id.user_ids', 'in', [self.env.user.id]),
-                            ('journal_id.user_ids', '=', False)]
+                g_domain = [('journal_id.user_ids', 'in', [self.env.user.id])]
                 if domain:
                     domain = expression.AND([domain, g_domain])
             elif model_name == 'account.move.line':
-                g_domain = ['|', ('journal_id.user_ids', 'in', [self.env.user.id]),
-                            ('journal_id.user_ids', '=', False)]
+                g_domain = [('journal_id.user_ids', 'in', [self.env.user.id])]
                 if domain:
                     domain = expression.AND([domain, g_domain])
         return domain
