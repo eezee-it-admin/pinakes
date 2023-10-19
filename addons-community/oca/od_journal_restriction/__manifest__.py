@@ -24,8 +24,7 @@
     'demo': [],
     'data': [
         'security/security.xml',
-        
-        'views/account_journal.xml',
+        #'views/account_journal.xml',
         'views/res_users.xml',
     ],
     'qweb': [],
