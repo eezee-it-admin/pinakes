@@ -16,7 +16,8 @@ ACCOUNT_DOMAIN = "['&', '&', '&', ('deprecated', '=', False), " \
 PRODUCT_TYPES = [
     ('consu', 'Consumable'),
     ('service', 'Service'),
-    ('product', 'Storable Product')
+    ('product', 'Storable Product'),
+    ('event', 'Event Ticket')
 ]
 
 
