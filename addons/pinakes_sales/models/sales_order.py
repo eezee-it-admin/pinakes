@@ -32,6 +32,10 @@ class SaleOrder(models.Model):
         ).create_invoices()
         return True
 
+    """We need to remove the section line[Order subscriptions recurrence line]
+        because the invoice does not require it. We have already
+        completed the product line, so there is no need for an
+        additional line for the invoice or report"""
     def _get_invoiceable_lines(self, final=False):
         res = super()._get_invoiceable_lines(final=final)
         is_99 = False
