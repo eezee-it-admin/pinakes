@@ -9,6 +9,12 @@ class SaleOrder(models.Model):
 
     auto_exported = fields.Boolean()
     auto_sent_time = fields.Datetime()
+    # delivery_email = fields.Char('Delivery Email', compute='_compute_delivery_email')
+
+    # def _compute_delivery_email(self):
+    #     for rec in self:
+    #         email = ''
+    #         rec.delivery_email = email
 
     def _send_order_confirmation_mail(self):
         so_template = self.sale_order_template_id
@@ -33,3 +39,18 @@ class SaleOrder(models.Model):
         # Validate the invoice
 #        self.invoice_ids.with_company(self.company_id).action_post()
         return True
+
+    def _get_invoiceable_lines(self, final=False):
+        res = super()._get_invoiceable_lines(final=final)
+        is_99 = False
+        value = ['99 jaren', '99 Jaren']
+        for rec in self:
+            if rec.recurrence_id and\
+                    rec.recurrence_id.name in value:
+                is_99 = True
+        if is_99:
+            return res.\
+                filtered(lambda x: x.display_type != 'line_note'
+                         and x.sequence != '999')
+        else:
+            return res
