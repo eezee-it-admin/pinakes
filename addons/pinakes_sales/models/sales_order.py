@@ -9,12 +9,6 @@ class SaleOrder(models.Model):
 
     auto_exported = fields.Boolean()
     auto_sent_time = fields.Datetime()
-    # delivery_email = fields.Char('Delivery Email', compute='_compute_delivery_email')
-
-    # def _compute_delivery_email(self):
-    #     for rec in self:
-    #         email = ''
-    #         rec.delivery_email = email
 
     def _send_order_confirmation_mail(self):
         so_template = self.sale_order_template_id
@@ -36,8 +30,6 @@ class SaleOrder(models.Model):
         wiz_inv.with_context(
             active_ids=self.ids, active_model="sale.order"
         ).create_invoices()
-        # Validate the invoice
-#        self.invoice_ids.with_company(self.company_id).action_post()
         return True
 
     def _get_invoiceable_lines(self, final=False):
