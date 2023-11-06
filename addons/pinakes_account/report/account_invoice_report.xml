@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_account_invoice_report_search_inherit_pinakes">
+        <field name="name">account.invoice.report.search.pinakes</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_type_id"/>
+                <field name="imprint_id"/>
+                <field name="fonds_id"/>
+                <field name="subtype_id"/>
+            </search>
+            <filter name="user" position="after">
+                <filter string="Type of Products" name="type_product" context="{'group_by':'product_type_id'}"/>
+                <filter string="Product Imprint" name="product_imprint" context="{'group_by':'imprint_id'}"/>
+                <filter string="Product Fonds" name="product_fonds" context="{'group_by':'fonds_id'}"/>
+                <filter string="Product Subtype" name="product_subtype" context="{'group_by':'subtype_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

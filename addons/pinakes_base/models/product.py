@@ -1,9 +1,24 @@
-# Copyright 2021 Eezee-IT (<http://www.eezee-it.com>)
+# Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+
 import json
 from lxml import etree
 
 from odoo import api, fields, models
+
+ACCOUNT_DOMAIN = "['&', '&', '&', ('deprecated', '=', False), " \
+                 "('account_type', 'not in', ('asset_receivable', " \
+                 "'liability_payable', 'asset_cash', " \
+                 "'liability_credit_card')), " \
+                 "('company_id', '=', current_company_id), " \
+                 "('is_off_balance', '=', False)]"
+
+PRODUCT_TYPES = [
+    ('consu', 'Consumable'),
+    ('service', 'Service'),
+    ('product', 'Storable Product'),
+    ('event', 'Event Ticket')
+]
 
 
 class ProductTemplate(models.Model):
@@ -20,6 +35,41 @@ class ProductTemplate(models.Model):
     company_code = fields.Selection([
         ('pinakes', 'Pinakes'), ('asp', 'ASP'), ('politeia', 'Politeia')
     ], compute='_compute_company_code')
+    release_date = fields.Date()
+    publication_lang = fields.Many2many(
+        'publication.lang', 'product_template_publication_lang_rel',
+        'product_id', 'lang_id', 'Publication Language'
+    )
+    parent_abonnement_product_id = fields.Many2one('product.template',
+                                                   'Abonnement')
+    abonnement_product_count = fields.Integer('Linked Subscription Products',
+                                              compute='_compute_linked_products')
+
+    def _compute_linked_products(self):
+        for rec in self:
+            rec.abonnement_product_count = self.env['product.template'].\
+                search_count([('parent_abonnement_product_id', '=', rec.id)])
+
+    def _set_account(self, vals):
+        if vals.get('fonds_id'):
+            founds_id = self.env['product.fonds'].browse(vals.get('fonds_id'))
+            if founds_id and (founds_id.income_account_id
+                              or founds_id.expense_account_id):
+                vals.update({'property_account_income_id':
+                            founds_id.income_account_id.id,
+                             'property_account_expense_id':
+                                 founds_id.expense_account_id.id})
+        return vals
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            self._set_account(vals)
+        return super().create(vals_list)
+
+    def write(self, vals):
+        self._set_account(vals)
+        return super().write(vals)
 
     def _compute_company_code(self):
         company_code = self.env.company.company_code
@@ -74,6 +124,25 @@ class ProductProduct(models.Model):
     isbn = fields.Char('ISBN')
     issn = fields.Char('ISSN')
     doi = fields.Char('DOI')
+    publication_lang = fields.Many2many(
+        'publication.lang', 'product_product_publication_lang_rel',
+        'product_id', 'lang_id', 'Publication Language'
+    )
+    detailed_type = fields.Selection(PRODUCT_TYPES, store=True, string='Product Type',
+                                     compute='_compute_product_variant_type',
+                                     inverse='_inverse_product_variant_type')
+    type = fields.Selection(PRODUCT_TYPES, store=True,
+                            compute='_compute_product_variant_type',
+                            inverse='_inverse_product_variant_type')
+
+    @api.depends('product_tmpl_id.detailed_type')
+    def _compute_product_variant_type(self):
+        for product in self:
+            product.detailed_type = product.product_tmpl_id.detailed_type
+            product.type = product.product_tmpl_id.type
+
+    def _inverse_product_variant_type(self):
+        return
 
     @api.model
     def fields_view_get(
@@ -123,6 +192,29 @@ class ProductFonds(models.Model):
     _description = 'Product Fonds'
 
     name = fields.Char(required=True, translate=True)
+    income_account_id = fields.Many2one('account.account',
+                                        company_dependent=True,
+                                        string="Income Account",
+                                        domain=ACCOUNT_DOMAIN)
+    expense_account_id = fields.Many2one('account.account',
+                                         company_dependent=True,
+                                         string="Expense Account",
+                                         domain=ACCOUNT_DOMAIN)
+
+    def write(self, vals):
+        if self and (vals.get('income_account_id')
+                     or vals.get('expense_account_id')):
+            for rec in self:
+                product_ids = self.env['product.template']\
+                    .search([('fonds_id', '=', rec.id)])
+                if product_ids:
+                    product_ids.write({
+                        'property_account_income_id':
+                            vals.get('income_account_id') or False,
+                        'property_account_expense_id':
+                            vals.get('expense_account_id') or False
+                    })
+        return super().write(vals)
 
 
 class ProductSubtype(models.Model):

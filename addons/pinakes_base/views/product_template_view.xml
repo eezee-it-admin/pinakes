@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
+    <record id="product_template_action_pinakes_subscription" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('parent_abonnement_product_id', '=', active_id)]</field>
+        <field name="context">{
+                    'search_default_parent_abonnement_product_id': active_id,
+                    'default_parent_abonnement_product_id': active_id,
+            }</field>
+    </record>
+
     <record id="view_politeia_product_template_form" model="ir.ui.view">
         <field name="name">politeia.product.template.form</field>
         <field name="model">product.template</field>
@@ -11,9 +22,14 @@
                         type="object" icon="fa-user">
                     <span class="o_stat_text">Authors</span>
                 </button>
+                <button name="%(product_template_action_pinakes_subscription)d" class="oe_stat_button"
+                        icon="fa-database" type="action">
+                    <field name="abonnement_product_count" widget="statinfo" string="Subscription Products"/>
+                </button>
             </div>
             <field name="default_code" position="after">
                 <field name="id"/>
+                <field name="release_date"/>
             </field>
             <xpath expr="//notebook" position="inside">
                 <page string="Reporting" name="reporting"
@@ -28,12 +44,25 @@
                         <group>
                             <field name="imprint_id"/>
                             <field name="fonds_id"/>
+                            <field name="publication_lang" widget="many2many_tags"/>
                         </group>
                     </group>
                 </page>
             </xpath>
         </field>
     </record>
+
+        <record id="product_template_form_view_pinakes" model="ir.ui.view">
+            <field name="name">politeia.product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="detailed_type" position="before">
+                    <field name="parent_abonnement_product_id"/>
+                </field>
+            </field>
+        </record>
+
 
     <record id="view_pinakes_product_template_kanban" model="ir.ui.view">
         <field name="name">pinakes.product.template.kanban</field>
@@ -98,7 +127,29 @@
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="name"/>
+                <field name="income_account_id" options="{'no_create_edit': True}"/>
+                <field name="expense_account_id" options="{'no_create_edit': True}"/>
             </tree>
+        </field>
+    </record>
+
+    <record id="view_pinakes_product_fonds_form" model="ir.ui.view">
+        <field name="name">pinakes.product.fonds.form</field>
+        <field name="model">product.fonds</field>
+        <field name="arch" type="xml">
+            <form string="Founds">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="income_account_id" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="expense_account_id" options="{'no_create': True, 'no_edit': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 

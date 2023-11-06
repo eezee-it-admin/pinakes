@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+   
+	<record id="group_od_journal_restriction" model="res.groups">
+		<field name="name">User Journal Restriction </field>
+	</record>
+
+	<record id="account_journal_rule_restriction" model="ir.rule">
+        <field name="name">account.journal.rule.restriction.user</field>
+        <field name="model_id" ref="account.model_account_journal"/>
+        <field name="domain_force">[('id', 'in', user.journal_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('od_journal_restriction.group_od_journal_restriction'))]"/>
+    </record>
+
+
+	<record id="account_move_rule_restriction" model="ir.rule">
+        <field name="name">account.move.line.rule.restriction.user</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="domain_force">[('journal_id', 'in', user.journal_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('od_journal_restriction.group_od_journal_restriction'))]"/>
+    </record>
+
+
+	<!-- <record id="account_journal_rule_restriction" model="ir.rule">
+        <field name="name">account.journal.rule.restriction.user</field>
+        <field name="model_id" ref="account.model_account_journal"/>
+        <field name="domain_force">[('id', 'in', user.journal_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('od_journal_restriction.group_od_journal_restriction'))]"/>
+    </record> -->
+
+</odoo>
