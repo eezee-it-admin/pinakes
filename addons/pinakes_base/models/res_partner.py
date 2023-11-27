@@ -19,3 +19,6 @@ class ResPartner(models.Model):
                     partner.citizen_identification):
                 raise ValidationError(_('Please fill-in with the correct'
                                         ' format : XX.XX.XX-XXX.XX'))
+
+    author_summary = fields.Html()
+    website_short_description = fields.Html()
