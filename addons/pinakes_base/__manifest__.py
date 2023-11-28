@@ -8,6 +8,7 @@
     "license": "LGPL-3",
     "summary": "Pinakes Base",
     "depends": [
+        "base_geolocalize",
         "contacts",
         "product",
         "l10n_be_reports",
