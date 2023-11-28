@@ -10,6 +10,7 @@
     "depends": [
         "base_geolocalize",
         "contacts",
+        "website_partner",
         "product",
         "l10n_be_reports",
         "stock",
