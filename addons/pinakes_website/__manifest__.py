@@ -10,6 +10,7 @@
     "depends": [
         "website",
         "pinakes_base",
+        "website_crm_partner_assign",
     ],
     "data": [
         "views/website_templates.xml",
