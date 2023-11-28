@@ -26,4 +26,6 @@ class CustomWebsiteAccount(WebsiteAccount):
         # Update the response context
         response.qcontext['partners'] = partner_ids
 
+        print("Hello World")
+
         return response
