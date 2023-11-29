@@ -10,8 +10,8 @@
                     <table class="table table-borderless m-1 p-1">
 
                         <t t-set="alphabet" t-value="list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
-                        <tr t-foreach="alphabet" t-as="letter" t-if="(alphabet.index(letter) % 4) == 0">
-                            <td t-foreach="alphabet[alphabet.index(letter):alphabet.index(letter) + 4]"
+                        <tr t-foreach="alphabet" t-as="letter" t-if="(alphabet.index(letter) % 13) == 0">
+                            <td t-foreach="alphabet[alphabet.index(letter):alphabet.index(letter) + 13]"
                                 t-as="table_letter" class="p-1">
                                 <a t-att-href="'#anchor_letter_' + table_letter" class="nav-link p-0 smooth-scroll-link">
                                     <t t-esc="table_letter"/>
