@@ -1,13 +1,28 @@
-$(document).ready(function() {
+odoo.define('pinakes_website.smooth_scroll', function (require) {
+    'use strict';
 
-    $(document).on('click', 'a.smooth-scroll-link', function(event) {
-        event.preventDefault();
+    var publicWidget = require('web.public.widget');
 
-        var target = $($.attr(this, 'href'));
-        if (target.length) {
-            $('html, body').animate({
-                scrollTop: target.offset().top
-            }, 500);
-        }
+    publicWidget.registry.SmoothScroll = publicWidget.Widget.extend({
+        selector: '.col-4',
+        events: {
+            'click a.smooth-scroll-link': '_onSmoothScroll',
+        },
+
+        start: function () {
+            this._super.apply(this, arguments);
+        },
+
+        // Smooth scroll functionality
+        _onSmoothScroll: function (ev) {
+            ev.preventDefault();
+            var target = $(ev.currentTarget).attr('href');
+            var $target = $(target);
+            if ($target.length) {
+                $('html, body').animate({
+                    scrollTop: $target.offset().top
+                }, 500);
+            }
+        },
     });
 });
