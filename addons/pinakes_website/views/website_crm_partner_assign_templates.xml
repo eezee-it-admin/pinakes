@@ -7,8 +7,7 @@
 
                 <div class="col-4 mb32" id="partner_left">
                     <h3 class="nav-header mt16">Sort A-Z</h3>
-                    <table class="table table-borderless m-1 p-1">
-
+                    <table class="table table-borderless m-1 p-1 smooth-scroll-table">
                         <t t-set="alphabet" t-value="list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
                         <tr t-foreach="alphabet" t-as="letter" t-if="(alphabet.index(letter) % 13) == 0">
                             <td t-foreach="alphabet[alphabet.index(letter):alphabet.index(letter) + 13]"
