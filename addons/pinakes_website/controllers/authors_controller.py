@@ -3,7 +3,6 @@
 
 from odoo import http
 from odoo.http import request
-from odoo.tools.translate import _
 
 
 class WebsiteAuthors(http.Controller):

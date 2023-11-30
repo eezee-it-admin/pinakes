@@ -8,25 +8,24 @@
                 <div class="row mt-5">
                     <t t-foreach="publications" t-as="publication">
                         <div class="col-md-4 mb-4">
-                            <div class="card oe_kanban_global_click p-0" t-att-data-product-id="publication['id']"
-                                 t-att-data-product-slug="publication['website_url']"
+                            <div class="card oe_kanban_global_click p-0" t-att-data-product-id="publication.id"
+                                 t-att-data-product-slug="publication.website_url"
                                  style="height: 350px; width: 270px;">
-                                <div class="o_squared_image" style="height: 70%; overflow: hidden;">
+                                <div class="o_squared_image" style="height: 80%; overflow: hidden;">
                                     <img class="card-img-top"
-                                         t-att-src="publication['image'] if publication['image'] else
-                                         'pinakes_website/static/files/book_template.png'"
-                                         t-att-alt="publication['name']" style="width: 100%;"/>
+                                         t-att-src="website.image_url(publication, 'image_1920')"
+                                         t-att-alt="publication.name" style="width: 100%;"/>
                                 </div>
-                                <div class="card-body p-2" style="height: 30%; overflow: hidden;">
+                                <div class="card-body p-2" style="height: 20%; overflow: hidden;">
                                     <h6 class="card-title text-truncate">
-                                        <small t-esc="publication['name']"/>
+                                        <small t-esc="publication.name"/>
                                     </h6>
                                     <p class="card-text text-truncate">
                                         <small>
-                                            <span t-esc="publication['price']"/>€
+                                            <span t-field="publication.list_price"/>€
                                         </small>
                                     </p>
-                                    <a t-att-href="publication['website_url']" class="stretched-link"/>
+                                    <a t-att-href="publication.website_url" class="stretched-link"/>
                                 </div>
                             </div>
                         </div>

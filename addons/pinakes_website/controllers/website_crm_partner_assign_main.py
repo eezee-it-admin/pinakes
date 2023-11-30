@@ -3,11 +3,9 @@
 
 from odoo.addons.website_crm_partner_assign.controllers.main import WebsiteCrmPartnerAssign
 import werkzeug.urls
-from werkzeug.exceptions import NotFound
 
-from odoo import http
 from odoo.http import request
-from odoo.addons.http_routing.models.ir_http import slug, unslug
+from odoo.addons.http_routing.models.ir_http import slug
 
 from odoo.tools.translate import _
 
