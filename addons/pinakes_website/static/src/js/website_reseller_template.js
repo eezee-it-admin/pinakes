@@ -4,7 +4,7 @@ odoo.define('pinakes_website.smooth_scroll', function (require) {
     var publicWidget = require('web.public.widget');
 
     publicWidget.registry.SmoothScroll = publicWidget.Widget.extend({
-        selector: '.smooth-scroll-table', // Updated selector
+        selector: '.smooth-scroll-table',
         events: {
             'click a.smooth-scroll-link': '_onSmoothScroll',
         },
