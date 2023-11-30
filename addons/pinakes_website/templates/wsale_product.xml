@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="product_tags" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <div class="row">
+                <hr class="w-100 mx-auto"/>
+            </div>
+            <h2>Ook interessant</h2>
+            <div class="row">
+                <t t-foreach="product.similar_products" t-as="similar_product">
+                    <t t-if="similar_product and similar_product.website_published">
+
+                        <div class="col-md-4">
+                            <t t-foreach="similar_product.common_tags_ids" t-as="common_tag">
+                                <t t-esc="common_tag.name"/>
+                            </t>
+                            <div class="row mb-2">
+
+                                <div class="col-md-4">
+                                    <t t-if="similar_product.image_1920">
+                                        <img t-att-src="'/web/image/product.template/' + str(similar_product.id) + '/image_1920'"
+                                             style="width: 100px; max-height: 200px;"/>
+                                    </t>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>
+                                        <t t-esc="similar_product.name"/>
+                                    </h5>
+                                    <br/>
+                                    <a t-attf-href="/shop/#{similar_product.id}">
+                                        Bestel
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </div>
+            <t t-foreach="product.category_tags_ids" t-as="tag">
+                <span class="o_tag o_tag_color_1">
+                    <t t-esc="tag.name"/>
+                </span>
+            </t>
+        </xpath>
+    </template>
+</odoo>
