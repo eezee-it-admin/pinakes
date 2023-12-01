@@ -3,17 +3,23 @@
     <template id="product_tags" inherit_id="website_sale.product">
         <xpath expr="//section[@id='product_detail']" position="inside">
             <div class="row">
-                <hr class="w-100 mx-auto"/>
+                <div class="col-12 d-inline-flex">
+                    <t t-foreach="product.product_tag_ids" t-as="tag">
+                        <a href="/shop?filter_by_tag_id=#{tag.id}">
+                            <span class="badge mr4 bg-secondary" style="cursor: pointer;">
+                                <t t-esc="tag.name"/>
+                            </span>
+                        </a>
+                    </t>
+                </div>
             </div>
-            <h2>Ook interessant</h2>
-            <div class="row">
+            <h2 class="mt-4">Ook interessant</h2>
+            <div class="mt-4"/>
+            <div class="row mt-4">
                 <t t-foreach="product.similar_products" t-as="similar_product">
                     <t t-if="similar_product and similar_product.website_published">
 
                         <div class="col-md-4">
-                            <t t-foreach="similar_product.common_tags_ids" t-as="common_tag">
-                                <t t-esc="common_tag.name"/>
-                            </t>
                             <div class="row mb-2">
 
                                 <div class="col-md-4">
@@ -36,11 +42,6 @@
                     </t>
                 </t>
             </div>
-            <t t-foreach="product.category_tags_ids" t-as="tag">
-                <span class="o_tag o_tag_color_1">
-                    <t t-esc="tag.name"/>
-                </span>
-            </t>
         </xpath>
     </template>
 </odoo>

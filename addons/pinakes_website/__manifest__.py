@@ -14,11 +14,9 @@
     ],
     "data": [
         "views/website_templates.xml",
-        "views/product_public_category_view.xml",
-        "views/snippets/dynamic_snippets/s_product_public_category_tags.xml",
-        "views/snippets.xml",
+        # "views/snippets/dynamic_snippets/s_product_public_category_tags.xml",
+        # "views/snippets.xml",
         "templates/wsale_product.xml",
-        "security/ir.model.access.csv",
     ],
     "application": False,
     "installable": True,
