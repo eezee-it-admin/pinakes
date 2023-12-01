@@ -11,13 +11,6 @@ class ProductTemplate(models.Model):
                                         string='Similar Products')
     common_tags_ids = fields.Many2many('product.tag', 'product_tag_product_template_rel',
                                        compute='_compute_similar_products', string='Similar Tags')
-    category_tags_ids = fields.Many2many('product.tag', compute='_compute_category_tags', string='Category Tags')
-
-    @api.depends('categ_id')
-    def _compute_category_tags(self):
-        for product in self:
-            rels = self.env['product.category.tag.rel'].search([('category_id', '=', product.categ_id.id)])
-            product.category_tags_ids = rels.mapped('tag_id')
 
     @api.depends('product_tag_ids')
     def _compute_similar_products(self):
@@ -34,29 +27,3 @@ class ProductTemplate(models.Model):
                      ('id', 'in', similar_tags.ids),
                      ('id', 'in', similar_product_tags.ids)]
                 )
-
-
-class ProductPublicCategoryTagRel(models.Model):
-    _name = 'product.public.category.tag.rel'
-    _description = 'Product Public Category Tag Relation'
-
-    category_id = fields.Many2one('product.public.category', string='Category', required=True)
-    tag_id = fields.Many2one('product.public.category.tag', string='Tag', required=True)
-
-
-class ProductPublicCategory(models.Model):
-    _inherit = 'product.public.category'
-    _description = 'Product Public Category'
-
-    tag_ids = fields.Many2many('product.public.category.tag', string='Category tags')
-
-
-class ProductPublicCategoryTag(models.Model):
-    _name = 'product.public.category.tag'
-    _description = 'Product Public Category Tag'
-
-    def _get_default_color(self):
-        return randint(1, 11)
-
-    name = fields.Char(required=True, string='Name')
-    color = fields.Integer('Color', default=_get_default_color)
