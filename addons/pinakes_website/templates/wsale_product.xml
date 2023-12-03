@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-12 d-inline-flex">
                     <t t-foreach="product.product_tag_ids" t-as="tag">
-                        <a href="/shop?filter_by_tag_id=#{tag.id}">
+                        <a t-att-href="'/shop/tag/' + str(tag.id)">
                             <span class="badge mr4 bg-secondary" style="cursor: pointer;">
                                 <t t-esc="tag.name"/>
                             </span>
@@ -13,35 +13,38 @@
                     </t>
                 </div>
             </div>
-            <h2 class="mt-4">Ook interessant</h2>
-            <div class="mt-4"/>
-            <div class="row mt-4">
-                <t t-foreach="product.similar_products" t-as="similar_product">
-                    <t t-if="similar_product and similar_product.website_published">
-
-                        <div class="col-md-4">
-                            <div class="row mb-2">
-
-                                <div class="col-md-4">
-                                    <t t-if="similar_product.image_1920">
-                                        <img t-att-src="'/web/image/product.template/' + str(similar_product.id) + '/image_1920'"
-                                             style="width: 100px; max-height: 200px;"/>
-                                    </t>
-                                </div>
-                                <div class="col-md-6">
-                                    <h5>
-                                        <t t-esc="similar_product.name"/>
-                                    </h5>
-                                    <br/>
-                                    <a t-attf-href="/shop/#{similar_product.id}">
-                                        Bestel
-                                    </a>
+            <t t-if="product.similar_products">
+                <h2 class="mt-4">Ook interessant</h2>
+                <div class="row mt-4">
+                    <t t-foreach="product.similar_products" t-as="similar_product">
+                        <t t-if="similar_product and similar_product.website_published">
+                            <div class="col-md-4 mb-4">
+                                <div class="card oe_kanban_global_click p-0 pb-1"
+                                     t-att-data-product-slug="similar_product.website_url"
+                                     style="height: 280px; width: 220px; cursor: pointer;">
+                                    <div class="o_squared_image" style="height: 80%; overflow: hidden;">
+                                        <t t-if="similar_product.image_1920">
+                                            <img class="card-img-top"
+                                                 t-att-src="'/web/image/product.template/' + str(similar_product.id) + '/image_1920'"
+                                                 style="width: 100%;"/>
+                                        </t>
+                                    </div>
+                                    <div class="card-body p-2" style="height: 20%; overflow: hidden;">
+                                        <h6 class="card-title text-truncate">
+                                            <small t-esc="similar_product.name"/>
+                                        </h6>
+                                        <p class="card-text text-truncate">
+                                            <small>
+                                                <span t-field="similar_product.list_price"/>€
+                                            </small>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </t>
                     </t>
-                </t>
-            </div>
+                </div>
+            </t>
         </xpath>
     </template>
 </odoo>

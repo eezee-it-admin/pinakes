@@ -15,15 +15,28 @@ class ProductTemplate(models.Model):
     @api.depends('product_tag_ids')
     def _compute_similar_products(self):
         for product in self:
+            product.similar_products = self.env['product.template'].browse([])
             product.common_tags_ids = self.env['product.tag'].browse([])
-            similar_tags = product.product_tag_ids
+
+            # Find products with shared tags
             similar_products = self.env['product.template'].search(
-                [('product_tag_ids', 'in', similar_tags.ids), ('id', '!=', product.id)])
-            product.similar_products = similar_products
+                [('product_tag_ids', 'in', product.product_tag_ids.ids), ('id', '!=', product.id)]
+            )
+
+            # Filter based on the count of shared tags
+            similar_products_dict = {}
             for similar_product in similar_products:
-                similar_product_tags = similar_product.product_tag_ids
-                similar_product.common_tags_ids = self.env['product.tag'].search(
-                    ['&',
-                     ('id', 'in', similar_tags.ids),
-                     ('id', 'in', similar_product_tags.ids)]
-                )
+                shared_tags_count = len(set(similar_product.product_tag_ids.ids) & set(product.product_tag_ids.ids))
+                if shared_tags_count > 0:  # You can set a threshold here
+                    similar_products_dict[similar_product] = shared_tags_count
+
+            # Sort products based on the number of shared tags
+            sorted_similar_products = sorted(similar_products_dict.items(), key=lambda x: x[1], reverse=True)
+
+            # Update the similar products field and limit the number of similar products to 6
+            product.similar_products = [(6, 0, [prod.id for prod, _ in sorted_similar_products[:6]])]
+
+            # Compute common tags for each similar product
+            for similar_product, _ in sorted_similar_products:
+                common_tags = product.product_tag_ids & similar_product.product_tag_ids
+                similar_product.common_tags_ids = [(6, 0, common_tags.ids)]

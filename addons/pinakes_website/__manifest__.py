@@ -18,6 +18,11 @@
         # "views/snippets.xml",
         "templates/wsale_product.xml",
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'pinakes_website/static/src/js/publication_redirect.js',
+        ],
+    },
     "application": False,
     "installable": True,
 }
