@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <template id="product_categories" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <div class="row">
+                <div class="col-12 d-inline-flex">
+                    <t t-foreach="product.public_categ_ids" t-as="category">
+                        <a t-att-href="'/shop/category/' + slug(category)" class="me-2">
+                            <span class="badge bg-primary" style="cursor: pointer;">
+                                <t t-esc="category.name"/>
+                            </span>
+                        </a>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
     <template id="product_tags" inherit_id="website_sale.product">
         <xpath expr="//section[@id='product_detail']" position="inside">
             <div class="row">
@@ -47,4 +66,4 @@
             </t>
         </xpath>
     </template>
-</odoo>
+</odoo>-->
