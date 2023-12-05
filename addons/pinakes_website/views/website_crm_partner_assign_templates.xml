@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="custom_index" inherit_id="website_crm_partner_assign.index" name="Custom Find Resellers">
-        <xpath expr="//div[@id='partner_left']" position="replace">
+        <xpath expr="//div[@id='partner_left']" position="after">
             <div class="row text-center mt-5">
                 <div class="col-4 mb32" id="partner_left">
                     <h3 class="nav-header mt16">Sort A-Z</h3>
