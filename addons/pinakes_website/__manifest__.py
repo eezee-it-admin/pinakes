@@ -14,7 +14,6 @@
         "website_sale"
     ],
     "data": [
-        "views/product_template_views.xml",
         # "views/website_templates.xml",
         # "views/snippets/dynamic_snippets/s_product_public_category_tags.xml",
         # "views/snippets.xml",
