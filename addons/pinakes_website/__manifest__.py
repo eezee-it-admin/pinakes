@@ -22,6 +22,7 @@
     'assets': {
         'web.assets_frontend': [
             'pinakes_website/static/src/js/publication_redirect.js',
+            'pinakes_website/static/src/js/tag_filters_checkboxed.js',
         ],
     },
     "application": False,

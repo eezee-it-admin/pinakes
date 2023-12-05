@@ -47,4 +47,30 @@
             </t>
         </xpath>
     </template>
+
+    <template id="custom_shop_tags_filter" inherit_id="website_sale.products">
+        <xpath expr="//aside[@id='products_grid_before']/div" position="inside">
+            <div class="o_wsale_products_tags_filter mb-3">
+                <h6>Tags</h6>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownTagsFilter"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Tags
+                    </button>
+                    <ul class="dropdown-menu p-2" aria-labelledby="dropdownTagsFilter">
+                        <li t-foreach="request.env['product.tag'].search([])" t-as="tag">
+                            <div class="form-check">
+                                <input class="form-check-input tag-checkbox" type="checkbox" t-att-value="tag.id"
+                                       t-att-id="'tag_' + str(tag.id)"/>
+                                <label class="form-check-label" t-att-for="'tag_' + str(tag.id)">
+                                    <t t-esc="tag.name"/>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
 </odoo>
