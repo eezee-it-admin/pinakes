@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='public_categ_ids']" position="attributes">
-                    <attribute name="string">Tags</attribute>
+                    <attribute name="string">Website tags</attribute>
                 </xpath>
             </field>
         </record>
