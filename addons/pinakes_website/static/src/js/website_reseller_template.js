@@ -25,4 +25,24 @@ odoo.define('pinakes_website.smooth_scroll', function (require) {
             }
         },
     });
+
+    publicWidget.registry.ResetSearch = publicWidget.Widget.extend({
+        selector: '.reset-search-container',
+        events: {
+            'click .reset-search-button': '_onResetSearch',
+        },
+
+        start: function () {
+            this._super.apply(this, arguments);
+            this.$searchInput = this.$('.search-query');
+            this.$resetButton = this.$('.reset-search-button');
+        },
+
+        // Reset search input and redirect
+        _onResetSearch: function () {
+            this.$searchInput.val('');
+            var baseUrl = window.location.href.split('?')[0];
+            window.location.href = baseUrl;
+        },
+    });
 });
