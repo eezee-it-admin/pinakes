@@ -38,28 +38,3 @@ odoo.define('pinakes_website.tags_filter', function (require) {
         },
     });
 });
-
-/*publicWidget.registry.ShopTagsFilter = publicWidget.Widget.extend({
-        selector: '.o_wsale_products_tags_filter',
-        events: {
-            'click .dropdown-item': '_onTagSelected',
-        },
-
-        _onTagSelected: function (ev) {
-            ev.preventDefault();
-            var url = new URL(window.location);
-            var tagId = $(ev.currentTarget).attr('href').split('=')[1];
-            if (url.searchParams.has('tag')) {
-                var existingTags = url.searchParams.get('tag').split(',');
-                if (existingTags.includes(tagId)) {
-                    existingTags = existingTags.filter(id => id !== tagId);
-                } else {
-                    existingTags.push(tagId);
-                }
-                url.searchParams.set('tag', existingTags.join(','));
-            } else {
-                url.searchParams.set('tag', tagId);
-            }
-            window.location.href = url.toString();
-        },
-    });*/
