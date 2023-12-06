@@ -1,7 +1,6 @@
 # Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from odoo import api, fields, models
-from random import randint
 
 
 class ProductTemplate(models.Model):
@@ -40,3 +39,15 @@ class ProductTemplate(models.Model):
             for similar_product, _ in sorted_similar_products:
                 common_tags = product.product_tag_ids & similar_product.product_tag_ids
                 similar_product.common_tags_ids = [(6, 0, common_tags.ids)]
+
+    @api.model
+    def _search_get_detail(self, website, order, options):
+        detail = super(ProductTemplate, self)._search_get_detail(website, order, options)
+
+        tag_ids = options.get('product_tag_ids')
+        if tag_ids:
+            tag_ids = [int(tag_id) for tag_id in tag_ids]
+
+            detail['base_domain'].append([('product_tag_ids', 'in', tag_ids)])
+
+        return detail
