@@ -11,7 +11,8 @@
         "website",
         "product",
         "pinakes_base",
-        "website_sale"
+        "website_sale",
+        "website_sale_wishlist",
     ],
     "data": [
         # "views/website_templates.xml",
