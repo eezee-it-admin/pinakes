@@ -46,8 +46,6 @@ class ProductTemplate(models.Model):
 
         tag_ids = options.get('product_tag_ids')
         if tag_ids:
-            tag_ids = [int(tag_id) for tag_id in tag_ids]
-
             detail['base_domain'].append([('product_tag_ids', 'in', tag_ids)])
 
         return detail
