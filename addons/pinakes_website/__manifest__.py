@@ -19,6 +19,7 @@
     'assets': {
         'web.assets_frontend': [
             'pinakes_website/static/src/js/website_reseller_template.js',
+            'pinakes_website/static/src/js/publication_redirect.js'
         ],
     },
     "application": False,
