@@ -41,6 +41,9 @@ class CustomShopController(WebsiteSale):
 
                 domains.append(expression.OR(subdomains))
 
+        pprint.pprint(subdomains)
+        pprint.pprint(request.env["product.template"].search(subdomains))
+
         if category:
             domains.append([('public_categ_ids', 'child_of', int(category))])
 
