@@ -13,7 +13,7 @@ from odoo.tools.translate import _
 class CustomWebsiteCrmPartnerAssign(WebsiteCrmPartnerAssign):
 
     def partners(self, country=None, grade=None, page=0, **post):
-        country_all = post.pop('country_all', False)
+        country_all = post.pop('country_all', True)
         partner_obj = request.env['res.partner']
         country_obj = request.env['res.country']
         search = post.get('search', '')
