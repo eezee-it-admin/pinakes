@@ -15,9 +15,6 @@
         "website_sale_wishlist",
     ],
     "data": [
-        # "views/website_templates.xml",
-        # "views/snippets/dynamic_snippets/s_product_public_category_tags.xml",
-        # "views/snippets.xml",
         "templates/wsale_product.xml",
     ],
     'assets': {
