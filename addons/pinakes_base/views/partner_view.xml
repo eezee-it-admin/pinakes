@@ -13,7 +13,9 @@
                 <field name="vat_registered"/>
             </field>
             <field name="vat" position="attributes">
-                <attribute name="attrs">{'readonly': [('parent_id', '!=', False)], 'required': [('vat_registered', '=', True)]}</attribute>
+                <attribute name="attrs">{'readonly': [('parent_id', '!=', False)], 'required': [('vat_registered', '=',
+                    True)]}
+                </attribute>
             </field>
         </field>
     </record>
@@ -25,7 +27,8 @@
         <field name="inherit_id" ref="l10n_be_reports.res_partner_view_form_inherit"/>
         <field name="arch" type="xml">
             <field name="citizen_identification" position="replace">
-                <field name="citizen_identification" attrs="{'invisible': [('company_type', '=', 'company')]}" placeholder="e.g. XX.XX.XX-XXX.XX"/>
+                <field name="citizen_identification" attrs="{'invisible': [('company_type', '=', 'company')]}"
+                       placeholder="e.g. XX.XX.XX-XXX.XX"/>
             </field>
         </field>
     </record>
@@ -35,8 +38,11 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.res_partner_kanban_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_kanban_details')]//div//strong[hasclass('oe_partner_heading')]" position="after">
-                <p>ID: <field name="id"/></p>
+            <xpath expr="//div[hasclass('oe_kanban_details')]//div//strong[hasclass('oe_partner_heading')]"
+                   position="after">
+                <p>ID:
+                    <field name="id"/>
+                </p>
             </xpath>
         </field>
     </record>
@@ -49,6 +55,20 @@
             <field name="display_name" position="after">
                 <field name="id"/>
             </field>
+        </field>
+    </record>
+
+    <record id="view_crm_partner_geo_form_custom" model="ir.ui.view">
+        <field name="name">res.partner.geolocation.inherit.custom</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base_geolocalize.view_crm_partner_geo_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='geo_location']/group[last()]/group[last()]" position="after">
+                <group string="Author's Information">
+                    <field name="website_short_description"/>
+                    <field name="website_description"/>
+                </group>
+            </xpath>
         </field>
     </record>
 
