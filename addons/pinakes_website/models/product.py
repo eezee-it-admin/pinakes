@@ -6,8 +6,7 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    similar_products = fields.Many2many('product.template', compute='_compute_similar_products',
-                                        string='Similar Products')
+    similar_products = fields.Many2many('product.template', compute='_compute_similar_products')
     common_tags_ids = fields.Many2many('product.tag', 'product_tag_product_template_rel',
                                        compute='_compute_similar_products', string='Similar Tags')
 
