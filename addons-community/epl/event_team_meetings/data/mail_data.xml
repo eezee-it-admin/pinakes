@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="send_ms_meeting_invitation" model="mail.template">
+        <field name="name">Events: MS Teams Join Meeting Invitation</field>
+        <field name="subject">Invitation to {{object.event_id.name}}: {{object.partner_id.name}}</field>
+        <field name="email_to">{{object.partner_id.email}}</field>
+        <field name="model_id" ref="event.model_event_registration"/>
+        <field name="body_html" type="html">
+            <div>
+            <p>
+                Hello <span t-out="object.partner_id.name or ''">Gunther</span>,<br/><br/>
+                <span t-out="object.event_id.user_id.name or ''">Greg</span> invited you for the <span t-out="object.event_id.name or ''"> Online Discussion </span>meeting of <span t-out="object.event_id.user_id.company_id.name or ''"> Eezee </span>.
+            </p>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="padding-top: 5px;">
+                        <p><strong>Details of the Event:</strong></p>
+                        <ul>
+                            <li>Meeting: <span t-out="object.event_id.name or ''">Online Discussion</span></li>
+                            <t t-if="object.event_id.ms_meeting_url">
+                                <li>Meeting URL: <a target="_blank" t-attf-href="{{object.event_id.ms_meeting_url or ''}}">Join a Microsoft Meet</a>
+                                </li>
+                            </t>
+                            <li>Event Time: <span t-out="object.event_id.date_begin">2023-04-22 10:00:00</span> to <span t-out="object.event_id.date_end">2023-04-22 11:00:00</span></li>
+                            <t t-if="object.event_id.note">
+                                <li >Description: <span t-out="object.event_id.note"/></li>
+                            </t>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            Thank you,
+            <br/>
+            <t t-if="object.event_id.user_id and not is_html_empty(object.event_id.user_id.signature)">
+                <t t-out="object.event_id.user_id.signature or ''">--<br/>Mitchell Admin</t>
+            </t>
+            </div>
+        </field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ms_team_meeting_users_form" model="ir.ui.view">
+        <field name="name">ms_team_meeting.users.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Microsoft Meeting" name="ms_meeting">
+                    <separator name="configuration" string="Microsoft Meeting Configuration"/>
+                    <div class="row">
+                        <div class="col-md-4" align="center">
+                            <button string="Authenticate" type="object"
+                                    name="action_authenticate"
+                                    class="oe_highlight" icon="fa-plug"/>
+                        </div>
+                        <div class="col-md-4" align="center">
+                            <button string='Refresh Token' type="object"
+                                    name="action_refresh_access_token"
+                                    class="oe_highlight" icon="fa-refresh"/>
+                        </div>
+                    </div>
+                    <group>
+                        <field name="ms_access_token" invisible="1"/>
+                        <field name="ms_refresh_token" invisible="1"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

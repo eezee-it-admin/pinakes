@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ms_meeting_event_form" model="ir.ui.view">
+        <field name="name">ms.meeting.event.form</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form"/>
+        <field name="arch" type="xml">
+            <field name="stage_id" position="before">
+                <button name="action_create_ms_meeting" string="Create MS Team Meeting"
+                        type="object" class="btn btn-primary"
+                        attrs="{'invisible':[('ms_meeting_url', '!=', False)]}"/>
+                <button name="send_meeting_mail_notification" string="Send MS Team Meeting"
+                        type="object" attrs="{'invisible':[('ms_meeting_url', '=', False)]}"/>
+            </field>
+            <div name="button_box" position="inside">
+                <button name="join_ms_meeting_url" string="Join MS Meeting"
+                        type="object" class="oe_highlight"
+                        icon="fa-mobile" attrs="{'invisible':[('ms_meeting_url', '=', False)]}"/>
+            </div>
+            <page name="event_communication" position="after">
+                <page name="ms_meeting" string="Microsoft Meeting"
+                      attrs="{'invisible':[('ms_meeting_id', '=', False)]}">
+                    <label for="ms_meeting_id"/>
+                    <field name="ms_meeting_id" readonly="1"/>
+                    <label for="ms_meeting_url"/>
+                    <field name="ms_meeting_url" readonly="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>
