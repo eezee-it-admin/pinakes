@@ -13,6 +13,7 @@
         "website_crm_partner_assign",
     ],
     "data": [
+        "views/website_partner_templates.xml",
         "views/website_templates.xml",
         "views/website_crm_partner_assign_templates.xml"
     ],
