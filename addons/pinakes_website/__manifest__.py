@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Website",
-    "version": "16.0.0.0.2",
+    "version": "16.0.0.0.3",
     "author": "Eezee-It",
     "category": "Website",
     "license": "LGPL-3",
@@ -13,12 +13,14 @@
         "website_crm_partner_assign",
     ],
     "data": [
+        "views/website_partner_templates.xml",
         "views/website_templates.xml",
         "views/website_crm_partner_assign_templates.xml"
     ],
     'assets': {
         'web.assets_frontend': [
             'pinakes_website/static/src/js/website_reseller_template.js',
+            'pinakes_website/static/src/js/publication_redirect.js'
         ],
     },
     "application": False,
