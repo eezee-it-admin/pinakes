@@ -27,6 +27,10 @@
             'pinakes_website/static/src/js/website_reseller_template.js',
         ],
     },
+    "data": [
+        "views/website_templates.xml",
+        "views/website_crm_partner_assign_templates.xml"
+    ],
     "application": False,
     "installable": True,
 }
