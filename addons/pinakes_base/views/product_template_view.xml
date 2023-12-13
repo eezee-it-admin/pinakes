@@ -49,12 +49,7 @@
                         </group>
                     </group>
                 </page>
-                <page string="JHE">
-                    <field name="product_author_ids"/>
-                    <group>
-                        <field name="product_author_names"/>
-                    </group>
-                </page>
+
             </xpath>
         </field>
     </record>
