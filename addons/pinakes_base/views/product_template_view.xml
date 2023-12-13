@@ -30,6 +30,7 @@
             <field name="default_code" position="after">
                 <field name="id"/>
                 <field name="release_date"/>
+                <field name="product_author_names" groups="base.group_no_one"/>
             </field>
             <xpath expr="//notebook" position="inside">
                 <page string="Reporting" name="reporting"
@@ -46,6 +47,12 @@
                             <field name="fonds_id"/>
                             <field name="publication_lang" widget="many2many_tags"/>
                         </group>
+                    </group>
+                </page>
+                <page string="JHE">
+                    <field name="product_author_ids"/>
+                    <group>
+                        <field name="product_author_names"/>
                     </group>
                 </page>
             </xpath>

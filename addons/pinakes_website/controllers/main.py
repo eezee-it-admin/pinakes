@@ -24,7 +24,7 @@ class CustomShopController(WebsiteSale):
         return options
 
     def _get_search_domain(self, search, category, attrib_values, search_in_description=True):
-        """Inherited by Odoo: only use for the filter by price."""
+        """Inherited from Odoo: only use for the filter by price."""
         domains = [request.website.sale_product_domain()]
         if search:
             for srch in search.split(" "):
@@ -32,6 +32,7 @@ class CustomShopController(WebsiteSale):
                     [('name', 'ilike', srch)],
                     [('product_variant_ids.default_code', 'ilike', srch)],
                     [('product_variant_ids.isbn', 'ilike', srch)],
+                    [('product_author_names', 'ilike', srch)],
                 ]
                 if search_in_description:
                     subdomains.append([('website_description', 'ilike', srch)])
