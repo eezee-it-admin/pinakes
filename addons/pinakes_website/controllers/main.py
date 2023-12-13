@@ -7,38 +7,35 @@ from odoo.osv import expression
 
 
 class CustomShopController(WebsiteSale):
-    @http.route()  # Use appropriate route decorators as required
-    def _get_search_domain(self, search, category, attrib_values, search_in_description=True):
-        domains = [request.website.sale_product_domain()]
-        search_type = request.httprequest.args.get('search_type')
+    def _get_search_options(
+        self, category=None, attrib_values=None, pricelist=None,
+        min_price=0.0, max_price=0.0, conversion_rate=1, **post
+    ):
+        options = super(CustomShopController, self)._get_search_options(
+            category, attrib_values, pricelist, min_price, max_price,
+            conversion_rate, **post
+        )
 
+        tag_ids = post.get('tag')
+
+        if tag_ids:
+            options['product_tag_ids'] = [int(tag_id) for tag_id in tag_ids.split(',')]
+
+        return options
+
+    def _get_search_domain(self, search, category, attrib_values, search_in_description=True):
+        """Inherited by Odoo: only use for the filter by price."""
+        domains = [request.website.sale_product_domain()]
         if search:
             for srch in search.split(" "):
                 subdomains = [
                     [('name', 'ilike', srch)],
-                    [('product_variant_ids.default_code', 'ilike', srch)]
+                    [('product_variant_ids.default_code', 'ilike', srch)],
+                    [('product_variant_ids.isbn', 'ilike', srch)],
                 ]
                 if search_in_description:
                     subdomains.append([('website_description', 'ilike', srch)])
                     subdomains.append([('description_sale', 'ilike', srch)])
-
-                # Custom domain logic
-                if search_type == 'products_only':
-                    matching_variants = self.env['product.product'].search([('isbn', 'ilike', srch)])
-                    matching_templates_ids = matching_variants.mapped('product_tmpl_id').ids
-                    author_products = self.env['product.author'].search([('partner_id.name', 'ilike', srch)]).mapped(
-                        'product_tmpl_id')
-
-                    matching_isbn_domain = [('id', 'in', matching_templates_ids)]
-                    matching_author_domain = [('id', 'in', author_products.ids)]
-                    tag_domain = [('product_tag_ids.name', 'ilike', srch)]
-
-                    # Append custom domains individually
-                    subdomains.append(matching_isbn_domain)
-                    subdomains.append(matching_author_domain)
-                    subdomains.append(tag_domain)
-
-                # Combine subdomains using OR and append to main domains
                 domains.append(expression.OR(subdomains))
 
         if category:
@@ -61,37 +58,3 @@ class CustomShopController(WebsiteSale):
                 domains.append([('attribute_line_ids.value_ids', 'in', ids)])
 
         return expression.AND(domains)
-
-# from odoo import http
-# from odoo.http import request
-# from odoo.addons.website_sale.controllers.main import WebsiteSale
-# from odoo.osv import expression
-#
-#
-# class CustomShopController(WebsiteSale):
-#     @http.route()  # Use appropriate route decorators as required
-#     def _get_search_domain(self, search, category, attrib_values, search_in_description=True):
-#         # Call the super method to get the base domain
-#         domains = super(CustomShopController, self)._get_search_domain(search, category, attrib_values,
-#                                                                        search_in_description)
-#
-#         # Your custom logic
-#         search_type = request.httprequest.args.get('search_type')
-#         if search_type == 'products_only' and search:
-#             matching_variants = self.env['product.product'].search([('isbn', 'ilike', search)])
-#             matching_templates_ids = matching_variants.mapped('product_tmpl_id').ids
-#             author_products = self.env['product.author'].search([('partner_id.name', 'ilike', search)]).mapped(
-#                 'product_tmpl_id')
-#             tag_domain = [('product_tag_ids.name', 'ilike', search)]
-#
-#             # Create a custom domain
-#             custom_domain = expression.OR([
-#                 [('id', 'in', matching_templates_ids)],
-#                 [('id', 'in', author_products.ids)],
-#                 tag_domain
-#             ])
-#
-#             # Integrate the custom domain into the existing domain logic
-#             domains.append(custom_domain)
-#
-#         return expression.AND(domains)

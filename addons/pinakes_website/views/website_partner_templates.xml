@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="partner_detail_inherited" inherit_id="website_partner.partner_detail" name="Partner Detail Inherited">
+        <xpath expr="//div[@class='col-lg-8 mt32']" position="after">
+            <t t-if="publications">
+                <h3 class="mt-5">Publications</h3>
+                <div class="row mt-5">
+                    <t t-foreach="publications" t-as="publication">
+                        <div class="col-md-4 mb-4">
+                            <div class="card oe_kanban_global_click p-0" t-att-data-product-id="publication.id"
+                                 t-att-data-product-slug="publication.website_url"
+                                 style="height: 350px; width: 270px;">
+                                <div class="o_squared_image" style="height: 80%; overflow: hidden;">
+                                    <img class="card-img-top"
+                                         t-att-src="website.image_url(publication, 'image_1920')"
+                                         t-att-alt="publication.name" style="width: 100%;"/>
+                                </div>
+                                <div class="card-body p-2" style="height: 20%; overflow: hidden;">
+                                    <h6 class="card-title text-truncate">
+                                        <small t-esc="publication.name"/>
+                                    </h6>
+                                    <p class="card-text text-truncate">
+                                        <small>
+                                            <span t-field="publication.list_price"/>€
+                                        </small>
+                                    </p>
+                                    <a t-att-href="publication.website_url" class="stretched-link"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
