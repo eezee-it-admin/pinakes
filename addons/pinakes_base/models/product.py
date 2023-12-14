@@ -45,6 +45,20 @@ class ProductTemplate(models.Model):
     abonnement_product_count = fields.Integer('Linked Subscription Products',
                                               compute='_compute_linked_products')
 
+    product_author_ids = fields.One2many('product.author', 'product_tmpl_id')
+    product_author_names = fields.Char(
+        compute='_compute_product_author_names', 
+        help="Computed field used for the website search by the author.",
+        store=True
+    )
+
+    @api.depends('product_author_ids.partner_id.name')
+    def _compute_product_author_names(self):
+        for record in self:
+            record.product_author_names = ", ".join(
+                record.product_author_ids.mapped(
+                'partner_id').mapped('name'))
+
     def _compute_linked_products(self):
         for rec in self:
             rec.abonnement_product_count = self.env['product.template'].\

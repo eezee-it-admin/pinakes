@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="product_tags" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <div class="row">
+                <div class="col-12 d-inline-flex">
+                    <t t-foreach="product.product_tag_ids" t-as="tag">
+                        <a t-att-href="'/shop?'+ keep_query('*', tag=str(tag.id))">
+                            <span class="badge mr-4 bg-secondary" style="cursor: pointer;">
+                                <t t-esc="tag.name"/>
+                            </span>
+                        </a>
+                    </t>
+                </div>
+            </div>
+            <t t-if="product.similar_products">
+                <h2 class="mt-4">Ook interessant</h2>
+                <div class="row mt-4">
+                    <t t-foreach="product.similar_products" t-as="similar_product">
+                        <t t-if="similar_product and similar_product.website_published">
+                            <div class="col-md-4 mb-4">
+                                <div class="card oe_kanban_global_click p-0 pb-1"
+                                     t-att-data-product-slug="similar_product.website_url"
+                                     style="height: 280px; width: 220px; cursor: pointer;">
+                                    <div class="o_squared_image" style="height: 80%; overflow: hidden;">
+                                        <t t-if="similar_product.image_1920">
+                                            <img class="card-img-top"
+                                                 t-att-src="'/web/image/product.template/' + str(similar_product.id) + '/image_1920'"
+                                                 style="width: 100%;"/>
+                                        </t>
+                                    </div>
+                                    <div class="card-body p-2" style="height: 20%; overflow: hidden;">
+                                        <h6 class="card-title text-truncate">
+                                            <small t-esc="similar_product.name"/>
+                                        </h6>
+                                        <p class="card-text text-truncate">
+                                            <small>
+                                                <span t-field="similar_product.list_price"/>€
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="custom_shop_tags_filter" inherit_id="website_sale.products">
+        <xpath expr="//aside[@id='products_grid_before']/div" position="inside">
+            <div class="o_wsale_products_tags_filter mb-3">
+                <h6>Tags</h6>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownTagsFilter"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Tags
+                    </button>
+                    <ul class="dropdown-menu p-2" aria-labelledby="dropdownTagsFilter">
+                        <li t-foreach="request.env['product.tag'].search([])" t-as="tag">
+                            <div class="form-check">
+                                <input class="form-check-input tag-checkbox" type="checkbox" t-att-value="tag.id"
+                                       t-att-id="'tag_' + str(tag.id)"/>
+                                <label class="form-check-label" t-att-for="'tag_' + str(tag.id)">
+                                    <t t-esc="tag.name"/>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+    <template id="custom_add_to_wishlist" inherit_id="website_sale_wishlist.add_to_wishlist"
+              name="Custom Wishlist Button">
+        <xpath expr="//div[hasclass('o_wsale_product_btn')]" position="replace">
+            <t t-nocache="The wishlist depends on the user and must not be shared with other users. As this rendering is
+            in the loop, the product value is set in the template, we must retain the id of the product on which we are."
+               t-nocache-product_template_id="product.id">
+                <t t-set="product" t-value="products.filtered(lambda p: p.id == product_template_id)"/>
+                <t t-foreach="product" t-as="product_individual">
+                    <t t-set="in_wish" t-value="product._is_in_wishlist()"/>
+                    <t t-set="product_variant_id" t-value="product_individual._get_first_possible_variant_id()"/>
+                    <button t-if="product_variant_id" type="button" role="button"
+                            class="btn btn-outline-primary bg-white o_add_wishlist" t-att-disabled='in_wish or None'
+                            title="Add to Wishlist" t-att-data-product-template-id="product_individual.id"
+                            t-att-data-product-product-id="product_variant_id" data-action="o_wishlist">
+                        <span class="fa fa-heart" role="img" aria-label="Add to wishlist"></span>
+                    </button>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
