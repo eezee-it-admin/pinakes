@@ -45,20 +45,30 @@ class ProductTemplate(models.Model):
     abonnement_product_count = fields.Integer('Linked Subscription Products',
                                               compute='_compute_linked_products')
 
+    product_author_ids = fields.One2many('product.author', 'product_tmpl_id')
+    product_author_names = fields.Char(
+        compute='_compute_product_author_names',
+        help="Computed field used for the website search by the author.",
+        store=True
+    )
+
+    @api.depends('product_author_ids.partner_id.name')
+    def _compute_product_author_names(self):
+        for record in self:
+            record.product_author_names = ", ".join(
+                record.product_author_ids.mapped('partner_id').mapped('name'))
+
     def _compute_linked_products(self):
         for rec in self:
-            rec.abonnement_product_count = self.env['product.template'].\
+            rec.abonnement_product_count = self.env['product.template']. \
                 search_count([('parent_abonnement_product_id', '=', rec.id)])
 
     def _set_account(self, vals):
         if vals.get('fonds_id'):
             founds_id = self.env['product.fonds'].browse(vals.get('fonds_id'))
-            if founds_id and (founds_id.income_account_id
-                              or founds_id.expense_account_id):
-                vals.update({'property_account_income_id':
-                            founds_id.income_account_id.id,
-                             'property_account_expense_id':
-                                 founds_id.expense_account_id.id})
+            if founds_id and (founds_id.income_account_id or founds_id.expense_account_id):
+                vals.update({'property_account_income_id': founds_id.income_account_id.id,
+                             'property_account_expense_id': founds_id.expense_account_id.id})
         return vals
 
     @api.model_create_multi
@@ -205,7 +215,7 @@ class ProductFonds(models.Model):
         if self and (vals.get('income_account_id')
                      or vals.get('expense_account_id')):
             for rec in self:
-                product_ids = self.env['product.template']\
+                product_ids = self.env['product.template'] \
                     .search([('fonds_id', '=', rec.id)])
                 if product_ids:
                     product_ids.write({
