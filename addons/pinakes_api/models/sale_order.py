@@ -1,6 +1,6 @@
 # Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
-from odoo import api, models, fields
+from odoo import models, fields
 import requests
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import xml.etree.ElementTree as ET
@@ -55,8 +55,6 @@ class SaleOrder(models.Model):
 
         response_xml_as_string = response.content.decode('utf-8')
         responseXml = ET.fromstring(response_xml_as_string)
-        print(ET.tostring(responseXml, encoding='utf8').decode('utf8'))
-        print(response.text)
 
         if response.status_code == 200:
             download_link_element = responseXml.find(".//DownloadLink")
