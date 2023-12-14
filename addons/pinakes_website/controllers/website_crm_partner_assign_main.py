@@ -4,7 +4,7 @@
 from odoo.addons.website_crm_partner_assign.controllers.main import WebsiteCrmPartnerAssign
 import werkzeug.urls
 
-from odoo.http import request
+from odoo.http import request, route
 from odoo.addons.http_routing.models.ir_http import slug
 
 from odoo.tools.translate import _
@@ -12,6 +12,7 @@ from odoo.tools.translate import _
 
 class CustomWebsiteCrmPartnerAssign(WebsiteCrmPartnerAssign):
 
+    @route()
     def partners(self, country=None, grade=None, page=0, **post):
         country_all = post.pop('country_all', True)
         partner_obj = request.env['res.partner']
