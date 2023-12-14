@@ -11,3 +11,4 @@ bandit==1.7.0
 safety==1.10.3
 pip-tools==6.2.0
 importlib-metadata==4.13.0
+requests-toolbelt==1.0.0

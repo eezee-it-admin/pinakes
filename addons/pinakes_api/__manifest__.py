@@ -19,5 +19,4 @@
         'views/product_template_view.xml',
     ],
     "application": False,
-    'external_dependencies': {'python': ['requests-toolbelt']},
 }
