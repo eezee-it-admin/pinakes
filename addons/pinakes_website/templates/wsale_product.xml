@@ -2,13 +2,12 @@
 <odoo>
     <template id="product_authors_and_tags" inherit_id="website_sale.product">
         <xpath expr="//section[@id='product_detail']" position="inside">
-            <t t-if="product">
+            <t t-set="authors" t-value="request.env['product.author'].search([('product_tmpl_id', '=', product.id)])"/>
+            <t t-if="authors and authors.mapped('partner_id')">
                 <div class="col-lg-8 my-3">
                     <div class="o_wsale_products_authors_filter mb-3">
                         <h5>Authors</h5>
                         <div>
-                            <t t-set="authors"
-                               t-value="request.env['product.author'].search([('product_tmpl_id', '=', product.id)])"/>
                             <t t-set="last_index" t-value="len(authors) - 1"/>
                             <t t-foreach="authors" t-as="author">
                                 <a t-att-href="'/partners/' + slug(author.partner_id)"
@@ -20,7 +19,8 @@
                         </div>
                     </div>
                 </div>
-
+            </t>
+            <t t-if="product.product_tag_ids">
                 <div class="row mb-3">
                     <div class="col-12 d-inline-flex">
                         <h5>Tags :</h5>
@@ -34,6 +34,7 @@
                     </div>
                 </div>
             </t>
+
             <t t-set="published_similar_products"
                t-value="product.similar_products.filtered(lambda p: p.website_published)"/>
             <t t-if="published_similar_products">
