@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="product_tags" inherit_id="website_sale.product">
+    <template id="product_authors_and_tags" inherit_id="website_sale.product">
         <xpath expr="//section[@id='product_detail']" position="inside">
-            <div class="row">
-                <div class="col-12 d-inline-flex">
-                    <t t-foreach="product.product_tag_ids" t-as="tag">
-                        <a t-att-href="'/shop?'+ keep_query('*', tag=str(tag.id))">
-                            <span class="badge mr-4 bg-secondary" style="cursor: pointer;">
-                                <t t-esc="tag.name"/>
-                            </span>
-                        </a>
-                    </t>
+            <t t-if="product">
+                <div class="col-lg-8 my-3">
+                    <div class="o_wsale_products_authors_filter mb-3">
+                        <h5>Authors</h5>
+                        <div>
+                            <t t-set="authors"
+                               t-value="request.env['product.author'].search([('product_tmpl_id', '=', product.id)])"/>
+                            <t t-set="last_index" t-value="len(authors) - 1"/>
+                            <t t-foreach="authors" t-as="author">
+                                <a t-att-href="'/partners/' + slug(author.partner_id)"
+                                   t-att-title="author.partner_id.name">
+                                    <t t-esc="author.partner_id.name"/>
+                                </a>
+                                <t t-if="author_index != last_index">,</t>
+                            </t>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <t t-if="product.similar_products">
+
+                <div class="row mb-3">
+                    <div class="col-12 d-inline-flex">
+                        <h5>Tags :</h5>
+                        <t t-foreach="product.product_tag_ids" t-as="tag">
+                            <a t-att-href="'/shop?'+ keep_query('*', tag=str(tag.id))">
+                                <span class="badge ms-1 me-1 bg-secondary" style="cursor: pointer;">
+                                    <t t-esc="tag.name"/>
+                                </span>
+                            </a>
+                        </t>
+                    </div>
+                </div>
+            </t>
+            <t t-set="published_similar_products"
+               t-value="product.similar_products.filtered(lambda p: p.website_published)"/>
+            <t t-if="published_similar_products">
                 <h2 class="mt-4">Ook interessant</h2>
                 <div class="row mt-4">
                     <t t-foreach="product.similar_products" t-as="similar_product">
