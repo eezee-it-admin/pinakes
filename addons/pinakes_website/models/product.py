@@ -49,10 +49,11 @@ class ProductTemplate(models.Model):
 
         # Search by the isbn on product variants
         detail['search_fields'].append('product_variant_ids.isbn')
-        detail['mapping']['product_variant_ids.isbn'] = {'name': 'product_variant_ids.isbn', 'type': 'text', 'match': True}
+        detail['mapping']['product_variant_ids.isbn'] = {'name': 'product_variant_ids.isbn', 'type': 'text',
+                                                         'match': True}
 
         # Search on authors name
         detail['search_fields'].append('product_author_names')
         detail['mapping']['product_author_names'] = {'name': 'product_author_names', 'type': 'text', 'match': True}
-        
+
         return detail
