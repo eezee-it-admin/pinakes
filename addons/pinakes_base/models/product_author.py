@@ -11,7 +11,8 @@ class ProductAuthor(models.Model):
         'product.template', 'Product', required=True
     )
     partner_id = fields.Many2one(
-        'res.partner', string='Author', required=True
+        'res.partner', string='Author', required=True,
+        domain=lambda self: [('grade_id', '=', self.env.ref('pinakes_base.grade_author'))]
     )
     company_id = fields.Many2one(
         'res.company', 'Company', readonly=True,

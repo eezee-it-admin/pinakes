@@ -11,7 +11,6 @@
         "website",
         "product",
         "pinakes_base",
-        "website_crm_partner_assign",
         "website_sale",
         "website_sale_wishlist",
     ],
