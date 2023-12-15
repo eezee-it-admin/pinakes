@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="partner_detail_inherited" inherit_id="website_partner.partner_detail" name="Partner Detail Inherited">
-        <xpath expr="//div[@class='col-lg-8 mt32']" position="after">
+        <xpath expr="//div[hasclass('col-lg-8') and hasclass('mt32')]" position="after">
             <t t-if="publications">
                 <h3 class="mt-5">Publications</h3>
                 <div class="row mt-5">
