@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Base",
-    "version": "16.0.0.0.16",
+    "version": "16.0.0.0.17",
     "author": "Eezee-It",
     "category": "Services",
     "license": "LGPL-3",
@@ -10,12 +10,14 @@
     "depends": [
         "base_geolocalize",
         "contacts",
+        "website_crm_partner_assign",
         "website_partner",
         "product",
         "l10n_be_reports",
         "stock",
     ],
     "data": [
+        "data/grade_author_data.xml",
         "security/security.xml",
         "security/ir.model.access.csv",
         "views/res_company_view.xml",
