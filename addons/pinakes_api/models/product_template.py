@@ -6,5 +6,5 @@ from odoo import models, fields
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    epub_file = fields.Binary(string='Epub File')
-    epub_name = fields.Char(string='Epub Name')
+    epub_file = fields.Binary()
+    epub_name = fields.Char()

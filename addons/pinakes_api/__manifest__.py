@@ -15,8 +15,10 @@
         "pinakes_mass_mailing",
     ],
     'data': [
-        # views
         'views/product_template_view.xml',
     ],
+    'external_dependencies': {
+        'python': ['requests_toolbelt'],
+    },
     "application": False,
 }
