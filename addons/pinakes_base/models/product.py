@@ -145,6 +145,11 @@ class ProductProduct(models.Model):
                             compute='_compute_product_variant_type',
                             inverse='_inverse_product_variant_type')
 
+    def _get_isbn(self):
+        """Return the ISBN of the product variant."""
+        self.ensure_one()
+        return self.isbn
+
     @api.depends('product_tmpl_id.detailed_type')
     def _compute_product_variant_type(self):
         for product in self:
