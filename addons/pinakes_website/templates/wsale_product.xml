@@ -35,7 +35,6 @@
                 </div>
             </t>
 
-
             <div class="row mb-3">
                 <div class="col-12 d-inline-flex">
                     <h6>ISBN : </h6>
@@ -44,7 +43,6 @@
                     </span>
                 </div>
             </div>
-
 
             <t t-set="published_similar_products"
                t-value="product.similar_products.filtered(lambda p: p.website_published)"/>
