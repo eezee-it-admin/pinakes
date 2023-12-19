@@ -9,9 +9,7 @@ odoo.define('pinakes_website.CustomVariantMixin', function (require) {
         var $isbnElement = $('#product_isbn');
         if ($isbnElement.length) {
             $isbnElement.text(combinationData.isbn);
-            console.log("Yup ça a fonctionné");
         }
-        console.log(combinationData);
         originalOnChangeCombination.apply(this, [ev, $parent, combinationData]);
     };
 });

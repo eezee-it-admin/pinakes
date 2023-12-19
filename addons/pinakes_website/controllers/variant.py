@@ -3,7 +3,6 @@
 from odoo import http
 from odoo.http import request
 from odoo.addons.website_sale.controllers.variant import WebsiteSaleVariantController
-import pprint
 
 
 class CustomWebsiteSaleVariantController(WebsiteSaleVariantController):
@@ -15,7 +14,5 @@ class CustomWebsiteSaleVariantController(WebsiteSaleVariantController):
 
         product_variant = request.env['product.product'].browse(combination_info['product_id'])
         combination_info['isbn'] = product_variant and product_variant.isbn or 'N/A'
-        pprint.pprint(combination_info)
-        pprint.pprint(product_variant)
 
         return combination_info
