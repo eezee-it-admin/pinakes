@@ -32,8 +32,9 @@ class AccountMoveLine(models.Model):
 
     def get_line_name(self):
         source_orders = self.sale_line_ids.order_id
-        if source_orders and source_orders.recurrence_id:
-            current_year = source_orders.start_date.year
+        source_orders = source_orders.filtered(lambda r: r.recurrence_id)
+        if source_orders and source_orders[0].recurrence_id:
+            current_year = source_orders[0].start_date.year
             name = self.product_id.display_name
             value = 'continuous subscription'
             if self.move_id.partner_id.lang == 'nl_BE':
