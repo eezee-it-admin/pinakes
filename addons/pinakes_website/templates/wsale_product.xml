@@ -22,8 +22,8 @@
             </t>
 
             <div class="row mb-3">
-                <div class="col-12 d-inline-flex">
-                    <h6>ISBN : </h6>
+                <div class="col-12 d-flex align-items-center">
+                    <h6 class="mb-0">ISBN : </h6>
                     <span id="product_isbn" class="ms-1 me-1" style="color: blue;">
                         N/A
                     </span>
