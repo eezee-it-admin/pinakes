@@ -21,6 +21,15 @@
                 </div>
             </t>
 
+            <div class="row mb-3">
+                <div class="col-12 d-inline-flex">
+                    <h6>ISBN : </h6>
+                    <span id="product_isbn" class="ms-1 me-1" style="color: blue;">
+                        N/A
+                    </span>
+                </div>
+            </div>
+
             <t t-if="product.product_tag_ids">
                 <div class="row mb-3">
                     <div class="col-12 d-inline-flex">
@@ -35,15 +44,6 @@
                     </div>
                 </div>
             </t>
-
-            <div class="row mb-3">
-                <div class="col-12 d-inline-flex">
-                    <h6>ISBN : </h6>
-                    <span id="product_isbn" class="ms-1 me-1" style="color: blue;">
-                        N/A
-                    </span>
-                </div>
-            </div>
 
             <t t-set="published_similar_products"
                t-value="product.similar_products.filtered(lambda p: p.website_published)"/>
