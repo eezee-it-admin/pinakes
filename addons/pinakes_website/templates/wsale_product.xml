@@ -39,7 +39,7 @@
             <div class="row mb-3">
                 <div class="col-12 d-inline-flex">
                     <h6>ISBN : </h6>
-                    <span id="product_isbn" class="ms-1 me-1">
+                    <span id="product_isbn" class="ms-1 me-1" style="color: blue;">
                         N/A
                     </span>
                 </div>
