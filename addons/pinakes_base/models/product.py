@@ -51,12 +51,21 @@ class ProductTemplate(models.Model):
         help="Computed field used for the website search by the author.",
         store=True
     )
+    website_visible_authors = fields.One2many(
+        'product.author',
+        compute='_compute_website_visible_authors'
+    )
 
     @api.depends('product_author_ids.partner_id.name')
     def _compute_product_author_names(self):
         for record in self:
             record.product_author_names = ", ".join(
                 record.product_author_ids.mapped('partner_id').mapped('name'))
+
+    @api.depends('product_author_ids.partner_id.name', 'product_author_ids.website_visible')
+    def _compute_website_visible_authors(self):
+        for record in self:
+            record.website_visible_authors = record.product_author_ids.filtered(lambda pa: pa.website_visible)
 
     def _compute_linked_products(self):
         for rec in self:

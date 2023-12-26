@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Base",
-    "version": "16.0.0.0.17",
+    "version": "16.0.0.0.18",
     "author": "Eezee-It",
     "category": "Services",
     "license": "LGPL-3",
@@ -17,7 +17,6 @@
         "stock",
     ],
     "data": [
-        "data/grade_author_data.xml",
         "security/security.xml",
         "security/ir.model.access.csv",
         "views/res_company_view.xml",
