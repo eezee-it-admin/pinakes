@@ -51,6 +51,7 @@ class ProductTemplate(models.Model):
         help="Computed field used for the website search by the author.",
         store=True
     )
+    summary = fields.Html(help="this field should be used as the summary of a book")
 
     @api.depends('product_author_ids.partner_id.name')
     def _compute_product_author_names(self):
