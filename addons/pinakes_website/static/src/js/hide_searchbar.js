@@ -6,10 +6,10 @@ odoo.define('pinakes_website.hide_searchbar_script', function(require) {
     publicWidget.RootWidget.include({
         init: function(parent) {
             this._super.apply(this, arguments);
-            if (window.location.pathname.startsWith('/shop')) {
+            var path = window.location.pathname;
+            if (path === '/shop' || path.startsWith('/shop?') || path.startsWith('/shop/category')) {
                 $('body').addClass('shop-page');
             }
         },
     });
 });
-
