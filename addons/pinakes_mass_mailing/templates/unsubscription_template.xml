@@ -1,0 +1,7 @@
+<odoo>
+    <template id="template_mass_mailing_unsubscribe" inherit_id="mass_mailing.layout">
+        <xpath expr="//body/header/div[2]/img" position="replace">
+            <img t-attf-src="/web/binary/company_logo?company={{ company_id }}"/>
+        </xpath>
+    </template>
+</odoo>
