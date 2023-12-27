@@ -44,6 +44,15 @@
                 </div>
             </t>
 
+            <t t-if="product.summary">
+                <div class="row mb-3">
+                    <div class="col-7">
+                        <h3>Summary</h3>
+                        <div t-raw="product.summary"/>
+                    </div>
+                </div>
+            </t>
+
             <t t-set="published_similar_products"
                t-value="product.similar_products.filtered(lambda p: p.website_published)"/>
             <t t-if="published_similar_products">
