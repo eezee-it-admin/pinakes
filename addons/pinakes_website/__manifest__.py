@@ -24,7 +24,6 @@
             'pinakes_website/static/src/js/publication_redirect.js',
             'pinakes_website/static/src/js/tag_filters_checkboxed.js',
             'pinakes_website/static/src/js/website_reseller_template.js',
-            'pinakes_website/static/src/js/publication_redirect.js',
             'pinakes_website/static/src/js/hide_searchbar.js',
             'pinakes_website/static/src/scss/hide_searchbar.scss'
 
