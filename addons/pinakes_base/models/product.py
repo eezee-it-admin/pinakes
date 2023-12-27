@@ -51,6 +51,7 @@ class ProductTemplate(models.Model):
         help="Computed field used for the website search by the author.",
         store=True
     )
+    summary = fields.Html(help="this field should be used as the summary of a book")
     website_visible_authors = fields.One2many(
         'product.author',
         compute='_compute_website_visible_authors'
