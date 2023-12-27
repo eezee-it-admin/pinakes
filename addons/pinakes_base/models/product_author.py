@@ -24,4 +24,4 @@ class ProductAuthor(models.Model):
     royalty_perc = fields.Float('Royalty (%)')
     page_price_royalty = fields.Monetary()
     forfait_price = fields.Monetary()
-    website_visible = fields.Boolean(default=True, store=True)
+    is_visible = fields.Boolean(default=True, store=True)
