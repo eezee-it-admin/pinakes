@@ -11,8 +11,7 @@ class ProductAuthor(models.Model):
         'product.template', 'Product', required=True
     )
     partner_id = fields.Many2one(
-        'res.partner', string='Author', required=True,
-        domain=lambda self: [('grade_id', '=', self.env.ref('pinakes_base.grade_author'))]
+        'res.partner', string='Author', required=True
     )
     company_id = fields.Many2one(
         'res.company', 'Company', readonly=True,
@@ -25,3 +24,4 @@ class ProductAuthor(models.Model):
     royalty_perc = fields.Float('Royalty (%)')
     page_price_royalty = fields.Monetary()
     forfait_price = fields.Monetary()
+    website_visible = fields.Boolean(default=True, store=True)
