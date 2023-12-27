@@ -2,14 +2,13 @@
 <odoo>
     <template id="product_authors_and_tags" inherit_id="website_sale.product">
         <xpath expr="//section[@id='product_detail']" position="inside">
-            <t t-if="product.product_author_names">
+            <t t-if="product.website_visible_authors">
                 <div class="col-lg-8 my-3">
                     <div class="o_wsale_products_authors_filter mb-3">
                         <h5>Authors</h5>
                         <div>
-                            <t t-set="authors" t-value="product.product_author_ids"/>
-                            <t t-set="last_index" t-value="len(authors) - 1"/>
-                            <t t-foreach="authors" t-as="author">
+                            <t t-set="last_index" t-value="len(product.website_visible_authors) - 1"/>
+                            <t t-foreach="product.website_visible_authors" t-as="author">
                                 <a t-att-href="'/partners/' + slug(author.partner_id)"
                                    t-att-title="author.partner_id.name">
                                     <t t-esc="author.partner_id.name"/>
@@ -20,6 +19,16 @@
                     </div>
                 </div>
             </t>
+
+            <div class="row mb-3">
+                <div class="col-12 d-flex align-items-center">
+                    <h6 class="mb-0">ISBN : </h6>
+                    <span id="product_isbn" class="ms-1 me-1" style="color: blue;">
+                        N/A
+                    </span>
+                </div>
+            </div>
+
             <t t-if="product.product_tag_ids">
                 <div class="row mb-3">
                     <div class="col-12 d-inline-flex">
