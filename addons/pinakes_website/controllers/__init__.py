@@ -3,3 +3,4 @@
 from . import main
 from . import website_crm_partner_assign_main
 from . import website_partner
+from . import variant

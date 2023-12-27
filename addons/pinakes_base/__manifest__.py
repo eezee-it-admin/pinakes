@@ -17,7 +17,6 @@
         "stock",
     ],
     "data": [
-        "data/grade_author_data.xml",
         "security/security.xml",
         "security/ir.model.access.csv",
         "views/res_company_view.xml",
