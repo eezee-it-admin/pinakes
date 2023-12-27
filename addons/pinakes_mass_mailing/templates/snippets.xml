@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pinakes_unsubscription" name="Custom Unsubscribe">
+        <div class="o_pks_footer_unsub_snippet">
+            <div class="o_mail_snippet_general">
+                <table align="center" cellspacing="0" cellpadding="0"
+                       class="o_mail_table_styles o_mail_full_width_padding">
+                    <tbody>
+                        <tr style="vertical-align: middle;">
+                            <td style="padding-right: 32px;">
+                                <a t-attf-href="/unsubscribe_from_list&amp;company={{ res_company.id }}">Unsubscribe</a>
+                            </td>
+                            <td style="padding-left: 32px;">
+                                <t t-set="current_year" t-value="datetime.datetime.now().year"/>
+                                <strong>©
+                                    <t t-out="res_company.name"/>
+                                    <t t-out="current_year"/>
+                                    All rights reserved
+                                </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+</odoo>
