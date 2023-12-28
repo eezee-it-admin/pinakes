@@ -8,3 +8,4 @@ class ProductTemplate(models.Model):
 
     epub_file = fields.Binary()
     epub_name = fields.Char()
+    url_digitale_bib = fields.Char()

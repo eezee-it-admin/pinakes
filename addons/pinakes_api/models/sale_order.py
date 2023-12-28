@@ -5,27 +5,42 @@ import requests
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import xml.etree.ElementTree as ET
 import base64
+from odoo.http import request
 
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    booxtream_link = fields.Char(string='Link To BooXtream')
+    booxtream_link_ids = fields.One2many('ebook.link', 'sale_order_id')
+    read_link_ids = fields.One2many('ebook.link', 'sale_order_id')
+
 
     def action_confirm(self):
         res = super(SaleOrder, self).action_confirm()
-        for rec in self:
-            for line in rec.order_line:
-                if self.is_digital_book(line.name):
-                    self._get_confirmation_template()
-                    self.booxtream_link = self.generate_link(line.product_template_id, self.partner_id)
-                else:
-                    super(SaleOrder, self)._get_confirmation_template()
-                break
+        EbookLink = self.env['ebook.link']
+        for order in self:
+            for line in order.order_line:
+                if self.is_e_book(line.name):
+                    link = EbookLink.create({
+                        'sale_order_id': order.id,
+                        'download_link': self.generate_link(line.product_template_id, order.partner_id),
+                    })
+                    order.write({'booxtream_link_ids': [(4, link.id)]})
+                elif self.is_digital_book(line.name):
+                    link = EbookLink.create({
+                        'sale_order_id': order.id,
+                        'read_link': line.product_template_id.url_digitale_bib,
+                    })
+                    order.write({'read_link_ids': [(4, link.id)]})
         return res
 
     def is_digital_book(self, name):
         if 'digitaal' in name.lower():
+            return True
+        return False
+
+    def is_e_book(self, name):
+        if 'e-book' in name.lower():
             return True
         return False
 
