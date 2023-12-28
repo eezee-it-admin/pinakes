@@ -56,6 +56,7 @@ class ProductTemplate(models.Model):
         compute='_compute_is_visible_authors'
     )
     summary = fields.Html(help="this field should be used as the summary of a book")
+    is_orderable = fields.Boolean(default=True)
 
     @api.depends('product_author_ids.partner_id.name')
     def _compute_product_author_names(self):
