@@ -27,7 +27,7 @@
             'pinakes_website/static/src/js/hide_searchbar.js',
             'pinakes_website/static/src/scss/hide_searchbar.scss',
             'pinakes_website/static/src/js/variant_mixin.js',
-            'pinakes_website/static/src/js/hide_cant_be_sold.js',
+            'pinakes_website/static/src/js/hide_is_not_orderable.scss',
         ],
     },
     "application": False,
