@@ -18,7 +18,7 @@
         # views
         'views/product_template_view.xml',
 
-        #security
+        # security
         'security/ir.model.access.csv',
     ],
     'external_dependencies': {
