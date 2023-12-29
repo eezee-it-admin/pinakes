@@ -5,7 +5,6 @@ import requests
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import xml.etree.ElementTree as ET
 import base64
-from odoo.http import request
 
 
 class SaleOrder(models.Model):
@@ -13,7 +12,6 @@ class SaleOrder(models.Model):
 
     booxtream_link_ids = fields.One2many('ebook.link', 'sale_order_id')
     read_link_ids = fields.One2many('ebook.link', 'sale_order_id')
-
 
     def action_confirm(self):
         res = super(SaleOrder, self).action_confirm()

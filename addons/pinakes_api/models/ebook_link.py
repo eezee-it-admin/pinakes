@@ -1,5 +1,6 @@
 from odoo import models, fields
 
+
 class BooxtreamLink(models.Model):
     _name = "ebook.link"
 
