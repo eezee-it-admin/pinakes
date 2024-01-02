@@ -3,90 +3,40 @@
     <template id="product_authors_and_tags" inherit_id="website_sale.product">
         <xpath expr="//section[@id='product_detail']" position="inside">
 
-            <t t-if="product.product_tag_ids">
-                <div class="row mb-4">
-                    <div class="col-7 d-inline-flex text-center">
-                        <h5>Tags :</h5>
-                        <t t-foreach="product.product_tag_ids" t-as="tag">
-                            <a t-att-href="'/shop?'+ keep_query('*', tag=str(tag.id))">
-                                <span class="badge ms-1 me-1 bg-secondary" style="cursor: pointer;">
-                                    <t t-esc="tag.name"/>
-                                </span>
-                            </a>
-                        </t>
-                    </div>
-                </div>
-            </t>
-
             <t t-if="product.summary">
-                <div class="row mb-4">
-                    <div class="col-7">
+                <div class="row justify-content-center my-5">
+                    <div class="col-6 text-start">
                         <h3>Summary</h3>
-                        <div t-raw="product.summary"/>
+                        <div t-raw="product.summary" class="text-justify"/>
                     </div>
                 </div>
             </t>
 
+            <!-- Authors Section -->
             <t t-if="product.is_visible_authors">
-                <div class="row justify-content-center">
-                    <div class="col-12 start-0">
-                        <hr class="my-4"/>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-6">
+                        <hr/>
                     </div>
                 </div>
-
-                <div class="o_wsale_products_authors_section mt-4">
-                    <h3 class="section_title mb-5">Over the Authors</h3>
-                    <div class="authors-list">
-                        <t t-foreach="product.is_visible_authors" t-as="author">
-                            <div class="author-entry d-flex flex-column flex-sm-row mb-4">
-                                <div class="author-image me-3 mb-2 mb-sm-0">
-                                    <img class="rounded-circle"
+                <div class="row justify-content-center mb-3">
+                    <div class="col-6 text-start">
+                        <div class="mb-1"/>
+                        <h3 class="mb-3">About the Authors</h3>
+                        <div class="mb-1"/>
+                        <div class="d-flex flex-column">
+                            <t t-foreach="product.is_visible_authors" t-as="author">
+                                <div class="mb-3 d-flex align-items-center">
+                                    <img class="rounded-circle me-3"
                                          t-att-src="'/web/image/res.partner/' + str(author.partner_id.id) + '/image_128'"
                                          alt="Author Image" style="width: 50px; height: 50px; object-fit: cover;"/>
-                                </div>
-                                <div class="author-details ms-2">
-                                    <a t-att-href="'/partners/' + slug(author.partner_id)"
-                                       class="author-link text-secondary"
-                                       style="font-size: 1rem; text-decoration: none;">
-                                        <h5 class="author-name mb-1" t-esc="author.partner_id.name"/>
-                                    </a>
-                                    <t t-if="author.partner_id.website_short_description">
-                                        <p class="author-description mb-0">
-                                            <t t-raw="author.partner_id.website_short_description"/>
-                                        </p>
-                                    </t>
-                                </div>
-                            </div>
-                        </t>
-                    </div>
-                </div>
-            </t>
-
-            <t t-if="product.release_date or request.env.user.has_group('base.group_user')">
-                <div class="row justify-content-center">
-                    <div class="col-7 start-0 text-center">
-                        <hr class="my-5"/>
-                    </div>
-                </div>
-
-                <div class="o_wsale_products_specifications_section mt-3">
-                    <div class="o_wsale_products_specifications_section mt-3">
-                        <h3 class="section_title mb-4">Product Specifications</h3>
-                        <div class="specifications-list">
-                            <div class="row mb-4">
-                                <div class="col-7 d-flex align-items-center col-7 text-center">">
-                                    <h6 class="mb-0 me-2">ISBN: </h6>
-                                    <span id="product_isbn" class="ms-1 me-1" style="color: blue;">
-                                        N/A
-                                    </span>
-                                </div>
-                            </div>
-                            <t t-if="product.release_date">
-                                <div class="specification-entry d-flex flex-column flex-sm-row mb-4">
-                                    <h5 class="specification-name me-3 mb-2 mb-sm-0">Release Date:</h5>
-                                    <p class="specification-detail ms-2">
-                                        <span t-field="product.release_date"/>
-                                    </p>
+                                    <div>
+                                        <a t-att-href="'/partners/' + slug(author.partner_id)"
+                                           class="author-link text-secondary"
+                                           style="font-size: 1rem; text-decoration: none;">
+                                            <h5 t-esc="author.partner_id.name"/>
+                                        </a>
+                                    </div>
                                 </div>
                             </t>
                         </div>
@@ -94,43 +44,101 @@
                 </div>
             </t>
 
+            <!-- Product Specifications and Tags Section -->
+            <t t-if="product.release_date or product.product_tag_ids or request.env.user.has_group('base.group_user')">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-6">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <div class="col-6">
+                        <div class="mb-1"/>
+                        <h3 class="section_title mb-3 text-start">Product Specifications</h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row mb-3">
+                                    <div class="col-4 text-start">
+                                        <h6>ISBN:</h6>
+                                    </div>
+                                    <div class="col-8 text-start">
+                                        <span id="product_isbn" style="color: blue;">N/A</span>
+                                    </div>
+                                </div>
+                                <t t-if="product.release_date">
+                                    <div class="row mb-3">
+                                        <div class="col-4 text-start">
+                                            <h6>Release Date:</h6>
+                                        </div>
+                                        <div class="col-8 text-start">
+                                            <p>
+                                                <span t-field="product.release_date"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-if="product.product_tag_ids">
+                                    <div class="row mb-3">
+                                        <div class="col-4 text-start">
+                                            <h6>Tags:</h6>
+                                        </div>
+                                        <div class="col-8 text-start">
+                                            <t t-foreach="product.product_tag_ids" t-as="tag">
+                                                <a t-att-href="'/shop?'+ keep_query('*', tag=str(tag.id))"
+                                                   class="badge bg-secondary ms-1">
+                                                    <t t-esc="tag.name"/>
+                                                </a>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
 
+            <!-- Similar Products Section -->
             <t t-set="published_similar_products"
                t-value="product.similar_products.filtered(lambda p: p.website_published)"/>
             <t t-if="published_similar_products">
-                <div class="row justify-content-center">
-                    <div class="col-7 start-0 text-center">
-                        <hr class="my-5"/>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-12">
+                        <hr/>
                     </div>
                 </div>
-
-                <h3 class="mt-4">Ook interessant</h3>
-                <div class="row my-4">
-                    <t t-foreach="published_similar_products" t-as="similar_product">
-                        <div class="col-md-4 mb-4">
-                            <div class="card oe_kanban_global_click p-0 pb-1"
-                                 t-att-data-product-slug="similar_product.website_url"
-                                 style="height: 280px; width: 220px; cursor: pointer;">
-                                <div class="o_squared_image" style="height: 80%; overflow: hidden;">
-                                    <t t-if="similar_product.image_1920">
-                                        <img class="card-img-top"
-                                             t-att-src="'/web/image/product.template/' + str(similar_product.id) + '/image_1920'"
-                                             style="width: 100%;"/>
-                                    </t>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <h3 class="mb-4 text-center">Ook interessant</h3>
+                        <div class="row">
+                            <t t-foreach="published_similar_products" t-as="similar_product">
+                                <div class="col-md-4 mb-4">
+                                    <div class="card oe_kanban_global_click p-0 pb-1"
+                                         t-att-data-product-slug="similar_product.website_url"
+                                         style="cursor: pointer;">
+                                        <div class="o_squared_image"
+                                             style="height: 220px; width: 220px; overflow: hidden; margin: auto;">
+                                            <t t-if="similar_product.image_1920">
+                                                <img class="card-img-top"
+                                                     t-att-src="'/web/image/product.template/' + str(similar_product.id) + '/image_1920'"
+                                                     style="width: 100%; height: 100%; object-fit: cover;"/>
+                                            </t>
+                                        </div>
+                                        <div class="card-body p-2" style="overflow: hidden;">
+                                            <h6 class="card-title text-truncate">
+                                                <small t-esc="similar_product.name"/>
+                                            </h6>
+                                            <p class="card-text text-truncate">
+                                                <small>
+                                                    <span t-field="similar_product.list_price"/>€
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body p-2" style="height: 20%; overflow: hidden;">
-                                    <h6 class="card-title text-truncate">
-                                        <small t-esc="similar_product.name"/>
-                                    </h6>
-                                    <p class="card-text text-truncate">
-                                        <small>
-                                            <span t-field="similar_product.list_price"/>€
-                                        </small>
-                                    </p>
-                                </div>
-                            </div>
+                            </t>
                         </div>
-                    </t>
+                    </div>
                 </div>
             </t>
         </xpath>
@@ -183,43 +191,10 @@
         </xpath>
     </template>
 
-    <template id="product_detail_custom_div" inherit_id="website_sale.product">
-        <!-- Insert a div after the h1 element -->
-        <xpath expr="//h1[@itemprop='name']" position="after">
-            <t t-if="product.is_visible_authors">
-                <div class="mt-1">
-                    <div class="o_wsale_products_authors_filter mb-3">
-                        <h5>Authors</h5>
-                        <div>
-                            <t t-set="last_index" t-value="len(product.is_visible_authors) - 1"/>
-                            <t t-foreach="product.is_visible_authors" t-as="author">
-                                <a t-att-href="'/partners/' + slug(author.partner_id)"
-                                   t-att-title="author.partner_id.name">
-                                    <t t-esc="author.partner_id.name"/>
-                                </a>
-                                <t t-if="author_index != last_index">,</t>
-                            </t>
-                        </div>
-                    </div>
-                </div>
-            </t>
-        </xpath>
-    </template>
-
-    <!-- Adjust the class attribute to include existing classes and add 'product_not_for_sale' conditionally -->
     <template id="product_detail_cant_be_sold_inherit" inherit_id="website_sale.product">
         <xpath expr="//div[@class='js_product js_main_product mb-3']" position="attributes">
-            <attribute name="t-att-class">"js_product js_main_product mb-3" + (' d-none' if not
+            <attribute name="t-att-class">"js_product js_main_product mb-3" + (' hide_not_orderable' if not
                 product.is_orderable else '')
-            </attribute>
-        </xpath>
-    </template>
-
-    <template id="product_terms_and_share_inherit" inherit_id="website_sale.product">
-        <!-- Conditionally hide the 'o_product_terms_and_share' div if the product is not orderable -->
-        <xpath expr="//div[@id='o_product_terms_and_share']" position="attributes">
-            <attribute name="t-attf-class">
-                #{'d-none' if not product.is_orderable else 'd-flex justify-content-between flex-column flex-md-row align-items-md-end mb-3'}
             </attribute>
         </xpath>
     </template>
