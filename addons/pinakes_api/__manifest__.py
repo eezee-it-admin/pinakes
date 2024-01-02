@@ -15,7 +15,11 @@
         "pinakes_mass_mailing",
     ],
     'data': [
+        # views
         'views/product_template_view.xml',
+
+        # security
+        'security/ir.model.access.csv',
     ],
     'external_dependencies': {
         'python': ['requests_toolbelt'],

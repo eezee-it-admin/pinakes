@@ -11,6 +11,9 @@
                     <field name="epub_file"/>
                 </group>
             </page>
+            <field name="product_tag_ids" position="after">
+                <field name="url_digitale_bib"/>
+            </field>
         </field>
     </record>
 </odoo>
