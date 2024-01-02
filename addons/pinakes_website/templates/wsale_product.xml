@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <div class="o_wsale_products_authors_section mt-3">
+                <div class="o_wsale_products_authors_section mt-4">
                     <h3 class="section_title mb-5">Over the Authors</h3>
                     <div class="authors-list">
                         <t t-foreach="product.is_visible_authors" t-as="author">
@@ -75,7 +75,7 @@
                         <div class="specifications-list">
                             <div class="row mb-4">
                                 <div class="col-7 d-flex align-items-center col-7 text-center">">
-                                    <h6 class="mb-0 me-2">ISBN:</h6>
+                                    <h6 class="mb-0 me-2">ISBN: </h6>
                                     <span id="product_isbn" class="ms-1 me-1" style="color: blue;">
                                         N/A
                                     </span>
