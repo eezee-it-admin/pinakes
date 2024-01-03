@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Website",
-    "version": "16.0.0.0.7",
+    "version": "16.0.0.0.8",
     "author": "Eezee-It",
     "category": "Website",
     "license": "LGPL-3",
@@ -27,6 +27,7 @@
             'pinakes_website/static/src/js/hide_searchbar.js',
             'pinakes_website/static/src/scss/hide_searchbar.scss',
             'pinakes_website/static/src/js/variant_mixin.js',
+            'pinakes_website/static/src/scss/hide_not_orderable.scss',
         ],
     },
     "application": False,
