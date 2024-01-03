@@ -61,6 +61,7 @@
         <field name="arch" type="xml">
             <field name="detailed_type" position="before">
                 <field name="parent_abonnement_product_id"/>
+                <field name="is_orderable" widget="boolean_toggle"/>
             </field>
         </field>
     </record>
