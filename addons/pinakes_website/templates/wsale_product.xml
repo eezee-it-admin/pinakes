@@ -145,10 +145,10 @@
         </xpath>
 
         <!-- Reeds besteld message section -->
-        <xpath expr="//div[@id='product_detail_main']" position="inside">
-            <p id="reeds_besteld" class="d-none">
+        <xpath expr="//div[@id='product_details']" position="inside">
+            <div id="reeds_besteld" class="d-none">
                 <t t-esc="product.reeds_besteld"/>
-            </p>
+            </div>
         </xpath>
 
     </template>
