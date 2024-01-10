@@ -25,6 +25,7 @@
             'pinakes_website/static/src/js/tag_filters_checkboxed.js',
             'pinakes_website/static/src/js/website_reseller_template.js',
             'pinakes_website/static/src/js/hide_searchbar.js',
+            'pinakes_website/static/src/js/reeds_besteld_message.js',
             'pinakes_website/static/src/scss/hide_searchbar.scss',
             'pinakes_website/static/src/js/variant_mixin.js',
             'pinakes_website/static/src/scss/hide_not_orderable.scss',
