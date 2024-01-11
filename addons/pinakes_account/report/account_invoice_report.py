@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import fields, models
-#from datetime import date
+# from datetime import date
 
 
 class AccountInvoiceReport(models.Model):
@@ -34,7 +34,7 @@ class AccountMoveLine(models.Model):
         source_orders = self.sale_line_ids.order_id
         source_orders = source_orders.filtered(lambda r: r.recurrence_id)
         if source_orders and source_orders[0].recurrence_id:
-            #current_year = source_orders[0].start_date.year
+            # current_year = source_orders[0].start_date.year
             name = self.product_id.display_name
             value = 'continuous subscription'
             if self.move_id.partner_id.lang == 'nl_BE':
