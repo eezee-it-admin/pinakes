@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Account",
-    "version": "16.0.0.0.4",
+    "version": "16.0.0.0.5",
     "author": "Eezee-It",
     'category': 'Accounting/Accounting',
     "license": "LGPL-3",
