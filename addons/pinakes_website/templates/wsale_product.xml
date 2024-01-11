@@ -143,6 +143,14 @@
             </t>
 
         </xpath>
+
+        <!-- Reeds besteld message section -->
+        <xpath expr="//div[@id='product_details']" position="inside">
+            <div id="reeds_besteld" class="d-none">
+                <t t-esc="product.reeds_besteld"/>
+            </div>
+        </xpath>
+
     </template>
 
     <template id="custom_shop_tags_filter" inherit_id="website_sale.products">
