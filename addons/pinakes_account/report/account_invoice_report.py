@@ -53,7 +53,10 @@ class AccountMoveLine(models.Model):
             #     name += ' - \n1 Year '
             #     name += (str(year_start) + ' t/m ' + str(year_end))
             #     return name
-            elif '999 Jaren' in self.name:
+            """
+                Line 59 : elif remove make only if
+            """
+            if '999 Jaren' in self.name:
                 name += """ - \n{value}""".format(value=value)
                 return name
             else:
