@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="web_contact" inherit_id="base.contact" name="Forum Contact Widget">
+            <xpath expr="//address" position="attributes">
+                <attribute name="class">mb-0 eezee_contact_card</attribute>
+            </xpath>
+        </template>
+    </data>
+</odoo>
