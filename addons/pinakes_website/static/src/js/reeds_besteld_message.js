@@ -26,11 +26,13 @@ odoo.define('pinakes_website.reeds_besteld', function (require) {
                     console.log(variantName);
 
                     var reedsBesteldElement = document.getElementById('reeds_besteld');
-
-                    if (variantName.toLowerCase().includes('digitaal')) {
-                        reedsBesteldElement.classList.remove('d-none');
-                    } else {
-                        reedsBesteldElement.classList.add('d-none');
+                    console.log("reedsBesteldElement", )
+                    if(reedsBesteldElement){
+                        if (variantName.toLowerCase().includes('digitaal')) {
+                            reedsBesteldElement.classList.remove('d-none');
+                        } else {
+                            reedsBesteldElement.classList.add('d-none');
+                        }
                     }
                 }
             });
