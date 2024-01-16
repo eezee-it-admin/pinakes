@@ -42,6 +42,11 @@ class SaleOrder(models.Model):
             return True
         return False
 
+    def is_print(self, name):
+        if 'print' in name.lower():
+            return True
+        return False
+
     def generate_link(self, product_template_id, partner_id):
         url = 'https://service.booxtream.com/booxtream.xml'
         headers = {'Content-Type': 'multipart/form-data'}
@@ -101,3 +106,12 @@ class SaleOrder(models.Model):
                 composition_mode='comment',
                 email_layout_xmlid='mail.mail_notification_layout_with_responsible_signature',
             )
+
+    def contains_ebook(self):
+        return any(self.is_e_book(line.name) for line in self.order_line)
+
+    def contains_digital(self):
+        return any(self.is_digital_book(line.name) for line in self.order_line)
+
+    def contains_print(self):
+        return any(self.is_print(line.name) for line in self.order_line)
