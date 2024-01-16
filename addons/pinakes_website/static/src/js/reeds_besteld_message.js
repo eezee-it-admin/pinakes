@@ -23,10 +23,7 @@ odoo.define('pinakes_website.reeds_besteld', function (require) {
             }).then(function (result) {
                 if (result.length > 0) {
                     var variantName = result[0].display_name;
-                    console.log(variantName);
-
                     var reedsBesteldElement = document.getElementById('reeds_besteld');
-                    console.log("reedsBesteldElement", )
                     if(reedsBesteldElement){
                         if (variantName.toLowerCase().includes('digitaal')) {
                             reedsBesteldElement.classList.remove('d-none');
