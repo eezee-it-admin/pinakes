@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
         EbookLink = self.env['ebook.link']
         for order in self:
             for line in order.order_line:
-                if self.is_e_book(line.name):
+                if self.is_e_book(line.name) and line.product_template_id.epub_file:
                     link = EbookLink.create({
                         'sale_order_id': order.id,
                         'download_link': self.generate_link(line.product_template_id, order.partner_id),
@@ -48,7 +48,6 @@ class SaleOrder(models.Model):
 
         epub_data = base64.b64decode(product_template_id.epub_file)
         epub_name = str(product_template_id.epub_name)
-
         multipart_data = MultipartEncoder(
             fields={
                 'epubfile': ((epub_name + ".epub"), epub_data, 'application/epub+zip'),
