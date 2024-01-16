@@ -18,25 +18,26 @@ class SaleOrder(models.Model):
         EbookLink = self.env['ebook.link']
         for order in self:
             for line in order.order_line:
-                Ebook_id = EbookLink.search([
-                    ('sale_order_id', '=', order.id),
-                    ('product_template_id', '=', line.product_template_id.id),
-                ])
-                if not Ebook_id:
-                    if self.is_e_book(line.name) and line.product_template_id.epub_file:
-                        link = EbookLink.create({
-                            'sale_order_id': order.id,
-                            'product_template_id': line.product_template_id.id,
-                            'download_link': self.generate_link(line.product_template_id, order.partner_id),
-                        })
-                        order.write({'booxtream_link_ids': [(4, link.id)]})
-                    elif self.is_digital_book(line.name):
-                        link = EbookLink.create({
-                            'sale_order_id': order.id,
-                            'product_template_id': line.product_template_id.id,
-                            'read_link': line.product_template_id.url_digitale_bib,
-                        })
-                        order.write({'read_link_ids': [(4, link.id)]})
+                if line.product_template_id:
+                    Ebook_id = EbookLink.search([
+                        ('sale_order_id', '=', order.id),
+                        ('product_template_id', '=', line.product_template_id.id),
+                    ])
+                    if not Ebook_id:
+                        if self.is_e_book(line.name) and line.product_template_id.epub_file:
+                            link = EbookLink.create({
+                                'sale_order_id': order.id,
+                                'product_template_id': line.product_template_id.id if ,
+                                'download_link': self.generate_link(line.product_template_id, order.partner_id),
+                            })
+                            order.write({'booxtream_link_ids': [(4, link.id)]})
+                        elif self.is_digital_book(line.name):
+                            link = EbookLink.create({
+                                'sale_order_id': order.id,
+                                'product_template_id': line.product_template_id.id,
+                                'read_link': line.product_template_id.url_digitale_bib,
+                            })
+                            order.write({'read_link_ids': [(4, link.id)]})
         return res
 
     def is_digital_book(self, name):
