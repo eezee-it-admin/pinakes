@@ -13,7 +13,7 @@
             </t>
 
             <!-- Authors Section -->
-            <t t-if="product.is_visible_authors">
+            <t t-if="product.sudo().is_visible_authors">
                 <div class="row justify-content-center mb-4">
                     <div class="col-7">
                         <hr/>
@@ -25,7 +25,7 @@
                         <h3 class="mb-3">About the Authors</h3>
                         <div class="mb-1"/>
                         <div class="d-flex flex-column">
-                            <t t-foreach="product.is_visible_authors" t-as="author">
+                            <t t-foreach="product.sudo().is_visible_authors" t-as="author">
                                 <div class="mb-3 d-flex align-items-center">
                                     <img class="rounded-circle me-3"
                                          t-att-src="'/web/image/res.partner/' + str(author.partner_id.id) + '/image_128'"
