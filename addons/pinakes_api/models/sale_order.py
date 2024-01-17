@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
                         if self.is_e_book(line.name) and line.product_template_id.epub_file:
                             link = EbookLink.create({
                                 'sale_order_id': order.id,
-                                'product_template_id': line.product_template_id.id if ,
+                                'product_template_id': line.product_template_id.id,
                                 'download_link': self.generate_link(line.product_template_id, order.partner_id),
                             })
                             order.write({'booxtream_link_ids': [(4, link.id)]})
