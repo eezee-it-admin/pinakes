@@ -29,10 +29,12 @@ class ProductTemplate(models.Model):
             sorted_similar_products = sorted(similar_products_dict.items(), key=lambda x: x[1], reverse=True)
 
             product.similar_products = [(6, 0, [prod.id for prod, _ in sorted_similar_products[:6]])]
-
+            common_tags_list = []
             for similar_product, _ in sorted_similar_products:
                 common_tags = product.product_tag_ids & similar_product.product_tag_ids
-                similar_product.common_tags_ids = [(6, 0, common_tags.ids)]
+                common_tags_list += common_tags.ids
+            # RecursionError: maximum recursion issue fixed
+            similar_products.common_tags_ids = [(6, 0, common_tags_list)]
 
     @api.model
     def _search_get_detail(self, website, order, options):

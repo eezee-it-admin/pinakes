@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
         EbookLink = self.env['ebook.link']
         for order in self:
             for line in order.order_line:
-                if self.is_e_book(line.name):
+                if self.is_e_book(line.name) and line.product_template_id.epub_file:
                     link = EbookLink.create({
                         'sale_order_id': order.id,
                         'download_link': self.generate_link(line.product_template_id, order.partner_id),
@@ -42,13 +42,17 @@ class SaleOrder(models.Model):
             return True
         return False
 
+    def is_print(self, name):
+        if 'print' in name.lower():
+            return True
+        return False
+
     def generate_link(self, product_template_id, partner_id):
         url = 'https://service.booxtream.com/booxtream.xml'
         headers = {'Content-Type': 'multipart/form-data'}
 
         epub_data = base64.b64decode(product_template_id.epub_file)
         epub_name = str(product_template_id.epub_name)
-
         multipart_data = MultipartEncoder(
             fields={
                 'epubfile': ((epub_name + ".epub"), epub_data, 'application/epub+zip'),
@@ -102,3 +106,12 @@ class SaleOrder(models.Model):
                 composition_mode='comment',
                 email_layout_xmlid='mail.mail_notification_layout_with_responsible_signature',
             )
+
+    def contains_ebook(self):
+        return any(self.is_e_book(line.name) for line in self.order_line)
+
+    def contains_digital(self):
+        return any(self.is_digital_book(line.name) for line in self.order_line)
+
+    def contains_print(self):
+        return any(self.is_print(line.name) for line in self.order_line)
