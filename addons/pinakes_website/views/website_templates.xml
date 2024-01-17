@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="custom_footer_contact" inherit_id="website.template_footer_contact" name="Custom Contact Footer">
+        <xpath expr="//div[hasclass('col-lg-10') and hasclass('pb16') and hasclass('text-end')]/ul" position="inside">
+            <li class="list-inline-item">•</li>
+            <li class="list-inline-item">
+                <a href="/partners">Authors and Partners</a>
+            </li>
+        </xpath>
+    </template>
+</odoo>

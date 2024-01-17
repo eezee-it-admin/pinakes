@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="product_authors_and_tags" inherit_id="website_sale.product">
+        <xpath expr="//section[@id='product_detail']" position="inside">
+
+            <t t-if="product.summary">
+                <div class="row justify-content-center my-5">
+                    <div class="col-7 text-start">
+                        <h3>Summary</h3>
+                        <div t-raw="product.summary" class="text-justify"/>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Authors Section -->
+            <t t-if="product.is_visible_authors">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-7">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <div class="col-7 text-start">
+                        <div class="mb-1"/>
+                        <h3 class="mb-3">About the Authors</h3>
+                        <div class="mb-1"/>
+                        <div class="d-flex flex-column">
+                            <t t-foreach="product.is_visible_authors" t-as="author">
+                                <div class="mb-3 d-flex align-items-center">
+                                    <img class="rounded-circle me-3"
+                                         t-att-src="'/web/image/res.partner/' + str(author.partner_id.id) + '/image_128'"
+                                         alt="Author Image" style="width: 50px; height: 50px; object-fit: cover;"/>
+                                    <div>
+                                        <a t-att-href="'/partners/' + slug(author.partner_id)"
+                                           class="author-link text-secondary"
+                                           style="font-size: 1rem; text-decoration: none;">
+                                            <h5 t-esc="author.partner_id.name"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Product Specifications and Tags Section -->
+            <t t-if="product.release_date or product.product_tag_ids or request.env.user.has_group('base.group_user')">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-7">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <div class="col-7">
+                        <div class="mb-1"/>
+                        <h3 class="section_title mb-3 text-start">Product Specifications</h3>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row mb-3">
+                                    <div class="col-4 text-start">
+                                        <h6>ISBN:</h6>
+                                    </div>
+                                    <div class="col-8 text-start">
+                                        <span id="product_isbn" style="color: blue;">N/A</span>
+                                    </div>
+                                </div>
+                                <t t-if="product.release_date">
+                                    <div class="row mb-3">
+                                        <div class="col-4 text-start">
+                                            <h6>Release Date:</h6>
+                                        </div>
+                                        <div class="col-8 text-start">
+                                            <p>
+                                                <span t-field="product.release_date"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-if="product.product_tag_ids">
+                                    <div class="row mb-3">
+                                        <div class="col-4 text-start">
+                                            <h6>Tags:</h6>
+                                        </div>
+                                        <div class="col-8 text-start">
+                                            <t t-foreach="product.product_tag_ids" t-as="tag">
+                                                <a t-att-href="'/shop?'+ keep_query('*', tag=str(tag.id))"
+                                                   class="badge bg-secondary ms-1">
+                                                    <t t-esc="tag.name"/>
+                                                </a>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Similar Products Section -->
+            <t t-set="published_similar_products"
+               t-value="product.similar_products.filtered(lambda p: p.website_published)"/>
+            <t t-if="published_similar_products">
+                <div class="row justify-content-center mb-4">
+                    <div class="col-7">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-7 text-start">
+                        <h3 class="mb-4">Ook interessant</h3>
+                        <div class="row">
+                            <t t-foreach="published_similar_products" t-as="similar_product">
+                                <div class="col-md-4 mb-4">
+                                    <div class="card oe_kanban_global_click p-0 pb-1"
+                                         t-att-data-product-slug="similar_product.website_url"
+                                         style="cursor: pointer;">
+                                        <div class="o_squared_image"
+                                             style="height: 220px; width: 220px; overflow: hidden; margin: auto;">
+                                            <t t-if="similar_product.image_1920">
+                                                <img class="card-img-top"
+                                                     t-att-src="'/web/image/product.template/' + str(similar_product.id) + '/image_1920'"
+                                                     style="width: 100%; height: 100%; object-fit: cover;"/>
+                                            </t>
+                                        </div>
+                                        <div class="card-body p-2" style="overflow: hidden;">
+                                            <h6 class="card-title text-truncate">
+                                                <small t-esc="similar_product.name"/>
+                                            </h6>
+                                            <p class="card-text text-truncate">
+                                                <small>
+                                                    <span t-field="similar_product.list_price"/>€
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+        </xpath>
+
+        <!-- Reeds besteld message section -->
+        <xpath expr="//div[@id='product_details']" position="inside">
+            <div id="reeds_besteld" class="d-none">
+                <t t-esc="product.reeds_besteld"/>
+            </div>
+        </xpath>
+
+    </template>
+
+    <template id="custom_shop_tags_filter" inherit_id="website_sale.products">
+        <xpath expr="//aside[@id='products_grid_before']/div" position="inside">
+            <div class="o_wsale_products_tags_filter mb-3">
+                <h6>Tags</h6>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownTagsFilter"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Tags
+                    </button>
+                    <ul class="dropdown-menu p-2" aria-labelledby="dropdownTagsFilter">
+                        <li t-foreach="request.env['product.tag'].search([])" t-as="tag">
+                            <div class="form-check">
+                                <input class="form-check-input tag-checkbox" type="checkbox" t-att-value="tag.id"
+                                       t-att-id="'tag_' + str(tag.id)"/>
+                                <label class="form-check-label" t-att-for="'tag_' + str(tag.id)">
+                                    <t t-esc="tag.name"/>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+    <template id="custom_add_to_wishlist" inherit_id="website_sale_wishlist.add_to_wishlist"
+              name="Custom Wishlist Button">
+        <xpath expr="//div[hasclass('o_wsale_product_btn')]" position="replace">
+            <t t-nocache="The wishlist depends on the user and must not be shared with other users. As this rendering is
+            in the loop, the product value is set in the template, we must retain the id of the product on which we are."
+               t-nocache-product_template_id="product.id">
+                <t t-set="product" t-value="products.filtered(lambda p: p.id == product_template_id)"/>
+                <t t-foreach="product" t-as="product_individual">
+                    <t t-set="in_wish" t-value="product._is_in_wishlist()"/>
+                    <t t-set="product_variant_id" t-value="product_individual._get_first_possible_variant_id()"/>
+                    <button t-if="product_variant_id" type="button" role="button"
+                            class="btn btn-outline-primary bg-white o_add_wishlist" t-att-disabled='in_wish or None'
+                            title="Add to Wishlist" t-att-data-product-template-id="product_individual.id"
+                            t-att-data-product-product-id="product_variant_id" data-action="o_wishlist">
+                        <span class="fa fa-heart" role="img" aria-label="Add to wishlist"></span>
+                    </button>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="product_detail_cant_be_sold_inherit" inherit_id="website_sale.product">
+        <xpath expr="//div[@class='js_product js_main_product mb-3']" position="attributes">
+            <attribute name="t-att-class">"js_product js_main_product mb-3" + (' hide_not_orderable' if not
+                product.is_orderable else '')
+            </attribute>
+        </xpath>
+    </template>
+
+</odoo>

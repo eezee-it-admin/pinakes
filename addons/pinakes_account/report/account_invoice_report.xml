@@ -21,4 +21,23 @@
         </field>
     </record>
 
+
+    <record model="ir.ui.view" id="account_view_account_invoice_report_pivot_extend">
+        <field name="name">account.invoice.report.search.pinakes</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_pivot"/>
+        <field name="arch" type="xml">
+            <field name="price_subtotal" position="after">
+                <field name="product_type_id" type="measure"/>
+                <field name="imprint_id" type="measure"/>
+                <field name="fonds_id" type="measure"/>
+                <field name="subtype_id" type="measure"/>
+                <field name="team_id" type="measure"/>
+                <field name="partner_id" type="measure"/>
+                <field name="company_id" type="measure"/>
+                <field name="product_categ_id" type="measure"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>

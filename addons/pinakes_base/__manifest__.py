@@ -2,13 +2,16 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Base",
-    "version": "16.0.0.0.16",
+    "version": "16.0.0.0.20",
     "author": "Eezee-It",
     "category": "Services",
     "license": "LGPL-3",
     "summary": "Pinakes Base",
     "depends": [
+        "base_geolocalize",
         "contacts",
+        "website_crm_partner_assign",
+        "website_partner",
         "product",
         "l10n_be_reports",
         "stock",

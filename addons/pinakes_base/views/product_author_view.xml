@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="product_tmpl_id"/>
+                <field name="is_visible" widget="boolean_toggle"/>
                 <field name="partner_id"/>
                 <field name="company_id" optional="hide"
                        groups="base.group_multi_company"/>
@@ -17,6 +18,17 @@
             </tree>
         </field>
     </record>
+
+    <record id="view_politeia_product_author_search" model="ir.ui.view">
+            <field name="name">politeia.product.author.tree</field>
+            <field name="model">product.author</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="product_tmpl_id"/>
+                    <field name="partner_id"/>
+                </search>
+            </field>
+        </record>
 
     <record id="action_politeia_product_author" model="ir.actions.act_window">
         <field name="name">Product Authors</field>
