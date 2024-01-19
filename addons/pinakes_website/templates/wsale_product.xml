@@ -201,7 +201,7 @@
     </template>
 
     <template id="product_detail_cant_be_sold_inherit" inherit_id="website_sale.product">
-        <xpath expr="//div[@class='js_product js_main_product mb-3']" position="attributes">
+        <xpath expr="//div[hasclass('js_main_product')]" position="attributes">
             <attribute name="t-att-class">"js_product js_main_product mb-3" + (' hide_not_orderable' if not
                 product.is_orderable else '')
             </attribute>

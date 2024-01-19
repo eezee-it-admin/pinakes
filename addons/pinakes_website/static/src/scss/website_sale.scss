@@ -6,13 +6,13 @@
     display: none;
 }
 
-.eezee_contact_card{
-    display: none;
-}
 
 .o_carousel_product_card_body span[data-oe-expression="record_price"],
 .oe_kanban_global_click .card-body .card-text small
 {
     display: none;
 }
- 
+html[data-view-xmlid="website_crm_partner_assign.partner"] .eezee_contact_card{
+    display: none;
+}
+
