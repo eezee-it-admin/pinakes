@@ -10,22 +10,23 @@ import base64
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    booxtream_link_ids = fields.One2many('ebook.link', 'sale_order_id')
-    read_link_ids = fields.One2many('ebook.link', 'sale_order_id')
+    booxtream_link_ids = fields.One2many('booxtream.link', 'sale_order_id')
+    read_link_ids = fields.One2many('read.link', 'sale_order_id')
 
     def action_confirm(self):
         res = super(SaleOrder, self).action_confirm()
-        EbookLink = self.env['ebook.link']
+        BooxtreamLink = self.env['booxtream.link']
+        ReadLink = self.env['read.link']
         for order in self:
             for line in order.order_line:
                 if self.is_e_book(line.name) and line.product_template_id.epub_file:
-                    link = EbookLink.create({
+                    link = BooxtreamLink.create({
                         'sale_order_id': order.id,
                         'download_link': self.generate_link(line.product_template_id, order.partner_id),
                     })
                     order.write({'booxtream_link_ids': [(4, link.id)]})
                 elif self.is_digital_book(line.name):
-                    link = EbookLink.create({
+                    link = ReadLink.create({
                         'sale_order_id': order.id,
                         'read_link': line.product_template_id.url_digitale_bib,
                     })
@@ -33,7 +34,7 @@ class SaleOrder(models.Model):
         return res
 
     def is_digital_book(self, name):
-        if 'digitaal' in name.lower():
+        if 'digitaal' in name.lower() or 'digital' in name.lower():
             return True
         return False
 

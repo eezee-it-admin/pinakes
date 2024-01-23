@@ -146,7 +146,7 @@
 
         <!-- Reeds besteld message section -->
         <xpath expr="//div[@id='product_details']" position="inside">
-            <div id="reeds_besteld" class="d-none">
+            <div id="reeds_besteld">
                 <t t-esc="product.reeds_besteld"/>
             </div>
         </xpath>
