@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document" priority="100">
+        <xpath expr="//span[@t-field='line.discount']" position="replace">
+            <span t-field="line.discount" t-options='{"widget": "float", "precision": 2}'/>
+        </xpath>
+    </template>
+
+</odoo>
