@@ -11,6 +11,9 @@
                 <span t-field="line.name" t-options="{'widget': 'text'}"/>
             </td>
         </td>
+        <xpath expr="//span[@t-field='line.discount']" position="attributes">
+            <attribute name="t-options">{"widget": "float", "precision": 2}</attribute>
+        </xpath>
     </template>
 
 </odoo>
