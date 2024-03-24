@@ -1,5 +1,6 @@
 # Copyright 2023      Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+from odoo import http
 from odoo.http import request
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo.osv import expression
@@ -7,8 +8,8 @@ from odoo.osv import expression
 
 class CustomShopController(WebsiteSale):
     def _get_search_options(
-        self, category=None, attrib_values=None, pricelist=None,
-        min_price=0.0, max_price=0.0, conversion_rate=1, **post
+            self, category=None, attrib_values=None, pricelist=None,
+            min_price=0.0, max_price=0.0, conversion_rate=1, **post
     ):
         options = super(CustomShopController, self)._get_search_options(
             category, attrib_values, pricelist, min_price, max_price,
@@ -58,3 +59,20 @@ class CustomShopController(WebsiteSale):
                 domains.append([('attribute_line_ids.value_ids', 'in', ids)])
 
         return expression.AND(domains)
+
+    @http.route('/product/filter_unique', type='json', auth='user', website=True)
+    def filter_unique_products(self, search_domain):
+        # Effectuer la recherche des produits avec le searchDomain
+        products = request.env['product.product'].search(search_domain)
+
+        # Créer un dictionnaire pour regrouper les produits par product_tmpl_id
+        product_tmpl_dict = {}
+        for product in products:
+            product_tmpl_id = product.product_tmpl_id.id
+            if product_tmpl_id not in product_tmpl_dict:
+                product_tmpl_dict[product_tmpl_id] = product.id
+
+        # Extraire les identifiants uniques des produits
+        unique_product_ids = list(product_tmpl_dict.values())
+
+        return {'ids': unique_product_ids}
