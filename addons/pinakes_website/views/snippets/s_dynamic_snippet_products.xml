@@ -12,7 +12,7 @@
         </xpath>
     </template>
 
-    <record id="pinakes_website.s_dynamic_snippet_products_000_js" model="ir.asset">
+    <record id="pinakes_website.s_pinakes_dynamic_snippet_products_000_js" model="ir.asset">
         <field name="name">Dynamic snippet products 000 JS</field>
         <field name="bundle">web.assets_frontend</field>
         <field name="path">pinakes_website/static/src/snippets/s_dynamic_snippet_products/000.js</field>
