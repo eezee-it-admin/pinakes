@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Website",
-    "version": "16.0.0.0.11",
+    "version": "16.0.0.0.12",
     "author": "Eezee-It",
     "category": "Website",
     "license": "LGPL-3",
@@ -15,8 +15,12 @@
         "website_sale_wishlist",
     ],
     "data": [
+        # Views
         "views/website_partner_templates.xml",
         "views/website_templates.xml",
+        "views/snippets/s_dynamic_snippet_products.xml",
+
+        # Templates
         "templates/wsale_product.xml",
         "templates/web_contact.xml",
     ],
@@ -31,6 +35,9 @@
             'pinakes_website/static/src/js/variant_mixin.js',
             'pinakes_website/static/src/scss/hide_not_orderable.scss',
             'pinakes_website/static/src/scss/website_sale.scss'
+        ],
+        'website.assets_wysiwyg': [
+            'pinakes_website/static/src/snippets/s_dynamic_snippet_products/options.js'
         ],
     },
     "application": False,
