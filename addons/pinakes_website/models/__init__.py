@@ -1,3 +1,4 @@
-# Copyright 2023      Eezee-IT (<http://www.eezee-it.com>)
+# Copyright 2024 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 from . import product
+from . import product_product

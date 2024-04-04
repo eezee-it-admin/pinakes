@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Template for variant table in add to cart pop-up -->
+    <template id="cart_popup_variant" name="Cart popup variant table">
+        <t t-set="variants_data" t-value="record.get_all_variants(record.id)"/>
+        <t t-set="variants" t-value="variants_data.get('variants', [])"/>
+        <t t-set="pricelist" t-value="website.get_current_pricelist()"/>
+        <t t-foreach="variants" t-as="variant">
+            <div class="card custom-card">
+                <div class="card-content">
+                    <p style="color:black;">
+                        <t t-esc="variant['name']"/>
+                    </p>
+                </div>
+                <input type="hidden" name="product-id" t-att-data-product-id="variant['id']"/>
+                <button type="button" role="button" class="btn btn-primary js_add_cart" title="Add to Cart">
+                    Add to Cart
+                </button>
+            </div>
+        </t>
+    </template>
+</odoo>

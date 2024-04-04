@@ -15,10 +15,15 @@
         "website_sale_wishlist",
     ],
     "data": [
+        # Datas
+        "data/product_snippet_template_data.xml",
+        
         # Views
         "views/website_partner_templates.xml",
         "views/website_templates.xml",
         "views/snippets/s_dynamic_snippet_products.xml",
+        "views/variants_modal.xml",
+        "views/show_variant_matrix.xml",
 
         # Templates
         "templates/wsale_product.xml",
@@ -34,7 +39,8 @@
             'pinakes_website/static/src/scss/hide_searchbar.scss',
             'pinakes_website/static/src/js/variant_mixin.js',
             'pinakes_website/static/src/scss/hide_not_orderable.scss',
-            'pinakes_website/static/src/scss/website_sale.scss'
+            'pinakes_website/static/src/scss/hide_product_snippet.scss',
+            'pinakes_website/static/src/scss/website_sale.scss',
         ],
         'website.assets_wysiwyg': [
             'pinakes_website/static/src/snippets/s_dynamic_snippet_products/options.js'
