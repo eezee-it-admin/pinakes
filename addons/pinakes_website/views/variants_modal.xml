@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="pinakes_products_item">
+        <div class="modal fade modal_product_variants" t-attf-id="variants_modal_{{record.id}}" tabindex="-1"
+             role="dialog"
+             aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content text-center justify-content-center o_colored_level o_cc o_cc5">
+                    <div class="modal-body mt16 d-flex justify-content-between custom-card-container">
+                        <t t-call="pinakes_website.cart_popup_variant"/>
+                    </div>
+                    <div class="mt8">
+                        <a role="button" class="btn btn-danger text-white" data-bs-dismiss="modal">
+                            <span class="fa fa-close"></span>
+                            <span>Cancel</span>
+                        </a>
+                    </div>
+                    <div class="mt-3">
+                        <span class="fa-stack tips-icon">
+                            <i class="fa fa-circle-thin fa-stack-2x"></i>
+                            <i class="fa fa-shopping-cart fa-stack-1x"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

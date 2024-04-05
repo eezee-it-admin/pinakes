@@ -62,17 +62,14 @@ class CustomShopController(WebsiteSale):
 
     @http.route('/product/filter_unique', type='json', auth='user', website=True)
     def filter_unique_products(self, search_domain):
-        # Effectuer la recherche des produits avec le searchDomain
         products = request.env['product.product'].search(search_domain)
 
-        # Créer un dictionnaire pour regrouper les produits par product_tmpl_id
         product_tmpl_dict = {}
         for product in products:
             product_tmpl_id = product.product_tmpl_id.id
             if product_tmpl_id not in product_tmpl_dict:
                 product_tmpl_dict[product_tmpl_id] = product.id
 
-        # Extraire les identifiants uniques des produits
         unique_product_ids = list(product_tmpl_dict.values())
 
         return {'ids': unique_product_ids}
