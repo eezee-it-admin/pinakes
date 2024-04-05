@@ -94,5 +94,4 @@
             <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
         </xpath>
     </template>
-
 </odoo>
