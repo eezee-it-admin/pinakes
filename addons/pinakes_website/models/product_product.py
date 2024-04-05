@@ -11,11 +11,11 @@ class ProductTemplate(models.Model):
     def get_all_variants(self, product_id):
         """This returns all possible combinations of variants for a product"""
         if product_id:
-            product = request.env['product.product'].sudo().browse(int(product_id))
+            product = request.env['product.product'].browse(int(product_id))
             if not product:
                 return {'error': 'Product not found'}
 
-            products = request.env['product.product'].sudo().search(
+            products = request.env['product.product'].search(
                 [('product_tmpl_id', '=', product.product_tmpl_id.id)])
 
             variant_data = [{'id': variant.id, 'name': variant.display_name} for variant in products]
