@@ -73,24 +73,3 @@ class CustomShopController(WebsiteSale):
         unique_product_ids = list(product_tmpl_dict.values())
 
         return {'ids': unique_product_ids}
-
-
-class ShopController(http.Controller):
-
-    @http.route('/shop/check_variants', type='json', auth='public')
-    def check_variants(self, product_id, **kwargs):
-        product = request.env['product.product'].browse(int(product_id))
-        if not product:
-            return {'error': 'Product not found'}
-
-        products = request.env['product.product'].search(
-            [('product_tmpl_id', '=', product.product_tmpl_id.id)])
-
-        product_data = []
-        for product in products:
-            product_data.append({
-                'id': product.id,
-                'name': product.display_name,
-                'image_url': product.image_1920,
-            })
-        return {'products': product_data}

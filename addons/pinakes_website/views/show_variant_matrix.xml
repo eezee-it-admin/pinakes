@@ -3,7 +3,7 @@
 
     <!-- Template for variant table in add to cart pop-up -->
     <template id="cart_popup_variant" name="Cart popup variant table">
-        <t t-set="variants_data" t-value="record.get_all_variants(record.id)"/>
+        <t t-set="variants_data" t-value="record.product_tmpl_id._get_all_variants_data()"/>
         <t t-set="variants" t-value="variants_data.get('variants', [])"/>
         <t t-set="pricelist" t-value="website.get_current_pricelist()"/>
         <t t-foreach="variants" t-as="variant">

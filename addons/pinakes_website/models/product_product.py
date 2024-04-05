@@ -6,18 +6,10 @@ from odoo.http import request
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.product'
+    _inherit = 'product.template'
 
-    def get_all_variants(self, product_id):
+    def _get_all_variants_data(self):
         """This returns all possible combinations of variants for a product"""
-        if product_id:
-            product = request.env['product.product'].browse(int(product_id))
-            if not product:
-                return {'error': 'Product not found'}
-
-            products = request.env['product.product'].search(
-                [('product_tmpl_id', '=', product.product_tmpl_id.id)])
-
-            variant_data = [{'id': variant.id, 'name': variant.display_name} for variant in products]
-
-            return {'variants': variant_data}
+        variants = self.product_variant_ids
+        variant_data = [{'id': variant.id, 'name': variant.display_name} for variant in variants]
+        return {'variants': variant_data}
