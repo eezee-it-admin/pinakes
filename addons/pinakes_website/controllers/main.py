@@ -77,6 +77,7 @@ class CustomShopController(WebsiteSale):
 
         return {'ids': unique_product_ids}
 
+
 class ShopController(http.Controller):
 
     @http.route('/shop/check_variants', type='json', auth='public')

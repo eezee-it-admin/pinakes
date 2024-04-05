@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Website",
-    "version": "16.0.0.0.12",
+    "version": "16.0.0.0.13",
     "author": "Eezee-It",
     "category": "Website",
     "license": "LGPL-3",
@@ -17,7 +17,7 @@
     "data": [
         # Datas
         "data/product_snippet_template_data.xml",
-        
+
         # Views
         "views/website_partner_templates.xml",
         "views/website_templates.xml",
