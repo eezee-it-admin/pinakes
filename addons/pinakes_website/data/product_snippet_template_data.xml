@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="pinakes_dynamic_filter_template_product_product_borderless_1" name="Pinakes Borderless Product n°1"
+              inherit_id="website_sale.dynamic_filter_template_product_product_borderless_1">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_borderless_2" name="Pinakes Borderless Product n°2"
+              inherit_id="website_sale.dynamic_filter_template_product_product_borderless_2">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('card-title')]" position="after">
+            <t t-call="pinakes_website.pinakes_products_item"/>
+        </xpath>
+        <xpath expr="//button[hasclass('js_add_cart')]" position="attributes">
+            <attribute name="class" remove="js_add_cart" add="show_variants" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_banner" name="Pinakes Banner Product"
+              inherit_id="website_sale.dynamic_filter_template_product_product_banner">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_horizontal_card" name="Pinakes Horizontal Card"
+              inherit_id="website_sale.dynamic_filter_template_product_product_horizontal_card">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('card-title')]" position="after">
+            <t t-call="pinakes_website.pinakes_products_item"/>
+        </xpath>
+        <xpath expr="//button[hasclass('js_add_cart')]" position="attributes">
+            <attribute name="class" remove="js_add_cart" add="show_variants" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_horizontal_card_2"
+              name="Pinakes Horizontal Card Width Covered Image"
+              inherit_id="website_sale.dynamic_filter_template_product_product_horizontal_card_2">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('card-title')]" position="after">
+            <t t-call="pinakes_website.pinakes_products_item"/>
+        </xpath>
+        <xpath expr="//button[hasclass('js_add_cart')]" position="attributes">
+            <attribute name="class" remove="js_add_cart" add="show_variants" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_card_group" name="Pinakes Card Group"
+              inherit_id="website_sale.dynamic_filter_template_product_product_card_group">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_add_to_cart" name="Pinakes Classic Card"
+              inherit_id="website_sale.dynamic_filter_template_product_product_add_to_cart">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('card-title')]" position="after">
+            <t t-call="pinakes_website.pinakes_products_item"/>
+        </xpath>
+        <xpath expr="//button[hasclass('js_add_cart')]" position="attributes">
+            <attribute name="class" remove="js_add_cart" add="show_variants" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_view_detail" name="Pinakes Classic Card - Detailed"
+              inherit_id="website_sale.dynamic_filter_template_product_product_view_detail">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_mini_name" name="Pinakes Name With Image"
+              inherit_id="website_sale.dynamic_filter_template_product_product_mini_name">
+        <xpath expr="//div//div[2]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+    </template>
+
+    <template id="pinakes_dynamic_filter_template_product_product_centered" name="Pinakes Centered Product"
+              inherit_id="website_sale.dynamic_filter_template_product_product_centered">
+        <xpath expr="//div[hasclass('card-title')]" position="attributes">
+            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+        </xpath>
+    </template>
+</odoo>

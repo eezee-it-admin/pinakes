@@ -1,18 +1,67 @@
-.o_wsale_product_sub .product_price{
-    display: none;
+.o_wsale_product_sub .product_price {
+  display: none;
 }
 
-.o_search_result_item .flex-shrink-0{
-    display: none;
+.o_search_result_item .flex-shrink-0 {
+  display: none;
 }
 
 
 .o_carousel_product_card_body span[data-oe-expression="record_price"],
-.oe_kanban_global_click .card-body .card-text small
-{
-    display: none;
+.oe_kanban_global_click .card-body .card-text small {
+  display: none;
 }
-html[data-view-xmlid="website_crm_partner_assign.partner"] .eezee_contact_card{
-    display: none;
+
+html[data-view-xmlid="website_crm_partner_assign.partner"] .eezee_contact_card {
+  display: none;
+}
+
+.modal_product_variants {
+  .modal-content {
+    padding: 30px 80px;
+    border: 1px solid $primary;
+    color: #000;
+    @media (max-width: 992px) {
+      padding: 30px 20px;
+    }
+
+    .custom-card-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .custom-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 300px;
+        margin-right: 20px;
+    }
+
+    .card-content {
+        flex-grow: 1;
+    }
+
+    .tips-icon {
+      color: #000;
+      position: absolute;
+      font-size: 2.5em;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 50%;
+    }
+  }
+
+  .link {
+    color: $secondary;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
