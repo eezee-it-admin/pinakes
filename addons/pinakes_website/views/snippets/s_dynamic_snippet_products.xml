@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="s_dynamic_snippet_products_template_options" inherit_id="website.s_dynamic_snippet_options_template">
+        <xpath expr="//we-select[@data-name='filter_opt']" position="after">
+            <t t-if="snippet_name == 'dynamic_snippet_products'">
+                <we-select string="Show Variants" data-name="product_type_opt" data-attribute-name="productType"
+                           data-no-preview="true">
+                    <we-button data-select-data-attribute="product_product">Yes</we-button>
+                    <we-button data-select-data-attribute="product_template">No</we-button>
+                </we-select>
+            </t>
+        </xpath>
+    </template>
+
+    <record id="s_dynamic_snippet_products_000_js" model="ir.asset">
+        <field name="name">Dynamic snippet products 000 JS</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">pinakes_website/static/src/snippets/s_dynamic_snippet_products/000.js</field>
+    </record>
+</odoo>
