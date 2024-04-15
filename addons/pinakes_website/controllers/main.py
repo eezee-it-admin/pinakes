@@ -60,7 +60,7 @@ class CustomShopController(WebsiteSale):
 
         return expression.AND(domains)
 
-    @http.route('/product/filter_unique', type='json', auth='user', website=True)
+    @http.route('/product/filter_unique', type='json', auth='public', website=True)
     def filter_unique_products(self, search_domain):
         products = request.env['product.product'].search(search_domain)
 
