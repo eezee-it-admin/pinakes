@@ -2,9 +2,7 @@
 <odoo>
 
     <template id="payment" inherit_id="website_sale.payment">
-
-<!--        <xpath expr="//t[@name='website_sale_non_free_cart']/div[@t-else]" position="replace">-->
-        <xpath expr="//t[@name='website_sale_non_free_cart']/div[@class='alert alert-warning']"  position="replace">
+        <xpath expr="//div[@class='alert alert-warning']"  position="replace">
             <div t-else="" class="alert alert-warning">
                 <strong>Your order has been registered and will be processed as soon as possible.</strong>
                 <br/>
