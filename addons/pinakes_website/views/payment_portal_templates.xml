@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="payment" inherit_id="website_sale.payment">
+        <xpath expr="//div[@class='alert alert-warning']"  position="replace">
+            <div t-else="" class="alert alert-warning">
+                <strong>Your order has been registered and will be processed as soon as possible.</strong>
+                <br/>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>
