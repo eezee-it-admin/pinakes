@@ -62,14 +62,24 @@ class CustomShopController(WebsiteSale):
 
     @http.route('/product/filter_unique', type='json', auth='public', website=True)
     def filter_unique_products(self, search_domain):
+        print(search_domain)
+        # Fetch products based on the provided search domain
         products = request.env['product.product'].search(search_domain)
 
-        product_tmpl_dict = {}
+        # Initialize sets to track unique template IDs and product IDs
+        unique_product_tmpl_ids = set()
+        unique_product_ids = []
+
         for product in products:
             product_tmpl_id = product.product_tmpl_id.id
-            if product_tmpl_id not in product_tmpl_dict:
-                product_tmpl_dict[product_tmpl_id] = product.id
 
-        unique_product_ids = list(product_tmpl_dict.values())
+            # Add product ID only if its template ID hasn't been seen yet
+            if product_tmpl_id not in unique_product_tmpl_ids:
+                unique_product_tmpl_ids.add(product_tmpl_id)
+                unique_product_ids.append(product.id)
+
+        # If no unique products were found, return a descriptive message
+        if not unique_product_ids:
+            return {'message': 'No unique products found', 'ids': []}
 
         return {'ids': unique_product_ids}
