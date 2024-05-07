@@ -64,12 +64,17 @@ class CustomShopController(WebsiteSale):
     def filter_unique_products(self, search_domain):
         products = request.env['product.product'].search(search_domain)
 
-        product_tmpl_dict = {}
+        unique_product_tmpl_ids = set()
+        unique_product_ids = []
+
         for product in products:
             product_tmpl_id = product.product_tmpl_id.id
-            if product_tmpl_id not in product_tmpl_dict:
-                product_tmpl_dict[product_tmpl_id] = product.id
 
-        unique_product_ids = list(product_tmpl_dict.values())
+            if product_tmpl_id not in unique_product_tmpl_ids:
+                unique_product_tmpl_ids.add(product_tmpl_id)
+                unique_product_ids.append(product.id)
+
+        if not unique_product_ids:
+            return {'message': 'No unique products found', 'ids': []}
 
         return {'ids': unique_product_ids}

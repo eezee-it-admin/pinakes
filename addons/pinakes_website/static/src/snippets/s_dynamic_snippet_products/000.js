@@ -12,7 +12,7 @@ odoo.define('pinakes_website.s_dynamic_snippet_products', function (require) {
             this._hideSnippetsAndShowSpinner();
         },
 
-        _hideSnippetsAndShowSpinner: function () {
+        _hideSnippetsAndShowSpinner() {
             if (!processingDone) {
                 const sections = document.querySelectorAll('section[data-snippet="s_dynamic_snippet_products"]');
 
@@ -32,7 +32,7 @@ odoo.define('pinakes_website.s_dynamic_snippet_products', function (require) {
                     setTimeout(() => {
                         spinnerContainer.remove();
                         section.classList.remove('hide_product_snippet');
-                    }, 9000);
+                    }, 5500);
                 };
 
                 sections.forEach(section => {
@@ -43,16 +43,17 @@ odoo.define('pinakes_website.s_dynamic_snippet_products', function (require) {
             }
         },
 
-
-        /**
-         * Method to be overridden in child components in order to provide a search
-         * domain if needed.
-         * @override
-         * @private
-         */
         _getSearchDomain() {
             let searchDomain = this._super(...arguments);
+            const productTypeOpt = this.$el.get(0).dataset.productType;
+
+            if (productTypeOpt === 'product_template') {
+                const uniqueProductIds = this._fetchUniqueProductIdsSync(searchDomain);
+                searchDomain.push(['id', 'in', uniqueProductIds]);
+            }
             searchDomain.push(...this._getCategorySearchDomain());
+            searchDomain.push(...this._getTagSearchDomain());
+
             const productNames = this.$el.get(0).dataset.productNames;
             if (productNames) {
                 const nameDomain = [];
@@ -71,15 +72,6 @@ odoo.define('pinakes_website.s_dynamic_snippet_products', function (require) {
                 }
                 searchDomain.push(...nameDomain);
             }
-
-            let productTypeOpt = this.$el.get(0).dataset.productType;
-
-            if (productTypeOpt === 'product_template') {
-                const uniqueProductIds = this._fetchUniqueProductIdsSync(searchDomain);
-                searchDomain.push(['id', 'in', uniqueProductIds]);
-            }
-            searchDomain.push(...this._getTagSearchDomain());
-
             return searchDomain;
         },
 
@@ -105,7 +97,8 @@ odoo.define('pinakes_website.s_dynamic_snippet_products', function (require) {
                 }
             });
             return uniqueProductIds;
-        },
+        }
+
     })
     const PinakesDynamicSnippetProductsCard = publicWidget.registry.dynamic_snippet_products_cta.extend({
 
