@@ -32,7 +32,7 @@ odoo.define('pinakes_website.s_dynamic_snippet_products', function (require) {
                     setTimeout(() => {
                         spinnerContainer.remove();
                         section.classList.remove('hide_product_snippet');
-                    }, 6500);
+                    }, 5500);
                 };
 
                 sections.forEach(section => {
