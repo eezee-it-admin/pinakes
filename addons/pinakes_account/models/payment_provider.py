@@ -8,6 +8,7 @@ from odoo.osv import expression
 
 class PaymentProvider(models.Model):
     _inherit = 'payment.provider'
+
     @api.model
     def _get_compatible_providers(
         self, company_id, partner_id, amount, currency_id=None, force_tokenization=False,
