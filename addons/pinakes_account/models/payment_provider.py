@@ -64,10 +64,6 @@ class PaymentProvider(models.Model):
                 ]
             ])
 
-        # Handle tokenization support requirements.
-        if force_tokenization or self._is_tokenization_required(**kwargs):
-            domain = expression.AND([domain, [('allow_tokenization', '=', False)]])
-
         # Handle express checkout.
         if is_express_checkout:
             domain = expression.AND([domain, [('allow_express_checkout', '=', True)]])
