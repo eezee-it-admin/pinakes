@@ -43,7 +43,7 @@ class PaymentProvider(models.Model):
 
         if is_express_checkout:
             domain = expression.AND([domain,
-                                     [('allow_tokenization', '=', True), '|', ('allow_tokenization', '=', False),
+                                     ['|', ('allow_tokenization', '=', True), ('allow_tokenization', '=', False),
                                       ('code', '=', 'custom')]])
 
         compatible_providers = self.env['payment.provider'].search(domain)
