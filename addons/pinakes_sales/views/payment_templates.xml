@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Mention that the token will be saved when paying for a subscription. -->
+    <template id="payment_checkout_inherit" inherit_id="sale_subscription.payment_checkout_inherit">
+    <xpath expr="//div[@name='o_payment_inline_form']//label[@t-if='is_subscription']" position="attributes">
+            <attribute name="style">display: none;</attribute>
+        </xpath>
+    </template>
+
+</odoo>
