@@ -7,7 +7,7 @@
                 <div class="row justify-content-center my-5">
                     <div class="col-7 text-start">
                         <h3>Summary</h3>
-                        <div t-out="product.summary" class="text-justify"/>
+                        <div t-raw="product.summary" class="text-justify"/>
                     </div>
                 </div>
             </t>
