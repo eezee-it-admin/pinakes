@@ -64,7 +64,7 @@
     <template id="pinakes_dynamic_filter_template_product_product_add_to_cart" name="Pinakes Classic Card"
               inherit_id="website_sale.dynamic_filter_template_product_product_add_to_cart">
         <xpath expr="//div[hasclass('card-title')]" position="attributes">
-            <attribute name="t-field">record.product_tmpl_id.display_name</attribute>
+            <attribute name="t-field">record.product_tmpl_id.name</attribute>
         </xpath>
         <xpath expr="//div[hasclass('card-title')]" position="after">
             <t t-call="pinakes_website.pinakes_products_item"/>
