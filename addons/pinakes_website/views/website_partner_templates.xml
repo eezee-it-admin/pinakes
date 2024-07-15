@@ -33,6 +33,10 @@
                 </div>
             </t>
         </xpath>
+        <xpath expr="//address" position="attributes">
+            <attribute name="groups"> !base.group_public
+            </attribute>
+        </xpath>
     </template>
 
 </odoo>
