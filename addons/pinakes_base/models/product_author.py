@@ -25,5 +25,5 @@ class ProductAuthor(models.Model):
     page_price_royalty = fields.Monetary()
     forfait_price = fields.Monetary()
     is_visible = fields.Boolean(default=True, store=True)
-    number_page = fields.Integer()
-    marketing = fields.Integer('Marketing (%)')
+    number_page = fields.Float()
+    marketing = fields.Float('Marketing (%)')
