@@ -109,3 +109,8 @@ msgstr "Date de publication"
 #: model:ir.model.fields,field_description:pinakes_base.field_product_template__publication_lang
 msgid "Publication Language"
 msgstr "Langue de publication"
+
+#. module: pinakes_base
+#: model:ir.model.fields,field_description:pinakes_base.field_product_author__number_page
+msgid "Number Page"
+msgstr "Nombre de pages"
