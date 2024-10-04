@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="email_template_avent_sale" model="mail.template">
+            <field name="name">Sales: Send Event</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">{{ object.company_id.name }} {{ object.state in ('draft', 'sent') and
+                (ctx.get('proforma') and 'Proforma' or 'Quotation') or 'Order' }} (Ref {{ object.name or 'n/a' }})
+            </field>
+            <field name="email_from">{{ (object.user_id.email_formatted or object.company_id.email_formatted or
+                user.email_formatted) }}
+            </field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="description">Used by salespeople when they send quotations or proforma to prospects</field>
+            <field name="body_html" type="html">
+
+<div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <t t-set="doc_name" t-value="'quotation' if object.state in ('draft', 'sent') else 'order'"></t>
+                        Beste klant,
+                        <br>
+                        <br>
+                        We zijn blij de registratie van onderstaande deelnemers te bevestigen voor het evenemen,
+                        <t t-out="object.partner_id.name or ''"></t>
+                        <br>
+                        <br>
+                        <t t-set="attendees" t-value="object.get_registration_event()"></t>
+ <t t-if="attendees">
+                            <t t-foreach="attendees" t-as="registration_event">
+                                <t t-set="i" t-value="0"></t>
+                                        <t t-set="i" t-value="i+1"></t>
+                                        Deelnemer <t t-out="i"></t>:
+ <t t-out="registration_event.name or ''"/>
+
+ </t>
+
+                        <br>
+                        <br>
+ <div style="margin: 0px; padding: 0px;">
+
+                        Gelieve contact op te nemen via events@politeia.be of 02/289.26.12 indien u verdere vragen
+                        heeft. Iedere ingeschreven deelnemer ontvangt een bevestigingsmail via zijn/haar opgegeven e-
+                        mailadres.
+                        <br>
+                        <br>
+                        OPGELET:
+                        <br>
+                        <br>
+
+                        Indien u een deelnemer inschreef voor een fysieke opleiding, ontvangt de deelnemer 24u voor
+                        aanvang van de opleiding via e-mail alle praktische informatie.
+                        <br>
+                        <br>
+
+                        Indien u een deelnemer inschreef voor een Webinar, krijgt de deelnemer de link om het Webinar
+                        te volgen 24u voor de start toegestuurd. Gelieve de spamfolder te controleren, het is mogelijk
+                        dat de e-mail daar is beland.
+                        <br>
+                        <br>
+
+                        Na afloop van de vorming ontvangt de deelnemer een feedbackformulier en het
+                        presentatiemateriaal. De factuur voor de deelname(s) wordt na afloop van de opleiding
+                        verstuurd. Indien u wenst een bestelbon(nummer) door te geven, vragen we u dit voor aanvang
+                        van de vorming te doen.
+                        <br>
+                        <br>
+
+                        Onze annulatievoorwaarden vindt u hier terug.
+                        <br>   </br>
+                        Voeg dit evenement aan je kalender toe…
+                        <br>   </br>
+                        Vriendelijke groeten,
+                        <br>   </br>
+                        Politeia
+                        </br>
+ </div>
+                    </p>
+                </div>
+
+            </field>
+            <!--            <field name="report_template" ref="action_report_saleorder"/>-->
+            <field name="report_name">{{ (object.name or '').replace('/','_') }}</field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+    </data>
+</odoo>
