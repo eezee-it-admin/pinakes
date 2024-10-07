@@ -11,7 +11,7 @@
         'pinakes_base'
     ],
     'data': [
-        'data/template_avent_sale.xml'
+        'data/template_event_sale.xml',
         'data/server_action.xml',
         'views/sale_order.xml',
         'views/sale_order_recurrence.xml',
