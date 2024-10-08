@@ -50,3 +50,24 @@ class SaleOrder(models.Model):
                          and x.sequence != '999')
         else:
             return res
+
+    def _find_mail_template(self):
+        all_events = all(line.product_id.detailed_type == 'event' for line in self.order_line)
+        all_books = any(line.product_id.detailed_type != 'event' for line in self.order_line)
+        mixed = any(line.product_id.detailed_type == 'event' for line in self.order_line)
+
+        templates = []
+
+        if all_events:
+            return self.env.ref('pinakes_sales.email_template_avent_sale', raise_if_not_found=False)
+        elif all_books or mixed:
+            return super(SaleOrder, self)._find_mail_template()
+
+        return templates
+
+    def get_registration_event(self):
+        sale_orders_data = self.env['event.registration'].search(
+            [('sale_order_id', 'in', self.ids),
+             ('state', '!=', 'cancel')]
+        )
+        return sale_orders_data
