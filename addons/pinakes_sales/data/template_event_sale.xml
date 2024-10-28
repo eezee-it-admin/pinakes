@@ -22,7 +22,7 @@
                     <br/>
                     <br/>
                     We zijn blij de registratie van onderstaande deelnemers te bevestigen voor het evenemen,
-                    <t t-out="object.partner_id.name or ''"></t>
+                    <t t-out="object.get_name_event() or ''"></t>
                     <br/>
                     <t t-set="attendees" t-value="object.get_registration_event()"></t>
                     <t t-if="attendees">
