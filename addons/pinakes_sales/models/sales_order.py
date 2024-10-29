@@ -71,3 +71,8 @@ class SaleOrder(models.Model):
              ('state', '!=', 'cancel')]
         )
         return sale_orders_data
+
+    def get_name_event(self):
+        event_lines = [line for line in self.order_line if line.product_id.detailed_type == 'event']
+        if event_lines:
+            return event_lines[0].product_id.name
