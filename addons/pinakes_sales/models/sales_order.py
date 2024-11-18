@@ -76,3 +76,6 @@ class SaleOrder(models.Model):
         event_lines = [line for line in self.order_line if line.product_id.detailed_type == 'event']
         if event_lines:
             return event_lines[0].product_id.name
+
+    email_1 = fields.Char()
+    email_2 = fields.Char()
