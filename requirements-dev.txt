@@ -12,4 +12,3 @@ safety==1.10.3
 pip-tools==6.2.0
 importlib-metadata==4.13.0
 lxml==4.6.3
-psycopg2>=2.8
