@@ -7,6 +7,10 @@ include:
   - project: "eezee-it/gitlab-ci-common"
     ref: main
     file: "odoo-unittests.yml"
+  - project: "eezee-it/gitlab-ci-common"
+    ref: main
+    file: "eezee-runbot-deployment.yml"
+
 
 variables:
   # Variables for linters and tests
