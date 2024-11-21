@@ -4,6 +4,3 @@ xlrd
 XlsxWriter
 pandas
 cryptography
-psycopg2-binary
-psycopg2==2.9.6
-psycopg2-binary>=2.9
