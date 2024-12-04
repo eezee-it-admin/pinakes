@@ -15,6 +15,15 @@
                    <attribute name="attrs"> {'invisible': []}</attribute>
                    <attribute name="readonly">0</attribute>
               </xpath>
+            <notebook position="inside">
+                <page string="Digital Access" name="digital_access">
+                    <group>
+                        <field name="email_1" widget="email"/>
+                        <field name="email_2" widget="email"/>
+
+                    </group>
+                </page>
+            </notebook>
         </field>
     </record>
 

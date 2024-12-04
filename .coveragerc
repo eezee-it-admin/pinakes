@@ -6,7 +6,7 @@ omit =
         */odoo/*
         */community/*
         */enterprise/*
-        */python3.5/*
+        */python3.10/*
         *addons-community/*
 
 [report]
@@ -17,8 +17,8 @@ omit =
         */odoo/*
         */community/*
         */enterprise/*
-        */python3.5/*
+        */python3.10/*
         *addons-community/*
         */tests/*
-skip_covered = True
+skip_covered = False
 show_missing = True
