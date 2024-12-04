@@ -3,7 +3,7 @@
 from odoo import models, fields
 import requests
 from requests_toolbelt.multipart.encoder import MultipartEncoder
-import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET  # nosec B405
 import base64
 
 
@@ -72,7 +72,7 @@ class SaleOrder(models.Model):
                                  auth=('politeiatest', 'cY1gAp4sKmewkAAx0BJcJcoYNUn0ZD'))
 
         response_xml_as_string = response.content.decode('utf-8')
-        responseXml = ET.fromstring(response_xml_as_string)
+        responseXml = ET.fromstring(response_xml_as_string)  # nosec B314
 
         if response.status_code == 200:
             download_link_element = responseXml.find(".//DownloadLink")

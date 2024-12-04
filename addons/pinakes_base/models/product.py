@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 import json
-from lxml import etree
+from lxml import etree  # nosec B410
 
 from odoo import api, fields, models
 

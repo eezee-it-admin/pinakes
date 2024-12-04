@@ -2,21 +2,15 @@
 include:
   - project: "eezee-it/gitlab-ci-common"
     ref: main
+    file: "odoo-lint.yml"
+  - project: "eezee-it/gitlab-ci-common"
+    ref: main
     file: "odoo-unittests.yml"
 
 variables:
   # Variables for linters and tests
   ODOO_VERSION: "16.0"
   PYTHON_VERSION: "3.10"
-
-workflow:
-  rules:
-    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
-      when: never
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
-      when: never
-    - if: $CI_COMMIT_BRANCH
 
 stages:
   - lint
