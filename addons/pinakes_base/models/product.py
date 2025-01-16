@@ -156,6 +156,8 @@ class ProductProduct(models.Model):
                             compute='_compute_product_variant_type',
                             inverse='_inverse_product_variant_type')
 
+    recurring_invoice = fields.Boolean(inverse='_inverse_recurring_invoice')
+
     def _get_isbn(self):
         """Return the ISBN of the product variant."""
         self.ensure_one()
@@ -190,6 +192,9 @@ class ProductProduct(models.Model):
             node.set("modifiers", json.dumps(modifiers))
         result['arch'] = etree.tostring(doc)
         return result
+
+    def _inverse_recurring_invoice(self):
+        return
 
 
 class PublicationType(models.Model):
