@@ -1,8 +1,8 @@
-# Copyright 2023 Eezee-IT (<http://www.eezee-it.com>)
+# Copyright 2025 Eezee-IT (<http://www.eezee-it.com>)
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 {
     "name": "Pinakes Sync",
-    "version": '16.0.0.0.3',
+    "version": '16.0.0.0.4',
     "application": False,
     "license": 'LGPL-3',
     "category": 'Tools',
@@ -13,6 +13,7 @@
     "support": "support@eezee-it.com",
     "website": 'http://www.eezee-it.com',
     "depends": [
+        'advanced_automatic_export',
         'base',
         'sale',
         'stock',
